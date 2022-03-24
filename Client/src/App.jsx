@@ -4,6 +4,7 @@ import Landing from "./Components/layout/Landing";
 import Auth from "./Components/view/Auth";
 import Dashboard from "./Components/layout/DashBoard";
 import AuthContextProvider  from "./Store/Context/AuthContext";
+import ProtectedRoute from "./Store/Routing/ProtectedRoute";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             path="/register"
             render={(props) => <Auth {...props} authRoute="register" />}
           />
-          <Route
+          <ProtectedRoute
             exact
             path="/dashboard"
             component ={Dashboard}

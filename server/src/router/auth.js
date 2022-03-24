@@ -10,12 +10,29 @@ const SchemaUser = require("../models/user");
 
 const SchemaRole = require("../models/role");
 
+const verifyToken = require("../../Middleware/Auth");
+
 const GenerateToken = (payload) => {
   const token = jwt.sign(payload, process.env.secret_token, {
     expiresIn: "1d",
   });
   return token;
 };
+
+Router.get("/", verifyToken, async (req, res) => {
+  try {
+    const user = await SchemaUser.findById(req.userId).select("-password");
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    } else {
+      return res.status(200).json({ success: true, user });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Máy chủ gặp lỗi" });
+  }
+});
 
 Router.post("/register", async (req, res) => {
   const { username, password, fullname, nameRole } = req.body;
