@@ -1,7 +1,14 @@
-import {Redirect} from "react-router-dom"
+
+import Header from './Page/Header';
+
+
 
 const Landing = () => {
-  return <Redirect to="/login"/>
+  return (
+    <>
+      <Header/>
+    </>
+  )
 };
 
 export default Landing;

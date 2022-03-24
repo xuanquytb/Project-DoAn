@@ -7,7 +7,8 @@ import { Redirect } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner"
 
 const Auth = ({ authRoute }) => {
-  const {authState: {authLoading, isAuthenticated}} = useContext(AuthContext);
+  const {authState: {authLoading, isAuthenticated,user,roleUser}} = useContext(AuthContext);
+  console.log(roleUser);
   let body;
   if(authLoading){
     body = (
@@ -16,7 +17,9 @@ const Auth = ({ authRoute }) => {
       </div>
     )
   }else{
-    if(isAuthenticated) {
+    if(isAuthenticated && roleUser == "Customer") {
+      return <Redirect to='/'/>
+    }else if(isAuthenticated && roleUser == "Admin"){
       return <Redirect to='/dashboard'/>
     }
   }
@@ -27,6 +30,7 @@ const Auth = ({ authRoute }) => {
       {authRoute === "register" && <Register />}
     </>
   )
+
   return (
     <>
     {body}

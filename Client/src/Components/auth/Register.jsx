@@ -1,5 +1,6 @@
 import React from "react";
 import "../Style/Register.css";
+
 const Register = () => {
   const username = "";
   const password = "";

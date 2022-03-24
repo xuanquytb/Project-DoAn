@@ -19,7 +19,7 @@ const AuthContextProvider = ({ children }) => {
       if(response.data.success) {
         dispatch({
           type: 'SET_AUTH',
-          payload: {isAuthenticated: true, user: response.data.user}
+          payload: {isAuthenticated: true, user: response.data.user,roleUser:response.data.role}
         })
       }
     } catch (error) {

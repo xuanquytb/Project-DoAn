@@ -27,7 +27,7 @@ Router.get("/", verifyToken, async (req, res) => {
         .status(400)
         .json({ success: false, message: "User not found" });
     } else {
-      return res.status(200).json({ success: true, user });
+      return res.status(200).json({ success: true, user, role: req.role });
     }
   } catch (error) {
     return res.status(500).json({ success: false, message: "Máy chủ gặp lỗi" });
@@ -82,6 +82,8 @@ Router.post("/login", async (req, res) => {
     });
   } else {
     const user = await SchemaUser.findOne({ username });
+
+    const role = await SchemaRole.findById({ _id: user.role });
     if (!user) {
       res
         .status(400)
@@ -89,7 +91,10 @@ Router.post("/login", async (req, res) => {
     } else {
       const validPassword = await argon2.verify(user.password, password);
       if (validPassword) {
-        const accessToken = GenerateToken({ userId: user._id });
+        const accessToken = GenerateToken({
+          userId: user._id,
+          role: role.nameRole,
+        });
         res.status(200).json({
           success: true,
           message: "Đăng nhập thành công",

@@ -20,7 +20,6 @@ const Login = () => {
 
     try {
       const loginData = await loginUser(loginForm);
-      console.log(loginData);
       if (loginData.success) {
         // history.push("/dashboard");
       } else {
