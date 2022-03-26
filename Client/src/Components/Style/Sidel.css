@@ -168,3 +168,10 @@ main.ant-layout-content {
     bottom: 0;
     width: 100%;
 }
+
+aside.ant-layout-sider.ant-layout-sider-dark{
+    flex: 0 0 200px;
+    max-width: 276px;
+    min-width: 231px;
+    width: 338px;
+  }

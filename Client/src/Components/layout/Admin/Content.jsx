@@ -1,60 +1,48 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "../../Style/base.css";
-import { Layout, Menu, Button } from "antd";
+import "../../Style/style-Box.css";
+import "../../Style/icons.css";
+import "../../Style/uikit.css";
+import { SearchOutlined } from "@ant-design/icons";
 
 const Content = () => {
   return (
     <>
-      <div>
-        <div className="main-content">
-          <span>Danh sách sản phẩm </span>
-          <div className="tool">
-            <div className="btn-add">
-              {/* <Button className="add-new">Thêm Mới</Button> */}
+      <div className="main_content">
+        <div id="main_header">
+          <header>
+            <div className="header-innr">
+              <div
+                className="header-btn-traiger is-hidden"
+                uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"
+              ></div>
+              <div id="logo">
+                <a href="feeds.html">
+                  <img src="" alt="" />
+                </a>
+                <a href="feeds.html">
+                  <img src="" className="logo-inverse" alt="" />
+                </a>
+              </div>
+              <div className="head_search">
+                <form>
+                  <div className="head_search_cont">
+                    <SearchOutlined
+                      style={{ color: "#08c", marginLeft: "20px" }}
+                    />
+                    <input
+                      value=""
+                      type="text"
+                      className="form-control"
+                      placeholder="Nội dung tìm kiếm"
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
-            <input
-              type="text"
-              className="text-find"
-              placeholder="nhập từ khóa"
-            />
-          </div>
+          </header>
         </div>
-        <table>
-          <tr>
-            <th>#</th>
-            <th>Tên ngành hàng</th>
-            <th>Mô tả</th>
-            <th>Hành động</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Ngành hàng điện tử</td>
-            <td>Các thiết bị điện tử như điện thoại,máy tính bảng,..</td>
-            <td>
-              <button className="edit">Sửa</button>
-              <button className="remove">Xóa</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Ngành hàng đời sống</td>
-            <td>Các đồ như dây buộc tóc,...</td>
-            <td>
-              <button className="edit">Sửa</button>
-              <button className="remove">Xóa</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Ngành hàng gia dụng</td>
-            <td>Các thiết bị gia dụng như rổ,giá,...</td>
-            <td>
-              <button className="edit">Sửa</button>
-              <button className="remove">Xóa</button>
-            </td>
-          </tr>
-        </table>
       </div>
     </>
   );
