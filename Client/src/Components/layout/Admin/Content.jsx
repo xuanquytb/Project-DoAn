@@ -1,9 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import "../../Style/base.css";
-import "../../Style/style-Box.css";
-import "../../Style/icons.css";
-import "../../Style/uikit.css";
+import "../../Style/style-Content.css";
 import { SearchOutlined } from "@ant-design/icons";
 
 const Content = () => {
@@ -42,6 +39,9 @@ const Content = () => {
               </div>
             </div>
           </header>
+        </div>
+        <div className="Content-Box">
+          Đây là nội dung
         </div>
       </div>
     </>

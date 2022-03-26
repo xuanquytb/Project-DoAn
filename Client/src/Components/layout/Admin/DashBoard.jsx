@@ -22,9 +22,8 @@ const DashBoard = () => {
           <Content>
             <ContentPage/>
           </Content>
-          
         </Layout>
-        <Footer>Footer</Footer>
+        <Footer>Thực hiện bởi VMU</Footer>
       </Layout>
     
   </div>;

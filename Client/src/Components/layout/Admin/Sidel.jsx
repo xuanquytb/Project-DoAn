@@ -4,9 +4,11 @@ import "../../Style/Sidel.css";
 import "../../Style/base.css";
 import { Menu} from "antd";
 import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
+  AlignCenterOutlined,
+  LaptopOutlined,
+  EditOutlined,
+  MessageOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 const { SubMenu } = Menu;
 
@@ -16,32 +18,38 @@ const Sidel = () => {
       <Menu
         style={{ width: 230 }}
         // defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub2"]}
-        mode="inline"
+        // defaultOpenKeys={["sub2"]}
+        mode="vertical"
       >
-        <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-          <Menu.ItemGroup key="g1" title="Item 1">
-            <Menu.Item key="1">Quản lý bài đăng</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup key="g2" title="Item 2">
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
+        <SubMenu key="sub1" icon={<UserOutlined />} title="Quản lí người dùng">
+          <Menu.Item key="1">Quản lý bài đăng</Menu.Item>
+          <Menu.Item key="2">Option 2</Menu.Item>
+          <Menu.Item key="3">Option 3</Menu.Item>
+          <Menu.Item key="4">Option 4</Menu.Item>
         </SubMenu>
-        <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
+        <SubMenu key="sub2" icon={<AlignCenterOutlined />} title="Quản lý đơn hàng">
           <Menu.Item key="5">Option 5</Menu.Item>
           <Menu.Item key="6">Option 6</Menu.Item>
-          <SubMenu key="sub3" title="Submenu">
-            <Menu.Item key="7">Option 7</Menu.Item>
-            <Menu.Item key="8">Option 8</Menu.Item>
-          </SubMenu>
+          <Menu.Item key="7">Option 7</Menu.Item>
+          <Menu.Item key="8">Option 8</Menu.Item>
         </SubMenu>
-        <SubMenu key="sub4" icon={<SettingOutlined />} title="Navigation Three">
+        <SubMenu key="sub3" icon={<LaptopOutlined />} title="Quản lý sản phẩm">
           <Menu.Item key="9">Option 9</Menu.Item>
           <Menu.Item key="10">Option 10</Menu.Item>
           <Menu.Item key="11">Option 11</Menu.Item>
           <Menu.Item key="12">Option 12</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub4" icon={<EditOutlined />} title="Quản lý bài đăng">
+          <Menu.Item key="13">Option 9</Menu.Item>
+          <Menu.Item key="14">Option 10</Menu.Item>
+          <Menu.Item key="15">Option 11</Menu.Item>
+          <Menu.Item key="16">Option 12</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub5" icon={<MessageOutlined />} title="Quản lý bình luận">
+          <Menu.Item key="17">Option 9</Menu.Item>
+          <Menu.Item key="18">Option 10</Menu.Item>
+          <Menu.Item key="19">Option 11</Menu.Item>
+          <Menu.Item key="20">Option 12</Menu.Item>
         </SubMenu>
       </Menu>
     </>

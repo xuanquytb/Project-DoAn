@@ -107,6 +107,8 @@ header .head_search {
   border: 1px solid transparent;
   min-width: 450px;
   font-size: 15px;
+  border-radius: 23px;
+  margin-left: 20px;
 }
  
 .head_search .head_search_cont input:focus {
@@ -210,7 +212,7 @@ header .head_user .opts_account>img {
   display: block;
   overflow: visible;
   border-radius: 30px;
-  min-height: 79vh;
+  min-height: 90vh;
   background-color: #f1f5f8;
   min-width: 99%;
 }
@@ -283,8 +285,6 @@ header .head_user .opts_account>img {
   .main_content_inner {
     padding: 15px !important;
   }
-
-
 }
 
 span.anticon.anticon-search {
@@ -292,4 +292,23 @@ span.anticon.anticon-search {
   position: absolute;
   top: 53px;
   cursor: pointer;
+}
+
+.Content-Box{
+  z-index: 100;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  color: #030303;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+main.ant-layout-content {
+  height: 646px;
+}
+
+section.ant-layout.ant-layout-has-sider {
+  height: 577px;
 }

@@ -157,7 +157,6 @@ li.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child.lỉne.line-wid
 }
 
 main.ant-layout-content {
-    margin-left: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,12 +165,13 @@ main.ant-layout-content {
 .ant-layout-footer{
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 15.5%;
+    font-size: 11px;
 }
 
 aside.ant-layout-sider.ant-layout-sider-dark{
     flex: 0 0 200px;
-    max-width: 276px;
-    min-width: 231px;
-    width: 338px;
+    max-width: 231px !important;
+    min-width: 231px !important;
+    width: 231px !important;
   }
