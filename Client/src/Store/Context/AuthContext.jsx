@@ -31,7 +31,6 @@ const AuthContextProvider = ({ children }) => {
   }
 
   useEffect(() => loadUser() , [])
-
   const loginUser = async (userForm) => {
     const response = await axios.post(`${apiUrl}/auth/login`, userForm);
     if (response.data.success) {

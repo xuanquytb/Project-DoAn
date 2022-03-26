@@ -33,3 +33,15 @@ Content-Type: application/json
     "password":"admin"
    
 }
+
+########
+POST http://localhost:8080/api/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiZTYxYTE0ODYyNjI0NjJmZmMwZWYiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE2NDgyODMyODQsImV4cCI6MTY0ODM2OTY4NH0.m6WHVXRzpsSQh9ZYsyotfhADuWOg7nz6j4blp3FMano
+
+{
+    "name":"xuanquy",
+    "image":"admin",
+    "description":"Xuân Quý",
+    "status":"0"
+}
