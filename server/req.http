@@ -4,7 +4,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwM
 ################################
 POST http://localhost:8080/api/role
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiZTYxYTE0ODYyNjI0NjJmZmMwZWYiLCJpYXQiOjE2NDgwOTI4NTAsImV4cCI6MTY0ODE3OTI1MH0.7f41LJQLeSBHUt2BJ0i8EqD3pcEPa4IXFLNMYZjzSUA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwMWRlM2M2YjE0ODYwMzU1ZjhmNjYiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDgzNzUzNTQsImV4cCI6MTY0ODQ2MTc1NH0.g0BziTLB31MkChiQ8FEfh2LOaVzYwLx1CEA-ZpuUAbk
 
 {
     "nameRole":"Customer",
@@ -22,8 +22,27 @@ Content-Type: application/json
     "fullname":"Đặng Thị Hải Nhật",
     "nameRole":"Admin"
 }
+#############
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+    "username":"admin1",
+    "password":"admin1",
+    "fullname":"admin1",
+    "nameRole":"Admin1"
+}
 
 
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+   
+}
 ###
 
 POST http://localhost:8080/api/auth/login
@@ -36,13 +55,29 @@ Content-Type: application/json
 }
 
 ########
-POST http://localhost:8080/api/product
+POST http://localhost:8080/api/category
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNiZTYxYTE0ODYyNjI0NjJmZmMwZWYiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE2NDgyODMyODQsImV4cCI6MTY0ODM2OTY4NH0.m6WHVXRzpsSQh9ZYsyotfhADuWOg7nz6j4blp3FMano
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwMWRlM2M2YjE0ODYwMzU1ZjhmNjYiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDgzNzUzNTQsImV4cCI6MTY0ODQ2MTc1NH0.g0BziTLB31MkChiQ8FEfh2LOaVzYwLx1CEA-ZpuUAbk
 
 {
-    "name":"xuanquy",
-    "image":"admin",
-    "description":"Xuân Quý",
-    "status":"0"
+    "name":"Thiết Bị",
+    "image":"https://cf.shopee.vn/file/7abfbfee3c4844652b4a8245e473d857_tn",
+    "description":"Các Thiết Bị Điện Gia Dụng",
+    "status":"1"
+}
+
+########
+POST http://localhost:8080/api/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwMWRlM2M2YjE0ODYwMzU1ZjhmNjYiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDgzNzUzNTQsImV4cCI6MTY0ODQ2MTc1NH0.g0BziTLB31MkChiQ8FEfh2LOaVzYwLx1CEA-ZpuUAbk
+
+{
+    "name":"Đèn Học",
+    "idCategory": "62401d6039d6273e67e013ac",
+    "description":"Các Thiết Bị Điện Gia Dụng",
+    "image":"https://cf.shopee.vn/file/87f4beea3d91ef3a50b699aa6dbd2a7c",
+    "hide":"true",
+    "quantity": "5",
+    "price": "200000đ",
+    "status":"1"
 }
