@@ -20,6 +20,10 @@ const SchemaUser = new Schema({
     type: String,
     require: true,
   },
+  key: {
+    type: String,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("user", SchemaUser);

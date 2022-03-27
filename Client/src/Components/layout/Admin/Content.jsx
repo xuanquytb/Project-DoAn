@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import "../../Style/style-Content.css";
 import { SearchOutlined } from "@ant-design/icons";
+import  UserContent  from "./User/UserContent";
 
 const Content = () => {
   return (
@@ -29,10 +30,11 @@ const Content = () => {
                       style={{ color: "#08c", marginLeft: "20px" }}
                     />
                     <input
-                      value=""
+                      // value=""
                       type="text"
                       className="form-control"
                       placeholder="Nội dung tìm kiếm"
+                      // onChange={}
                     />
                   </div>
                 </form>
@@ -41,7 +43,7 @@ const Content = () => {
           </header>
         </div>
         <div className="Content-Box">
-          Đây là nội dung
+          <UserContent/>
         </div>
       </div>
     </>

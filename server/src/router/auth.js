@@ -34,6 +34,21 @@ Router.get("/", verifyToken, async (req, res) => {
   }
 });
 
+Router.get("/user", verifyToken, async (req, res) => {
+  try {
+    const user = await SchemaUser.find({ user: req.userId });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    } else {
+      return res.status(200).json({ success: true, user });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Máy chủ gặp lỗi" });
+  }
+});
+
 Router.post("/register", async (req, res) => {
   const { username, password, fullname, nameRole } = req.body;
   if (!username || !password || !fullname || !nameRole) {

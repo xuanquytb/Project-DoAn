@@ -113,10 +113,7 @@ const Header = () => {
                 </div>
                 <div className="search__popular">
                   <div className="search__popular-head">
-                    <img
-                      src="../../../../image/header/search.png"
-                      alt=""
-                    />
+                    <img src="../../../../image/header/search.png" alt="" />
                     <h3>Tìm Kiếm Phổ Biến</h3>
                   </div>
                   <div className="search__popular-body">
@@ -262,7 +259,9 @@ const Header = () => {
                         width="65px"
                         height="65px"
                       />
-                      <span className="search__category-info">Điện Gia Dụng</span>
+                      <span className="search__category-info">
+                        Điện Gia Dụng
+                      </span>
                     </a>
                     <a className="search__category-item">
                       <img
@@ -271,7 +270,9 @@ const Header = () => {
                         width="65px"
                         height="65px"
                       />
-                      <span className="search__category-info">Thời Trang Nữ</span>
+                      <span className="search__category-info">
+                        Thời Trang Nữ
+                      </span>
                     </a>
                   </div>
                 </div>
@@ -287,13 +288,17 @@ const Header = () => {
           <div className="header__user">
             <div className="header__user-info">
               <span className="header__user-img">
-                <img
-                  src="../../../../image/header/user__logo.png"
-                  alt=""
-                />
+                <img src="../../../../image/header/user__logo.png" alt="" />
               </span>
               <div className="header__user-login">
-                <span className="user__login">Đăng nhập / Đăng ký</span>
+                <span className="user__login">
+                  <a
+                    href="http://localhost:3000/login"
+                    style={{ color: "#fff" }}
+                  >
+                    Đăng nhập / Đăng ký
+                  </a>
+                </span>
                 <span className="user__account">
                   <span className="user__name">Tài khoản</span>
                   <i className="fas fa-sort-down user__account-icon"></i>
@@ -302,10 +307,7 @@ const Header = () => {
             </div>
             <div className="header__category">
               <div className="header__category-icon">
-                <img
-                  src="../../../../image/header/category.png"
-                  alt=""
-                />
+                <img src="../../../../image/header/category.png" alt="" />
                 <div className="category__quantily">
                   <span>0</span>
                 </div>
@@ -352,13 +354,6 @@ const Header = () => {
             <a href="#" className="header__keyword-link">
               gạo
             </a>
-          </div>
-          <div className="header__seller">
-            <img
-              src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg"
-              alt=""
-            />
-            <span className="header__seller-info">Bán hàng cùng Tiki</span>
           </div>
         </div>
       </header>

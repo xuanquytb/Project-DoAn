@@ -23,9 +23,9 @@ const AuthContextProvider = ({ children }) => {
         })
       }
     } catch (error) {
-      localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-      setAuthToken(null);
-      dispatch({type:'SET_AUTH' , payload:{isAuthenticated: false, user: null}})
+      // localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+      // setAuthToken(null);
+      // dispatch({type:'SET_AUTH' , payload:{isAuthenticated: false, user: null}})
       
     }
   }

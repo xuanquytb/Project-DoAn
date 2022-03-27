@@ -208,6 +208,7 @@ header .head_user .opts_account>img {
 
 .main_content {
   position: relative;
+  top: 33px;
   z-index: 5;
   display: block;
   overflow: visible;

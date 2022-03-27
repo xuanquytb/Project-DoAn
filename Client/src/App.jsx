@@ -4,11 +4,13 @@ import Landing from "./Components/layout/Landing";
 import Auth from "./Components/view/Auth";
 import Dashboard from "./Components/layout/Admin/DashBoard";
 import AuthContextProvider from "./Store/Context/AuthContext";
+import UserContextProvider from "./Store/Context/UserContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";
 
 function App() {
   return (
     <AuthContextProvider>
+      <UserContextProvider>
       <Router>
         <Switch>
           <ProtectedRoute exact path="/" component={Landing} />
@@ -22,9 +24,13 @@ function App() {
             path="/register"
             render={(props) => <Auth {...props} authRoute="register" />}
           />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          
+          
         </Switch>
       </Router>
+      </UserContextProvider>
     </AuthContextProvider>
   );
 }
