@@ -174,4 +174,12 @@ aside.ant-layout-sider.ant-layout-sider-dark{
     max-width: 231px !important;
     min-width: 231px !important;
     width: 231px !important;
+    height: 82vh;
+    background-color:rgb(38,7,89);
+    color:#fff;
+  }
+
+  ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-light{
+    background-color:rgb(38,7,89);
+    color:#fff;
   }

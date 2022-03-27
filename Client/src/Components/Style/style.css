@@ -960,10 +960,11 @@
   background: #6aa0c7;
 }
 [data-theme="dark"] .ant-layout-footer {
-  background: #6aa0c7;
+  background-color: rgb(38,7,89);
 }
 .ant-layout-footer {
   line-height: 1.5;
+  background-color: rgb(38,7,89);
 }
 .ant-layout-sider {
   color: #fff;
@@ -977,9 +978,9 @@
   min-height: 120px;
   color: #fff;
   line-height: 120px;
-  background: rgba(16, 142, 233, 1);
+  background-color: rgb(38,7,89);
 }
 [data-theme="dark"] .ant-layout-content {
-  background: #107bcb;
+  background-color: rgb(38,7,89);
 }
 

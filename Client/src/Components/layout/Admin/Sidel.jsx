@@ -17,8 +17,6 @@ const Sidel = () => {
     <>
       <Menu
         style={{ width: 230 }}
-        // defaultSelectedKeys={["1"]}
-        // defaultOpenKeys={["sub2"]}
         mode="vertical"
       >
         <SubMenu key="sub1" icon={<UserOutlined />} title="Quản lí người dùng">
