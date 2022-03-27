@@ -5,6 +5,8 @@ const cors = require("cors");
 const RouterRole = require("./router/role");
 const RouterAuth = require("./router/auth");
 const RouterCategory = require("./router/Category");
+const RouterProduct = require("./router/Product");
+
 
 const ConnectDB = async () => {
   try {
@@ -26,7 +28,8 @@ app.use(cors());
 
 app.use("/api/role", RouterRole);
 app.use("/api/auth", RouterAuth);
-app.use("/api/product", RouterCategory);
+app.use("/api/category", RouterCategory);
+app.use("/api/product", RouterProduct);
 
 app.listen(process.env.PORT, () =>
   console.log("Máy chủ đã chạy tại công 8080")
