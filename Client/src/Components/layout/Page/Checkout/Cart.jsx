@@ -1,0 +1,65 @@
+import React from "react";
+import { Button, Alert, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import "../../../Style/checkout.css";
+
+const Cart = () => {
+  return (
+    <>
+      <div class="modal-body">
+        <div class="cart-row">
+          <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+          <span class="cart-price cart-header cart-column">Giá</span>
+          <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+        </div>
+        <div class="cart-items">
+          <div class="cart-row">
+            <div class="cart-item cart-column">
+              <img
+                class="cart-item-image"
+                src="https://bizweb.dktcdn.net/thumb/large/100/228/168/products/sualai.jpg?v=1573720306000"
+                width="100"
+                height="100"
+              />
+              <span class="cart-item-title">Mũi Hàn 500</span>
+            </div>
+            <span class="cart-price cart-column">25000đ</span>
+            <div class="cart-quantity cart-column">
+              <input class="cart-quantity-input" type="number" value="1" />
+              <button class="btn btn-danger" type="button">
+                Xóa
+              </button>
+            </div>
+          </div>
+          <div class="cart-row">
+            <div class="cart-item cart-column">
+              <img
+                class="cart-item-image"
+                src="https://bizweb.dktcdn.net/thumb/large/100/228/168/products/sp1-a45a32a1-38d4-4a8a-9c37-e936013858b2.jpg?v=1575877003000"
+                width="100"
+                height="100"
+              />
+              <span class="cart-item-title">
+                Máy Bơm Chìm Hộ Gia Đình QDX 1500W 220VAC 40L/1min H=8m
+              </span>
+            </div>
+            <span class="cart-price cart-column">1599000đ</span>
+            <div class="cart-quantity cart-column">
+              <input class="cart-quantity-input" type="number" value="2" />
+              <button class="btn btn-danger" type="button">
+                Xóa
+              </button>
+            </div>
+          </div>
+          <div class="cart-total">
+            <strong class="cart-total-title">Tổng Cộng:</strong>
+            <span class="cart-total-price">3223000VNĐ</span>
+            <Button>Thanh toán</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Cart;

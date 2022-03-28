@@ -1,7 +1,7 @@
 import Header from "./Page/Header";
-import ListCategory from "../layout/ListCategory";
-import Container from "../layout/Container";
-import Slide from "../layout/Slide";
+import ListCategory from "../layout/Page/ListCategory";
+import Container from "../layout/Page/Container";
+import Slide from "../layout/Page/Slide";
 
 const Landing = () => {
   return (
