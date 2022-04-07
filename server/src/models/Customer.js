@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const SchemaUser = new Schema({
+const SchemaCustomer = new Schema({
   username: {
     type: String,
     require: true,
@@ -34,10 +34,18 @@ const SchemaUser = new Schema({
     type: String,
     require: true,
   },
+  totalSpends: {
+    type: String,
+    default: 0,
+  },
+  totalOrder: {
+    type: Int32,
+    default: 0,
+  },
   key: {
     type: String,
     default: null,
   },
 });
 
-module.exports = mongoose.model("user", SchemaUser);
+module.exports = mongoose.model("customer", SchemaCustomer);

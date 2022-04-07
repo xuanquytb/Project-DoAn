@@ -8,7 +8,7 @@ import Spinner from "react-bootstrap/Spinner"
 
 const Auth = ({ authRoute }) => {
   const {authState: {authLoading, isAuthenticated,user,roleUser}} = useContext(AuthContext);
-  console.log(roleUser);
+  console.log(authLoading);
   let body;
   if(authLoading){
     body = (
@@ -17,11 +17,16 @@ const Auth = ({ authRoute }) => {
       </div>
     )
   }else{
-    if(isAuthenticated && roleUser == "Customer") {
-      return <Redirect to='/'/>
-    }else if(isAuthenticated && roleUser == "Admin"){
-      return <Redirect to='/dashboard'/>
+    if(isAuthenticated == true){
+      if(isAuthenticated && (roleUser == "Customer")) {
+        console.log(roleUser);
+        return <Redirect to='/'/>
+      }else if(isAuthenticated && ( roleUser == "Admin")){
+        console.log(roleUser);
+        return <Redirect to='/dashboard'/>
+      }
     }
+    
   }
 
   body = (

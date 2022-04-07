@@ -17,10 +17,14 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"hainhat",
+    "username":"admin",
     "password":"admin",
-    "fullname":"Đặng Thị Hải Nhật",
-    "nameRole":"Admin"
+    "fullname":"Vũ Xuân Quý",
+    "nameRole":"Admin",
+    "email":"admin@gmail.com",
+    "phone":"0868332323",
+    "address":"Thái Bình"
+
 }
 #############
 POST http://localhost:8080/api/auth/register

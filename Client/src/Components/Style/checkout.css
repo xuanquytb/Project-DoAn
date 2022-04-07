@@ -1,3 +1,30 @@
+.app-cart{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.modal-body{
+  width:675px;
+  font-size:1.25em;
+  border: 1px dotted rgb(10, 142, 250);
+  margin-top:20px;
+  border-radius:15px;
+  padding: 0 13px;
+}
+
+.modal-info{
+  padding:37px;
+}
+
+.input-value{
+  border: 1px solid #ccc;
+  width: 368px;
+  border-radius: 15px;
+  outline: none;
+  padding: 3px 20px;
+}
+
 .cart-header {
   font-weight: bold;
   font-size: 1.25em;

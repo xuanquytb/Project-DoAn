@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -313,7 +314,9 @@ const Header = () => {
                 </div>
               </div>
               <div className="header__category-info">
-                <span>Giỏ hàng</span>
+                <span>
+                  <Link to="http://localhost:3000/checkout"> Giỏ hàng</Link>
+                </span>
               </div>
             </div>
           </div>

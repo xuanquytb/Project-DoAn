@@ -1,51 +1,69 @@
 import React from "react";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
-import { Link, useHistory } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 
-
-
 const UserContent = () => {
-  const {userState:{users},getUsers} = useContext(UserContext);
+  const {
+    userState: { users },
+    getUsers,
+  } = useContext(UserContext);
   useEffect(() => getUsers(), []);
-  
-  const dataSource = users.map(users => {
-    return { 
-      username:users.username,
-      fullname:users.fullname,
-      key: users._id
-    }
-  })
+
+  const dataSource = users.map((users) => {
+    return {
+      username: users.username,
+      fullname: users.fullname,
+      email: users.email,
+      phone: users.phone,
+      address: users.address,
+      key: users._id,
+    };
+  });
   const columns = [
     {
-      title: "username",
+      title: "Tên đăng nhập",
       dataIndex: "username",
       key: "username",
-      width: "40%",
+      width: "23%",
       editable: true,
     },
     {
       title: "Họ và tên",
       dataIndex: "fullname",
       key: "fullname",
-      width: "30%",
+      width: "20%",
     },
 
-    // {
-    //   title: "Image",
-    //   dataIndex: "_id",
-    //   key: "3",
-    //   width: "15%",
-    //   editable: true,
-    // },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      width: "35%",
+      editable: true,
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
+      width: "30%",
+      editable: true,
+    },
+    {
+      title: "Địa chỉ",
+      dataIndex: "address",
+      key: "address",
+      width: "30%",
+      editable: true,
+    },
     {
       title: "Thao Tác",
-      width: "10%",
+      width: "20%",
       key: "4",
       dataIndex: "operation",
       render: (_, record) =>
-      users.length >= 0 ? (
+        users.length >= 0 ? (
           <>
             <Popconfirm
               title="Bạn chắc chắn muốn xóa ?"
@@ -88,10 +106,12 @@ const UserContent = () => {
         ) : null,
     },
   ];
+
   return (
     <>
       <div className="content">
         <Button
+          className="btn-addNew"
           type="primary"
           style={{
             marginBottom: 16,
@@ -107,6 +127,7 @@ const UserContent = () => {
           bordered
           dataSource={dataSource}
           columns={columns}
+          scroll={{ y: 350 }}
         />
       </div>
     </>

@@ -30,32 +30,6 @@ const userReducer = (state, action) => {
         user: [],
         userLoading: false,
       };
-
-    // case ADD_POST:
-    //   return {
-    //     ...state,
-    //     user: [...state.user, payload],
-    //   };
-
-    // case DELETE_POST:
-    //   return {
-    //     ...state,
-    //     user: state.user.filter((post) => post._id !== payload),
-    //   };
-
-    // case FIND_POST:
-    //   return { ...state, post: payload };
-
-    // case UPDATE_POST:
-    //   const newuser = state.user.map((post) =>
-    //     post._id === payload._id ? payload : post
-    //   );
-
-    //   return {
-    //     ...state,
-    //     user: newuser,
-    //   };
-
     default:
       return state;
   }

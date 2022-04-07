@@ -80,7 +80,7 @@ const Login = () => {
                 </p>
                 <p className="more">
                   Bạn chưa có tài khoản?
-                  <a href="https://" className="link">
+                  <a href="http://localhost:3000/register" className="link">
                     Sign up?
                   </a>
                 </p>

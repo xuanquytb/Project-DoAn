@@ -50,11 +50,20 @@ Router.get("/user", verifyToken, async (req, res) => {
 });
 
 Router.post("/register", async (req, res) => {
-  const { username, password, fullname, nameRole } = req.body;
-  if (!username || !password || !fullname || !nameRole) {
+  const { username, password, fullname, nameRole, email, phone, address } =
+    req.body;
+  if (
+    !username ||
+    !password ||
+    !fullname ||
+    !nameRole ||
+    !email ||
+    !phone ||
+    !address
+  ) {
     res.status(400).json({ success: true, message: "Nhập thiếu thông tin" });
   } else {
-    const user = await SchemaUser.findOne({ username });
+    const user = await SchemaUser.findOne({ username, email, phone });
     if (user) {
       res.status(400).json({ success: false, message: "Tài khoản đã tồn tại" });
     } else {
@@ -65,6 +74,9 @@ Router.post("/register", async (req, res) => {
         password: hashPassword,
         role: Role._id,
         fullname,
+        email,
+        phone,
+        address,
       });
       try {
         const result = await newUser.save();

@@ -19,43 +19,51 @@ const Register = () => {
           <div className="form-Register">
             <h2>Đăng ký</h2>
             <form action="" className="form-input">
+            <div className="box-input">
+                <input
+                  type="text"
+                  className="input-value-Register"
+                  placeholder="Tài khoản"
+                />
+              </div>
               <div className="box-input">
                 <input
                   type="text"
-                  className="input-value"
+                  className="input-value-Register"
+                  placeholder="Mật khẩu"
+                />
+              </div>
+              <div className="box-input">
+                <input
+                  type="text"
+                  className="input-value-Register"
+                  placeholder="Nhập lại mật khẩu"
+                />
+              </div>
+              <div className="box-input">
+                <input
+                  type="text"
+                  className="input-value-Register"
                   placeholder="Họ Và Tên"
                 />
               </div>
               <div className="box-input">
                 <input
                   type="text"
-                  className="input-value"
+                  className="input-value-Register"
                   placeholder="Email"
                 />
               </div>
               <div className="box-input">
                 <input
                   type="text"
-                  className="input-value"
+                  className="input-value-Register"
                   placeholder="Phone"
                 />
               </div>
-              <div className="box-input">
-                <input
-                  type="text"
-                  className="input-value"
-                  placeholder="Username"
-                />
-              </div>
-              <div className="box-input">
-                <input
-                  type="text"
-                  className="input-value"
-                  placeholder="Password"
-                />
-              </div>
+              
               <input type="checkbox" id="register-checkbox" className="btn-checkbox" />
-                <label className="more" for="register-checkbox">
+                <label className="more" htmlFor="register-checkbox">
                    Đồng ý với điều khoản của chúng tôi?
                 </label>
               <div className="box-input">
@@ -66,7 +74,7 @@ const Register = () => {
                 
                 <p className="more">
                   Bạn đã có tài khoản?
-                  <a href="https://" className="link">
+                  <a href="http://localhost:3000/login" className="link">
                     Sign in?
                   </a>
                 </p>

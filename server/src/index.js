@@ -7,7 +7,6 @@ const RouterAuth = require("./router/auth");
 const RouterCategory = require("./router/Category");
 const RouterProduct = require("./router/Product");
 
-
 const ConnectDB = async () => {
   try {
     await mongoose.connect(

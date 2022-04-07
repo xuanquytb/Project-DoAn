@@ -23,14 +23,14 @@ const AuthContextProvider = ({ children }) => {
         })
       }
     } catch (error) {
-      // localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-      // setAuthToken(null);
-      // dispatch({type:'SET_AUTH' , payload:{isAuthenticated: false, user: null}})
-      
+      localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+      setAuthToken(null);
+      dispatch({type:'SET_AUTH' , payload:{authLoading:true,isAuthenticated: false, user: null,roleUser: null}})
     }
   }
 
   useEffect(() => loadUser() , [])
+
   const loginUser = async (userForm) => {
     const response = await axios.post(`${apiUrl}/auth/login`, userForm);
     if (response.data.success) {

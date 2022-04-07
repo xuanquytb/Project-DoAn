@@ -99,6 +99,7 @@ header .head_search {
 }
 
 .head_search .head_search_cont input {
+  position: absolute;
   height: 40px;
   color: #393939;
   padding: 0 30px 0 40px;
@@ -109,6 +110,7 @@ header .head_search {
   font-size: 15px;
   border-radius: 23px;
   margin-left: 20px;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
 }
  
 .head_search .head_search_cont input:focus {
@@ -214,7 +216,7 @@ header .head_user .opts_account>img {
   overflow: visible;
   border-radius: 30px;
   min-height: 90vh;
-  background-color: rgb(38,7,89);
+  background-color: rgb(255, 255, 255);
   min-width: 99%;
 }
 
@@ -311,9 +313,9 @@ span.anticon.anticon-search {
   background-color: #383737;
 }
 
-main.ant-layout-content {
+/* main.ant-layout-content {
   height: 646px;
-}
+} */
 
 section.ant-layout.ant-layout-has-sider {
   height: 577px;

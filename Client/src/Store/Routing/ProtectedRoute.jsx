@@ -6,8 +6,9 @@ import Spinner from "react-bootstrap/Spinner";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const {
-    authState: { authLoading, isAuthenticated },
+    authState: { authLoading, isAuthenticated,roleUser },
   } = useContext(AuthContext);
+  console.log(roleUser);
   if (authLoading) {
     return (
       <div className="spinner-containe">
