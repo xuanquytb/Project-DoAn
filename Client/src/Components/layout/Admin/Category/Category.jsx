@@ -4,66 +4,57 @@ import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link,} from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 
-const UserContent = () => {
-  const {
-    userState: { users },
-    getUsers,
-  } = useContext(UserContext);
-  useEffect(() => getUsers(), []);
+const CategoryContent = () => {
 
-  const dataSource = users.map((users) => {
-    return {
-      username: users.username,
-      fullname: users.fullname,
-      email: users.email,
-      phone: users.phone,
-      address: users.address,
-      key: users._id,
-    };
-  });
+  const dataSource = [
+      {
+        key:"1",
+        name:"Gia dụng nhà bếp",
+        description:"Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn"
+      },
+      {
+        key:"2",
+        name:"Gia dụng phòng khách",
+        description:"Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn"
+      },
+      {
+        key:"3",
+        name:"Gia dụng phòng ngủ",
+        description:"Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn"
+      },
+      {
+        key:"4",
+        name:"Gia dụng nhà vệ sinh",
+        description:"Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn"
+      },
+      {
+        key:"5",
+        name:"Gia dụng sân vườn",
+        description:"Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn"
+      },
+  ]
+
   const columns = [
     {
-      title: "Tên đăng nhập",
-      dataIndex: "username",
-      key: "username",
-      width: "23%",
+      title: "Tên ngành hàng",
+      dataIndex: "name",
+      key: "name",
+      width: "10%",
       editable: true,
     },
     {
-      title: "Họ và tên",
-      dataIndex: "fullname",
-      key: "fullname",
-      width: "20%",
-    },
-
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      width: "35%",
-      editable: true,
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-      width: "30%",
-      editable: true,
-    },
-    {
-      title: "Địa chỉ",
-      dataIndex: "address",
-      key: "address",
-      width: "30%",
-      editable: true,
+      title: "Mô tả",
+      dataIndex: "description",
+      key: "description",
+      width: "40%",
     },
     {
       title: "Thao Tác",
-      width: "20%",
+      width: "10%",
       key: "4",
       dataIndex: "operation",
       render: (_, record) =>
-        users.length >= 0 ? (
+        dataSource.length >= 0 ? (
           <>
             <Popconfirm
               title="Bạn chắc chắn muốn xóa ?"
@@ -121,7 +112,7 @@ const UserContent = () => {
           <Link to={"/postUser"}>Thêm Mới</Link>
         </Button>
         <Table
-          key={users._id}
+        //   key={users._id}
           // components={components}
           rowClassName={() => "editable-row"}
           bordered
@@ -134,4 +125,4 @@ const UserContent = () => {
   );
 };
 
-export default UserContent;
+export default CategoryContent;

@@ -12,6 +12,7 @@ const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 import User from "../Admin/User/UserContent.jsx";
 import Product from "../Admin/Product/Product";
+import Category from "../Admin/Category/Category";
 
 const DashBoard = () => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const DashBoard = () => {
   const menuitem = [
     {
       key: 0,
-      title: "Dashboard",
+      title: "Bảng điều khiển",
       link: "/dashboard",
     },
     {
@@ -37,18 +38,24 @@ const DashBoard = () => {
     },
     {
       key: 3,
+      title: "Quản lý ngành hàng",
+      icon: "<LaptopOutlined />",
+      link: "/category",
+    },
+    {
+      key: 4,
       title: "Quản lý sản phẩm",
       icon: "<LaptopOutlined />",
       link: "/product",
     },
     {
-      key: 4,
+      key: 5,
       title: "Quản lý bài đăng",
       icon: "<EditOutlined />",
       link: "/new",
     },
     {
-      key: 5,
+      key: 6,
       title: "Quản lý bình luận",
       icon: "<MessageOutlined />",
       link: "/comment",
@@ -108,8 +115,9 @@ const DashBoard = () => {
                 minHeight: 280,
               }}
             >
-              <Route exact path= "/user" component={User} />
-              <Route exact path= "/product" component={Product} />
+              <Route exact path= "/user" component={User}/>
+              <Route exact path= "/product" component={Product}/>
+              <Route exact path= "/category" component={Category}/>
             </Content>
             <Footer style={{ textAlign: "center" }}>
               VMU ©2022 Created by XUÂN QUÝ
