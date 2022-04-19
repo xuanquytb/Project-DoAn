@@ -1,5 +1,5 @@
-GET http://localhost:8080/api/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwMWRlM2M2YjE0ODYwMzU1ZjhmNjYiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDgzOTc1NDMsImV4cCI6MTY0ODQ4Mzk0M30.a2N72Hur_ppEupkGSr1yCFfupvnMxXnfMUEbDXh4AGQ
+GET http://localhost:8080/api/auth/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTAwODMzMjUsImV4cCI6MTY1MDE2OTcyNX0.t5iUayJpQHtKg1wDczTk8PNRr0efd4klSFrhUwQUfxY
 
 ################################
 POST http://localhost:8080/api/role
@@ -17,25 +17,15 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"admin",
+    "username":"admin3",
     "password":"admin",
     "fullname":"Vũ Xuân Quý",
-    "nameRole":"Admin",
-    "email":"admin@gmail.com",
-    "phone":"0868332323",
+    "nameRole":"admin",
+    "email":"admin3@gmail.com",
+    "phone":"086833232523",
     "address":"Thái Bình"
 
 }
-#############
-POST http://localhost:8080/api/auth/register
-Content-Type: application/json
-
-{
-    "username":"admin1",
-    "password":"admin1",
-    "fullname":"admin1",
-    "nameRole":"Admin1"
-}
 
 
 ###
@@ -47,17 +37,6 @@ Content-Type: application/json
     "password":"admin"
    
 }
-###
-
-POST http://localhost:8080/api/auth/login
-Content-Type: application/json
-
-{
-    "username":"admin",
-    "password":"admin"
-   
-}
-
 ########
 POST http://localhost:8080/api/category
 Content-Type: application/json

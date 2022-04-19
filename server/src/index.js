@@ -7,20 +7,6 @@ const RouterAuth = require("./router/auth");
 const RouterCategory = require("./router/Category");
 const RouterProduct = require("./router/Product");
 
-const ConnectDB = async () => {
-  try {
-    await mongoose.connect(
-      `mongodb+srv://admin:admin@project-app.87hfe.mongodb.net/project-app?retryWrites=true&w=majority`
-    );
-    console.log("Kết nối thành công");
-  } catch (error) {
-    console.log("Kết nối thất bại");
-    process.exit(1);
-  }
-};
-
-ConnectDB();
-
 const app = express();
 app.use(express.json());
 app.use(cors());

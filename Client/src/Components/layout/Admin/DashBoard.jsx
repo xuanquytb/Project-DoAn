@@ -16,8 +16,6 @@ import Category from "../Admin/Category/Category";
 
 const DashBoard = () => {
   const location = useLocation();
-
-  console.log(location);
   const menuitem = [
     {
       key: 0,
@@ -71,7 +69,7 @@ const DashBoard = () => {
           // collapsed={this.state.collapsed}
           // onCollapse={this.onCollapse}
           >
-            <img src="../../../../public/image/header/tiki__logo.png" alt="" style={{height:"60px" , margin:"24px"}}/>
+            <img src="../../../../image/header/tiki__logo.png" alt="" style={{height:"60px" , margin:"24px"}}/>
             <Menu theme="light" defaultSelectedKeys={["0"]} mode="inline">
               {menuitem.map((item) => (
                 <Menu.Item key={item.key}>

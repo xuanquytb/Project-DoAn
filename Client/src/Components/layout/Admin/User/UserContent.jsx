@@ -18,7 +18,7 @@ const UserContent = () => {
       email: users.email,
       phone: users.phone,
       address: users.address,
-      key: users._id,
+      key: users.id,
     };
   });
   const columns = [
@@ -33,7 +33,7 @@ const UserContent = () => {
       title: "Họ và tên",
       dataIndex: "fullname",
       key: "fullname",
-      width: "20%",
+      width: "25%",
     },
 
     {
@@ -47,7 +47,7 @@ const UserContent = () => {
       title: "Phone",
       dataIndex: "phone",
       key: "phone",
-      width: "30%",
+      width: "19%",
       editable: true,
     },
     {
@@ -59,7 +59,7 @@ const UserContent = () => {
     },
     {
       title: "Thao Tác",
-      width: "20%",
+      width: "22%",
       key: "4",
       dataIndex: "operation",
       render: (_, record) =>

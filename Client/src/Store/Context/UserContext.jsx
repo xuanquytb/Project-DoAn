@@ -16,14 +16,12 @@ export const UserContext = createContext()
 const UsersContextProvider = ({ children }) => {
 	// State
 	const [userState, dispatch] = useReducer(userReducer, InitUser) 
-  // console.log(userState);
 	// Get all posts
 	const getUsers = async () => {
 		try {
-			const response = await axios.get(`${apiUrl}/auth/user`)
-      // console.log(response.data.user);
+			const response = await axios.get(`${apiUrl}/auth/users`)
 			if (response.data.success) {
-				dispatch({ type: USER_LOADED_SUCCESS, payload: response.data.user })
+				dispatch({ type: USER_LOADED_SUCCESS, payload: response.data.users })
 			}
 		} catch (error) {
 			dispatch({ type: USER_LOADED_FAIL })

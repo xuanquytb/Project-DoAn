@@ -1,43 +1,83 @@
-const mongoose = require("mongoose");
+const dbConn = require("../Common/Common");
+const Users = function (user) {
+  this.username = user.username;
+  this.passwordEn = user.password;
+  this.fullname = user.fullname;
+  this.email = user.email;
+  this.phone = user.phone;
+  this.address = user.address;
+  this.idRole = user.idRole;
+};
 
-const Schema = mongoose.Schema;
+const find_by_name_row = function (nameRow, value) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT * FROM user WHERE ${nameRow} = '${value}'`,
+      (err, elements) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(elements);
+        }
+      }
+    );
+  });
+};
 
-const SchemaUser = new Schema({
-  username: {
-    type: String,
-    require: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    require: true,
-  },
-  role: {
-    type: Schema.Types.ObjectId,
-    ref: "role",
-  },
-  fullname: {
-    type: String,
-    require: true,
-  },
-  email: {
-    type: String,
-    require: true,
-    unique: true,
-  },
-  phone: {
-    type: String,
-    require: true,
-    unique: true,
-  },
-  address: {
-    type: String,
-    require: true,
-  },
-  key: {
-    type: String,
-    default: null,
-  },
-});
+const find_all = () => {
+  return new Promise((resolve, reject) => {
+    dbConn.query("SELECT * FROM user", (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements);
+    });
+  });
+};
 
-module.exports = mongoose.model("user", SchemaUser);
+const find_by_Id = (id) => {
+  return new Promise((resolve, reject) => {
+    dbConn.query(`SELECT * FROM user where id = '${id}'`, (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements[0]);
+    });
+  });
+};
+
+const find_by_username = function (username) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT * FROM user where username = '${username}'`,
+      (err, elements) => {
+        if (err) {
+          return reject(err);
+        } else {
+          resolve(elements[0]);
+        }
+      }
+    );
+  });
+};
+
+const InsertUser = function (userNew) {
+  return new Promise((resolve, reject) => {
+    dbConn.query("Insert Into user SET ?", userNew, (err, element) => {
+      if (err) {
+        return reject(err);
+      } else {
+        return resolve({ id: element.insertId, ...element });
+      }
+    });
+  });
+};
+
+module.exports = {
+  find_all,
+  find_by_Id,
+  find_by_username,
+  InsertUser,
+  find_by_name_row,
+  Users,
+};

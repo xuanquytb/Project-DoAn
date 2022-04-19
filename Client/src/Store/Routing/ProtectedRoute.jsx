@@ -8,7 +8,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   const {
     authState: { authLoading, isAuthenticated,roleUser },
   } = useContext(AuthContext);
-  console.log(roleUser);
   if (authLoading) {
     return (
       <div className="spinner-containe">
