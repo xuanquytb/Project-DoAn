@@ -77,7 +77,7 @@ const Register = () => {
                                             <span className='more-detail'>
                                                 Bạn đã có tài khoản?
                                             </span>
-                                            <a href='http://localhost:8080/loin'>
+                                            <a href='http://localhost:8080/login'>
                                                 Sign in
                                             </a>
                                         </div>
