@@ -7,6 +7,22 @@
     height: 100vh;
     font-size:36px;
     overflow: hidden;
+}
+
+.Form-Register input{
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background:rgba(255, 255, 255, 0.5);
+    font-size: 32px;
+    padding: 5px 20px;
+    color: #fff;
+}
+
+.Form-Register input::placeholder{
+    font-size: 30px;
+    padding: 5px 15px;
+    color: #fff;
     
 }
 
@@ -43,12 +59,13 @@
     background-color: rgb(0, 26, 255);
     bottom: 190px;
     right: 0;
+    
 }
 
 .Container-Register{
     display: flex;
     position: relative;
-    width: 685px;
+    width: 1215px;
     height: 670px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
@@ -106,90 +123,90 @@
     left:-124px;
 }
 
-.form-Register h2{
-    color: #fff;
+.form-Register{
+    display: flex;
+}
+
+.form-left{
     position: relative;
-    margin-bottom: 15px;
+    background:rgba(255, 255,255,0.1);
+    height: 663px;
+    width: 606px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.form-right{
+    position: relative;
+    background:rgba(255, 255,255,0.3);
+    height: 663px;
+    width: 606px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
-.form-Register h2:after{
-    content: "";
-    position: absolute;
-    border-bottom: 5px solid #fff;
-    width:160px;
-    bottom:-10px;
-    border-radius: 5px;
-    left: 0;
+.input-Value{
+    display: contents;
 }
 
-.form-input input{
-    font-size: 30px;
-    margin-top: 30px;
-}
-
-.form-input input{
-    font-size: 30px;
-    margin-top: 30px;
-    outline: none;
-    border:none;
-    border-radius: 35px;
-    padding:20px 67px;
-    background:rgba(255, 255,255,0.6);
-    color:#fff;
-    box-shadow: 11px 8px 20px rgba(31, 30, 30, 0.123);
-}
-
-.form-input input::placeholder{
-    color:#fff;
-}
-
-.btn-Register{
+.input-Value label{
     display: block;
-    margin: 0 auto;
-    margin-top:20px;
-    width:220px;
-    height:49px;
-    background:rgba(255, 255,255,0.6);
-    border-radius:35px;
-    outline:none;
-    border:none;
-    font-size:25px;
-    font-weight: bold;
-    color:#fff;
 }
 
-.btn-Register:hover{
-    color:rgb(0, 0, 0);
+.input-Value input{
+    display: block;
+}
+
+.input-Password{
+    display: flex;
+}
+
+.input-Password input{
+    width: 265px;
+}
+
+.input-Password-left{
+    flex: 1;
+}
+.input-Password-right{
+    flex: 1;
+}
+
+.input-text-Value{
+    width: 566px;
+}
+
+.from-input{
+    margin-left: 20px;
+}
+
+.btn-form{
+    display: flex;
 }
 
 .more{
-    margin-top:6px;
-    margin-left: 10px;
-    font-size:22px;
+    
+    font-weight: 100;
+}
+
+.more a{
     color: #fff;
 }
 
-.more .link{
-    font-size:25px;
+.btn-form{
+    margin-top: 35px;
+}
+
+.btn-regiter{
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background:rgba(255, 255, 255, 0.5);
+    font-size: 25px;
+    padding: 5px 15px;
+    background-color: #1a73e8;
     color: #fff;
-    text-decoration: none;
-}
-
-.more-policy{
-    display: inline-block;
-}
-
-register-checkbox{
-    font-size:45px;
-}
-
-input[type="checkbox"]{
-    font-size:45px;
-}
-
-input.input-value-Register{
-    min-width:542px;
-    max-width:542px;
-    padding : 3px 62px;
-    margin-top: 10px;
+    font-weight: 600;
+    margin-left: 85px;
+    width: 149px;
+    height: 60px;
 }

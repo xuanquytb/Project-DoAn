@@ -1,6 +1,6 @@
 const express = require("express");
 
-const SchemaRole = require("../models/role");
+const {insert_Role ,find_by_name_row,RoleModel} = require("../models/role");
 
 const Router = express.Router();
 
@@ -15,18 +15,23 @@ Router.post("/", VerifyToken, async (req, res) => {
       .json({ success: false, message: "Vui lòng nhập đầy đủ thông tin" });
   } else {
     try {
-      const Role = SchemaRole.findOne({ nameRole, description });
-
-      if (Role) {
-        const newRole = new SchemaRole({
+      const Role = await find_by_name_row("nameRole",nameRole );
+      if (Role.length === 0) {
+        const newRole = new RoleModel({
           nameRole,
           description,
         });
-
-        await newRole.save();
-        res
+        console.log(newRole);
+        const result = await insert_Role(newRole);
+        if(result){
+          res
           .status(200)
           .json({ success: true, message: "Thêm Role thành công" });
+        }else{
+          res
+          .status(200)
+          .json({ success: false, message: "Thêm Role không thành công" });
+        }
       } else {
         res.status(200).json({ success: false, message: "Quyền đã tồn tại" });
       }

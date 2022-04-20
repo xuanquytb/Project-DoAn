@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const loginData = await loginUser(loginForm);
       if (loginData.success) {
-        history.push("/dashboard");
+        // history.push("/dashboard");
       } else {
         alert("Login failed");
         

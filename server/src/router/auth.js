@@ -31,7 +31,7 @@ Router.get("/", verifyToken, async (req, res) => {
     const user = await find_by_name_row("id", req.userId);
     if (!user) {
       return res
-        .status(400)
+        .status(202)
         .json({ success: false, message: "User not found" });
     } else {
       return res.status(200).json({ success: true, user, role: req.role });
@@ -46,7 +46,7 @@ Router.get("/users", verifyToken, async (req, res) => {
     const users = await find_all();
     if (!users) {
       return res
-        .status(400)
+        .status(202)
         .json({ success: false, message: "User not found" });
     } else {
       return res.status(200).json({ success: true, users, role: req.role });
@@ -72,7 +72,6 @@ Router.post("/register", async (req, res) => {
     res.status(400).json({ success: true, message: "Nhập thiếu thông tin" });
   } else {
     const user = await find_by_name_row("username", username);
-
     if (user.length > 0) {
       res.status(400).json({ success: false, message: "Tài khoản đã tồn tại" });
     } else {
@@ -82,7 +81,6 @@ Router.post("/register", async (req, res) => {
         res.status(400).json({ success: false, message: "Email đã tồn tại" });
       } else {
         const phoneValid = await find_by_name_row("phone", phone);
-
         if (phoneValid.length > 0) {
           res
             .status(400)
@@ -139,7 +137,8 @@ Router.post("/login", async (req, res) => {
         .status(400)
         .json({ success: false, message: "Tâì khoản không tồn tại" });
     } else {
-      const nameRole = find_by_id_role(user.idRole);
+      const nameRole = await find_by_id_role(user.idRole);
+      console.log(nameRole);
       const validPassword = await argon2.verify(user.passwordEn, password);
       if (validPassword) {
         const accessToken = GenerateToken({

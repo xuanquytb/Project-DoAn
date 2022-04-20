@@ -4,11 +4,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iL
 ################################
 POST http://localhost:8080/api/role
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwMWRlM2M2YjE0ODYwMzU1ZjhmNjYiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDgzNzUzNTQsImV4cCI6MTY0ODQ2MTc1NH0.g0BziTLB31MkChiQ8FEfh2LOaVzYwLx1CEA-ZpuUAbk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW4iLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTA0MzM0OTIsImV4cCI6MTY1MDUxOTg5Mn0.JQwF2f-W_rlQEaHcrHC8Yn51AiS9tfSLvFlfZSHpNGY
 
 {
-    "nameRole":"Customer",
-    "description":"Quyền dành cho khách hàng"
+    "nameRole":"Customert",
+    "description":"Quyền dành cho khách hàngt"
 }
 
 
@@ -17,13 +17,13 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"admin3",
+    "username":"admin",
     "password":"admin",
     "fullname":"Vũ Xuân Quý",
     "nameRole":"admin",
-    "email":"admin3@gmail.com",
-    "phone":"086833232523",
-    "address":"Thái Bình"
+    "email":"admin@gmail.com",
+    "phone":"0868332325",
+    "address":"Tây Sơn Kiến Xương Thái Bình"
 
 }
 

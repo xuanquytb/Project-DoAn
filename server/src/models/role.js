@@ -1,8 +1,7 @@
 const dbCon = require("../Common/Common");
 
-const Role = function (role) {
-  this.id = role.id;
-  this.name = role.name;
+const RoleModel = function (role) {
+  this.nameRole = role.nameRole;
   this.description = role.description;
 };
 
@@ -27,19 +26,30 @@ const find_by_id_role = function (id) {
   });
 };
 
-const find_by_name_role = function (nameRole) {
+const find_by_name_row = function (row,nameRole) {
   return new Promise((resolve, reject) => {
     dbCon.query(
-      "SELECT * FROM Role where nameRole = ?",
-      nameRole,
+      `SELECT * FROM role where ${row} = '${nameRole}'`,
       function (err, role) {
-        if (err || role.length === 0) {
+        if (err) {
           return reject(err);
         }
-        return resolve(role[0]);
+        return resolve(role);
       }
     );
   });
 };
 
-module.exports = { find_all_Role, find_by_id_role, find_by_name_role };
+const insert_Role = function(newRole) {
+  return new Promise((resolve, reject) => {
+    dbCon.query("Insert into role SET ?", newRole, function(err,roles) {
+      if(err || roles.length === 0){
+        return reject(err);
+      }else{
+        return resolve({ id: roles.insertId, ...roles })
+      }
+    })
+  })
+}
+
+module.exports = { find_all_Role, find_by_id_role, find_by_name_row,insert_Role,RoleModel };
