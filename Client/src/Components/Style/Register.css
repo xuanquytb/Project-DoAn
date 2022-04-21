@@ -171,6 +171,22 @@
     flex: 1;
 }
 
+
+.input-name{
+    display: flex;
+}
+
+.input-name input{
+    width: 265px;
+}
+
+.input-name-left{
+    flex: 1;
+}
+.input-name-right{
+    flex: 1;
+}
+
 .input-text-Value{
     width: 566px;
 }
@@ -209,4 +225,10 @@
     margin-left: 85px;
     width: 149px;
     height: 60px;
+}
+
+.title-Form{
+    margin: 15px 235px;
+    margin-top: 5px;
+    padding: 0;
 }

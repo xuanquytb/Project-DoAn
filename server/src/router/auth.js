@@ -120,11 +120,19 @@ Router.post("/register", async (req, res) => {
                     try {
                         const result = await InsertUser(newUser);
                         if (result) {
-                            const token = GenerateToken({ userId: result.id });
+                            const token = GenerateToken({
+                                userId: result.id,
+                                role: role,
+                            });
+                            const userNew = await find_by_name_row(
+                                "id",
+                                result.id
+                            );
                             res.status(200).json({
                                 success: true,
                                 tokenAccess: token,
                                 message: "Thêm thành công",
+                                user: userNew,
                             });
                         } else {
                             res.status(400).json({

@@ -1,9 +1,38 @@
 import React from "react";
 import "../Style/Register.css";
+import { useHistory } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Store/Context/AuthContext";
 
 const Register = () => {
-    const username = "";
-    const password = "";
+    const { registerUser } = useContext(AuthContext);
+    const history = useHistory();
+    const [registerForm, setRegisterForm] = useState({
+        username: "",
+        password: "",
+        rePassword: "",
+        fullname: "",
+        email: "",
+        phone: "",
+    });
+    const { username, password, rePassword, fullname, email, phone } =
+        registerForm;
+    const onChangeRegisterForm = (e) =>
+        setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+
+    const register = async (e) => {
+        e.preventDefault();
+        try {
+            const registerData = await registerUser(registerForm);
+            if (registerData.success) {
+                history.push("/");
+            } else {
+                alert("Đăng ký không thành công");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div className='Form-Register'>
             <div className='color'></div>
@@ -26,48 +55,75 @@ const Register = () => {
                             </div>
                         </div>
                         <div className='form-right'>
-                            <h2>Đăng ký</h2>
+                            <h2 className='title-Form'>Đăng ký</h2>
                             <div className='form-register'>
                                 <form action='' className='from-input'>
-                                    <div className='input-Value'>
-                                        <lable htmlFor=''>Họ và tên</lable>
-                                        <input
-                                            className='input-text-Value'
-                                            type='text'
-                                            placeholder='Tên đầy đủ'
-                                        />
+                                    <div className='input-Value input-name'>
+                                        <div className='input-name-left'>
+                                            <span htmlFor=''>Họ và tên</span>
+                                            <input
+                                                type='text'
+                                                placeholder='Tên đầy đủ'
+                                                name='fullname'
+                                                value={fullname}
+                                                onChange={onChangeRegisterForm}
+                                            />
+                                        </div>
+                                        <div className='input-name-right'>
+                                            <span htmlFor=''>
+                                                Tên đăng nhập
+                                            </span>
+                                            <input
+                                                type='text'
+                                                name='username'
+                                                value={username}
+                                                onChange={onChangeRegisterForm}
+                                            />
+                                        </div>
                                     </div>
                                     <div className='input-Value'>
-                                        <lable htmlFor=''>Email</lable>
+                                        <span htmlFor=''>Email</span>
                                         <input
                                             className='input-text-Value'
                                             type='text'
                                             placeholder='tonydev@gmail.com'
+                                            name='email'
+                                            value={email}
+                                            onChange={onChangeRegisterForm}
                                         />
                                     </div>
                                     <div className='input-Value'>
-                                        <lable htmlFor=''>Phone</lable>
+                                        <span htmlFor=''>Phone</span>
                                         <input
                                             className='input-text-Value'
                                             type='text'
                                             placeholder='+84xxxxxxxxx'
+                                            name='phone'
+                                            value={phone}
+                                            onChange={onChangeRegisterForm}
                                         />
                                     </div>
                                     <div className='input-Value input-Password'>
                                         <div className='input-Password-left'>
-                                            <lable htmlFor=''>Mật khẩu</lable>
+                                            <span htmlFor=''>Mật khẩu</span>
                                             <input
                                                 type='text'
                                                 placeholder='*****************'
+                                                name='password'
+                                                value={password}
+                                                onChange={onChangeRegisterForm}
                                             />
                                         </div>
                                         <div className='input-Password-right'>
-                                            <lable htmlFor=''>
+                                            <span htmlFor=''>
                                                 Nhập lại mật khẩu
-                                            </lable>
+                                            </span>
                                             <input
                                                 type='text'
                                                 placeholder='*****************'
+                                                name='rePassword'
+                                                value={rePassword}
+                                                onChange={onChangeRegisterForm}
                                             />
                                         </div>
                                     </div>
@@ -82,7 +138,10 @@ const Register = () => {
                                             </a>
                                         </div>
                                         <div className='btn-box'>
-                                            <button className='btn-regiter'>
+                                            <button
+                                                className='btn-regiter'
+                                                onClick={register}
+                                            >
                                                 Đăng ký
                                             </button>
                                         </div>
