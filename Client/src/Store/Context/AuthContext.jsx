@@ -97,7 +97,32 @@ const AuthContextProvider = ({ children }) => {
         }
     };
 
-    const authContextData = { loginUser, registerUser, loadUser, authState };
+    const logout = (stateUser) => {
+        if (stateUser === true) {
+            localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+            setAuthToken(null);
+            dispatch({
+                type: "SET_AUTH",
+                payload: {
+                    authLoading: true,
+                    isAuthenticated: false,
+                    user: null,
+                    roleUser: null,
+                },
+            });
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const authContextData = {
+        loginUser,
+        registerUser,
+        loadUser,
+        logout,
+        authState,
+    };
 
     //return
     return (

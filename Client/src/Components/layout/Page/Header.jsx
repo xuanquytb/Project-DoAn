@@ -1,10 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { Button } from "antd";
 import { AuthContext } from "../../../Store/Context/AuthContext";
 
 const Header = () => {
-    const { authState } = useContext(AuthContext);
+    const { authState, logout } = useContext(AuthContext);
+    const history = useHistory();
+    const logoutHan = async (e) => {
+        e.preventDefault();
+
+        try {
+            const logoutData = await logout(authState.isAuthenticated);
+            if (logoutData === true) {
+                history.push("/login");
+            } else {
+                alert("Login failed");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <>
             <header className='header'>
@@ -313,12 +330,25 @@ const Header = () => {
                     </div>
                     <div className='header__user'>
                         <div className='header__user-info'>
-                            <span className='header__user-img'>
-                                <img
-                                    src='../../../../image/header/user__logo.png'
-                                    alt=''
-                                />
-                            </span>
+                            <div className='header__category'>
+                                <div className='header__category-icon'>
+                                    <img
+                                        src='../../../../image/header/category.png'
+                                        alt=''
+                                    />
+                                    <div className='category__quantily'>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                                <div className='header__category-info'>
+                                    <span>
+                                        <Link to='http://localhost:3000/checkout'>
+                                            {" "}
+                                            Giỏ hàng
+                                        </Link>
+                                    </span>
+                                </div>
+                            </div>
                             <div className='header__user-login'>
                                 {/* --------------------------------------------- */}
                                 {authState.isAuthenticated === true ? (
@@ -339,25 +369,40 @@ const Header = () => {
                                     </span>
                                 )}
                             </div>
-                        </div>
-                        <div className='header__category'>
-                            <div className='header__category-icon'>
+                            <span className='header__user-img'>
                                 <img
-                                    src='../../../../image/header/category.png'
+                                    src='../../../../image/header/user__logo.png'
                                     alt=''
                                 />
-                                <div className='category__quantily'>
-                                    <span>0</span>
-                                </div>
-                            </div>
-                            <div className='header__category-info'>
-                                <span>
-                                    <Link to='http://localhost:3000/checkout'>
-                                        {" "}
-                                        Giỏ hàng
-                                    </Link>
-                                </span>
-                            </div>
+                            </span>
+                        </div>
+                        <div className='Header__mode-list'>
+                            <ul>
+                                <li href='' className='Header__mode-item-link'>
+                                    <Button type='text' block>
+                                        Đơn hàng của tôi
+                                    </Button>
+                                </li>
+                                <li href='' className='Header__mode-item-link'>
+                                    <Button type='text' block>
+                                        Tài khoản của tôi
+                                    </Button>
+                                </li>
+                                <li href='' className='Header__mode-item-link'>
+                                    <Button type='text' block>
+                                        Thông báo
+                                    </Button>
+                                </li>
+                                <li href='' className='Header__mode-item-link'>
+                                    <Button
+                                        type='text'
+                                        block
+                                        onClick={logoutHan}
+                                    >
+                                        Đăng xuất
+                                    </Button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
