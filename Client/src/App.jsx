@@ -9,42 +9,44 @@ import AuthContextProvider from "./Store/Context/AuthContext";
 import UserContextProvider from "./Store/Context/UserContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";
 
-
 function App() {
-  return (
-    <AuthContextProvider>
-      <UserContextProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Auth {...props} authRoute="login" />}
-          />
-          <Route
-            exact
-            path="/register"
-            render={(props) => <Auth {...props} authRoute="register" />}
-          />
-          
-          <ProtectedRoute
-            exact
-            path="/checkout"
-            // render={(props) => <Auth {...props} authRoute="checkout" />}
-            component={Checkout}
-          />
-          <Route
-            path="/notfound"
-            // render={(props) => <Auth {...props} authRoute="checkout" />}
-            // component={Checkout}
-          />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-        </Switch>
-      </Router>
-      </UserContextProvider>
-    </AuthContextProvider>
-  );
+    return (
+        <AuthContextProvider>
+            <UserContextProvider>
+                <Router>
+                    <Switch>
+                        <Route exact path='/' component={Landing} />
+                        <Route
+                            exact
+                            path='/login'
+                            render={(props) => (
+                                <Auth {...props} authRoute='login' />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path='/register'
+                            render={(props) => (
+                                <Auth {...props} authRoute='register' />
+                            )}
+                        />
+
+                        <ProtectedRoute
+                            exact
+                            path='/checkout'
+                            component={Checkout}
+                        />
+                        <Route path='/notfound' />
+                        <ProtectedRoute
+                            exact
+                            path='/dashboard'
+                            component={Dashboard}
+                        />
+                    </Switch>
+                </Router>
+            </UserContextProvider>
+        </AuthContextProvider>
+    );
 }
 
 export default App;

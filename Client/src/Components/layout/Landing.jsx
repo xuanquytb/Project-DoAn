@@ -4,14 +4,14 @@ import Container from "../layout/Page/Container";
 import Slide from "../layout/Page/Slide";
 
 const Landing = () => {
-  return (
-    <>
-      <Header />
-      <ListCategory />
-      <Slide/>
-      <Container />
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <ListCategory />
+            <Slide />
+            <Container />
+        </>
+    );
 };
 
 export default Landing;
