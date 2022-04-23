@@ -64,7 +64,7 @@ const Header = () => {
                                 className='header__search-input'
                                 placeholder='Tìm sản phẩm, danh mục hay thương hiệu mong muốn ...'
                             />
-                            <div className='search__content'>
+                            {/* <div className='search__content'>
                                 <div className='search__historys'>
                                     <div className='search__history-head'>
                                         <a
@@ -320,7 +320,7 @@ const Header = () => {
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='header__seacrh-block'>
                             <i className='fas fa-search header__search-icon'></i>
@@ -423,14 +423,14 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-                <div className='header__mobile-search'>
+                {/* <div className='header__mobile-search'>
                     <input
                         type='text'
                         className='header__mobile-input'
                         placeholder='Bạn tìm gì hôm nay?'
                     />
                     <i className='fas fa-search search__logo-mobile'></i>
-                </div>
+                </div> */}
                 <div className='header__tail'>
                     <div className='header__logo-fs'>
                         <img
@@ -442,22 +442,22 @@ const Header = () => {
                     </div>
                     <div className='header__keyword'>
                         <a href='#' className='header__keyword-link'>
-                            tất cả thịt rau củ
+                            tất cả đồ điện tử
                         </a>
                         <a href='#' className='header__keyword-link'>
-                            thịt
+                            gia dụng nhà bếp
                         </a>
                         <a href='#' className='header__keyword-link'>
-                            hàng đông lạnh
+                            máy say sinh tố
                         </a>
                         <a href='#' className='header__keyword-link'>
-                            trái cây
+                            bếp điện
                         </a>
                         <a href='#' className='header__keyword-link'>
-                            hải sản
+                            ấm điện
                         </a>
                         <a href='#' className='header__keyword-link'>
-                            gạo
+                            đèn học
                         </a>
                     </div>
                 </div>

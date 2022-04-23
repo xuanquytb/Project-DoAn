@@ -193,6 +193,10 @@
 .user__login {
   font-size: 1.1rem;
 }
+span.user__name {
+  font-size: 15px;
+  padding: 0 5px;
+}
 .user__account-icon {
   font-size: 1rem;
   position: relative;

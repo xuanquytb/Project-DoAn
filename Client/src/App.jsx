@@ -36,12 +36,12 @@ function App() {
                             path='/checkout'
                             component={Checkout}
                         />
-                        <Route path='/notfound' />
                         <ProtectedRoute
                             exact
                             path='/dashboard'
                             component={Dashboard}
                         />
+                        <Route path='/notfound' />
                     </Switch>
                 </Router>
             </UserContextProvider>

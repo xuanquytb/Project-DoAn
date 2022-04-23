@@ -4,13 +4,13 @@ import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 
-const UserContent = () => {
+const AdminContent = () => {
     const {
         userState: { users },
-        getCustomer,
+        getAdmin,
     } = useContext(UserContext);
 
-    useEffect(() => getCustomer(), []);
+    useEffect(() => getAdmin(), []);
 
     const dataSource = users.map((users) => {
         return {
@@ -134,4 +134,4 @@ const UserContent = () => {
     );
 };
 
-export default UserContent;
+export default AdminContent;

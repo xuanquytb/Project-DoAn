@@ -8,7 +8,8 @@ const argon2 = require("argon2");
 
 const {
     Users,
-    find_all,
+    find_all_Customer,
+    find_all_Admin,
     find_by_name_row,
     find_by_username,
     InsertUser,
@@ -44,9 +45,28 @@ Router.get("/", verifyToken, async (req, res) => {
     }
 });
 
-Router.get("/users", verifyToken, async (req, res) => {
+Router.get("/customer", verifyToken, async (req, res) => {
     try {
-        const users = await find_all();
+        const users = await find_all_Customer();
+        if (!users) {
+            return res
+                .status(202)
+                .json({ success: false, message: "User not found" });
+        } else {
+            return res
+                .status(200)
+                .json({ success: true, users, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+
+Router.get("/admin", verifyToken, async (req, res) => {
+    try {
+        const users = await find_all_Admin();
         if (!users) {
             return res
                 .status(202)
