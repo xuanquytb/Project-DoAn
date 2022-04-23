@@ -17,6 +17,7 @@ const Register = () => {
     });
     const { username, password, rePassword, fullname, email, phone } =
         registerForm;
+
     const onChangeRegisterForm = (e) =>
         setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
 
@@ -33,6 +34,7 @@ const Register = () => {
             console.log(error);
         }
     };
+
     return (
         <div className='Form-Register'>
             <div className='color'></div>

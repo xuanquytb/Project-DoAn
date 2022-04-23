@@ -19,7 +19,6 @@ const Auth = ({ authRoute }) => {
         );
     } else {
         if (isAuthenticated == true) {
-            console.log(roleUser);
             if (isAuthenticated && roleUser.nameRole == "Customer") {
                 return <Redirect to='/' />;
             } else if (isAuthenticated && roleUser.nameRole == "Admin") {

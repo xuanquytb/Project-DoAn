@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const RouterRole = require("./router/role");
 const RouterAuth = require("./router/auth");
@@ -17,5 +16,5 @@ app.use("/api/category", RouterCategory);
 app.use("/api/product", RouterProduct);
 
 app.listen(process.env.PORT, () =>
-  console.log("Máy chủ đã chạy tại công 8080")
+    console.log("Máy chủ đã chạy tại công 8080")
 );

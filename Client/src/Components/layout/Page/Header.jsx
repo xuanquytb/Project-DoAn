@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Store/Context/AuthContext";
 
 const Header = () => {
     const { authState, logout } = useContext(AuthContext);
+
     const history = useHistory();
     const logoutHan = async (e) => {
         e.preventDefault();
@@ -342,67 +343,83 @@ const Header = () => {
                                 </div>
                                 <div className='header__category-info'>
                                     <span>
-                                        <Link to='http://localhost:3000/checkout'>
-                                            {" "}
-                                            Giỏ hàng
-                                        </Link>
+                                        <Link to='http://localhost:3000/checkout'></Link>
                                     </span>
                                 </div>
+                                <div className='header__category-detail-show'>
+                                    <div className='Header-cart-show'></div>
+                                    <div className='Body-cart-show'></div>
+                                    <div className='Footer-cart-show'></div>
+                                </div>
                             </div>
-                            <div className='header__user-login'>
-                                {/* --------------------------------------------- */}
-                                {authState.isAuthenticated === true ? (
-                                    <span className='user__account'>
-                                        <span className='user__name'>
-                                            {authState.user[0].fullname}
+                            <div className='infor-user'>
+                                <div className='header__user-login'>
+                                    {/* --------------------------------------------- */}
+                                    {authState.isAuthenticated === true ? (
+                                        <span className='user__account'>
+                                            <span className='user__name'>
+                                                {authState.user[0].fullname}
+                                            </span>
+                                            <i className='fas fa-sort-down user__account-icon'></i>
                                         </span>
-                                        <i className='fas fa-sort-down user__account-icon'></i>
-                                    </span>
-                                ) : (
-                                    <span className='user__login'>
-                                        <a
-                                            href='http://localhost:3000/login'
-                                            style={{ color: "#fff" }}
+                                    ) : (
+                                        <span className='user__login'>
+                                            <a
+                                                href='http://localhost:3000/login'
+                                                style={{ color: "#fff" }}
+                                            >
+                                                Đăng nhập / Đăng ký
+                                            </a>
+                                        </span>
+                                    )}
+                                </div>
+                                <span className='header__user-img'>
+                                    <img
+                                        src='../../../../image/header/user__logo.png'
+                                        alt=''
+                                    />
+                                </span>
+                                <div className='Header__mode-list'>
+                                    <ul>
+                                        <li
+                                            href=''
+                                            className='Header__mode-item-link'
                                         >
-                                            Đăng nhập / Đăng ký
-                                        </a>
-                                    </span>
-                                )}
+                                            <Button type='text' block>
+                                                Đơn hàng của tôi
+                                            </Button>
+                                        </li>
+                                        <li
+                                            href=''
+                                            className='Header__mode-item-link'
+                                        >
+                                            <Button type='text' block>
+                                                Tài khoản của tôi
+                                            </Button>
+                                        </li>
+                                        <li
+                                            href=''
+                                            className='Header__mode-item-link'
+                                        >
+                                            <Button type='text' block>
+                                                Thông báo
+                                            </Button>
+                                        </li>
+                                        <li
+                                            href=''
+                                            className='Header__mode-item-link'
+                                        >
+                                            <Button
+                                                type='text'
+                                                block
+                                                onClick={logoutHan}
+                                            >
+                                                Đăng xuất
+                                            </Button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <span className='header__user-img'>
-                                <img
-                                    src='../../../../image/header/user__logo.png'
-                                    alt=''
-                                />
-                            </span>
-                        </div>
-                        <div className='Header__mode-list'>
-                            <ul>
-                                <li href='' className='Header__mode-item-link'>
-                                    <Button type='text' block>
-                                        Đơn hàng của tôi
-                                    </Button>
-                                </li>
-                                <li href='' className='Header__mode-item-link'>
-                                    <Button type='text' block>
-                                        Tài khoản của tôi
-                                    </Button>
-                                </li>
-                                <li href='' className='Header__mode-item-link'>
-                                    <Button type='text' block>
-                                        Thông báo
-                                    </Button>
-                                </li>
-                                <li href='' className='Header__mode-item-link'>
-                                    <Button
-                                        type='text'
-                                        block
-                                        onClick={logoutHan}
-                                    >
-                                        Đăng xuất
-                                    </Button>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
