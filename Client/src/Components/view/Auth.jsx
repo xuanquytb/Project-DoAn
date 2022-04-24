@@ -19,9 +19,9 @@ const Auth = ({ authRoute }) => {
         );
     } else {
         if (isAuthenticated == true) {
-            if (isAuthenticated && roleUser.nameRole == "Customer") {
+            if (isAuthenticated && roleUser.id === 2) {
                 return <Redirect to='/' />;
-            } else if (isAuthenticated && roleUser.nameRole == "Admin") {
+            } else if (isAuthenticated && roleUser.id == 1) {
                 return <Redirect to='/dashboard' />;
             }
         }
