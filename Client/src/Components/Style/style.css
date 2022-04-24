@@ -1349,3 +1349,8 @@ span.ant-menu-title-content {
     margin-left: 20px;
     box-shadow: 8px 8px 8px rgb(0 0 0 / 50%);
 }
+
+ant-table-cell{
+  display: flex;
+  
+}

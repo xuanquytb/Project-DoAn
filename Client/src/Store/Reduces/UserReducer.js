@@ -29,6 +29,11 @@ const userReducer = (state, action) => {
                 user: [],
                 userLoading: true,
             };
+        case DELETE_USER:
+            return {
+                ...state,
+                users: state.users.filter((user) => user.id !== payload),
+            };
         default:
             return state;
     }

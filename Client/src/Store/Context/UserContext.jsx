@@ -44,6 +44,17 @@ const UsersContextProvider = ({ children }) => {
         }
     };
 
+    const deleteUser = async (userId) => {
+        try {
+            const response = await axios.delete(`${apiUrl}/auth/${userId}`);
+            console.log(response);
+            if (response.data.success)
+                dispatch({ type: DELETE_USER, payload: userId });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     // Add user
     // const addPost = async newPost => {
     // 	try {
@@ -56,17 +67,6 @@ const UsersContextProvider = ({ children }) => {
     // 		return error.response.data
     // 			? error.response.data
     // 			: { success: false, message: 'Server error' }
-    // 	}
-    // }
-
-    // // Delete user
-    // const deletePost = async postId => {
-    // 	try {
-    // 		const response = await axios.delete(`${apiUrl}/posts/${postId}`)
-    // 		if (response.data.success)
-    // 			dispatch({ type: DELETE_POST, payload: postId })
-    // 	} catch (error) {
-    // 		console.log(error)
     // 	}
     // }
 
@@ -99,6 +99,7 @@ const UsersContextProvider = ({ children }) => {
         userState,
         getCustomer,
         getAdmin,
+        deleteUser,
     };
 
     return (

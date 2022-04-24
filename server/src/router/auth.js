@@ -13,6 +13,7 @@ const {
     find_by_name_row,
     find_by_username,
     InsertUser,
+    delete_By_Id,
 } = require("../models/user");
 
 const { find_by_id_role, find_by_name_row_role } = require("../models/role");
@@ -37,6 +38,31 @@ Router.get("/", verifyToken, async (req, res) => {
             return res
                 .status(200)
                 .json({ success: true, user, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+Router.delete("/:id", verifyToken, async (req, res) => {
+    try {
+        if (req.role.nameRole === "Admin") {
+            const result = await delete_By_Id(req.params.id);
+            if (result != 1) {
+                return res
+                    .status(202)
+                    .json({ success: false, message: "Xóa thất bại" });
+            } else {
+                return res
+                    .status(200)
+                    .json({ success: true, message: "Xóa thành công" });
+            }
+        } else {
+            return res.status(500).json({
+                success: false,
+                message: "Tài khoản không được cấp phép",
+            });
         }
     } catch (error) {
         return res

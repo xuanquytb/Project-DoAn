@@ -17,6 +17,7 @@ import Category from "../Admin/Category/Category";
 
 const DashBoard = () => {
     const location = useLocation();
+    console.log(location);
     const menuitem = [
         {
             key: 0,
@@ -70,11 +71,7 @@ const DashBoard = () => {
         <div>
             <Router>
                 <Layout style={{ minHeight: "100vh" }}>
-                    <Sider
-                    // collapsible
-                    // collapsed={this.state.collapsed}
-                    // onCollapse={this.onCollapse}
-                    >
+                    <Sider>
                         <img
                             src='../../../../image/header/tiki__logo.png'
                             alt=''
@@ -100,14 +97,7 @@ const DashBoard = () => {
                                 padding: 0,
                                 paddingLeft: 16,
                             }}
-                        >
-                            {/* <Icon
-                className="trigger"
-                type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                style={{ cursor: "pointer" }}
-                onClick={this.toggle}
-              /> */}
-                        </Header>
+                        ></Header>
                         <div className='head_search'>
                             <form>
                                 <div className='head_search_cont'>
@@ -115,29 +105,18 @@ const DashBoard = () => {
                                         className='form-control'
                                         placeholder='Nội dung tìm kiếm'
                                     />
-
-                                    {/* <SearchOutlined
-                    style={{
-                      color: "#08c",
-                      marginLeft: "20px",
-                    }}
-                  /> */}
                                 </div>
                             </form>
                         </div>
                         <Content
                             style={{
                                 margin: "24px 16px",
-                                padding: 24,
+                                padding: 0,
                                 background: "#fff",
                                 minHeight: 280,
                             }}
                         >
-                            {/* <Route exact path='/user' component={User} /> */}
-                            {/* <Route exact path='/admin' component={Admin} />
-                            <Route exact path='/product' component={Product} /> */}
                             <Route
-                                exact
                                 path='/user'
                                 render={(props) => (
                                     <AuthDashboard
@@ -147,7 +126,6 @@ const DashBoard = () => {
                                 )}
                             />
                             <Route
-                                exact
                                 path='/admin'
                                 render={(props) => (
                                     <AuthDashboard
@@ -157,7 +135,6 @@ const DashBoard = () => {
                                 )}
                             />
                             <Route
-                                exact
                                 path='/product'
                                 render={(props) => (
                                     <AuthDashboard
@@ -166,11 +143,7 @@ const DashBoard = () => {
                                     />
                                 )}
                             />
-                            <Route
-                                exact
-                                path='/category'
-                                component={Category}
-                            />
+                            <Route path='/category' component={Category} />
                         </Content>
                         <Footer style={{ textAlign: "center" }}>
                             VMU ©2022 Created by XUÂN QUÝ

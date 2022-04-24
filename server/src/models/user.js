@@ -66,6 +66,21 @@ const find_by_Id = (id) => {
     });
 };
 
+const delete_By_Id = (id) => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `DELETE FROM user WHERE (id = '${id}');`,
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                } else {
+                    return resolve(elements.affectedRows);
+                }
+            }
+        );
+    });
+};
+
 const find_by_username = function (username) {
     return new Promise((resolve, reject) => {
         dbConn.query(
@@ -100,5 +115,6 @@ module.exports = {
     InsertUser,
     find_by_name_row,
     find_all_Admin,
+    delete_By_Id,
     Users,
 };

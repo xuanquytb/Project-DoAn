@@ -1,5 +1,5 @@
-GET http://localhost:8080/api/auth
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiaWF0IjoxNjUwNTc1MjQzLCJleHAiOjE2NTA2NjE2NDN9.0Dj5HApRuOS0swXAXyOCoQ__OUcLqq4iyLE2gCPExeE
+DELETE http://localhost:8080/api/auth/27
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW4iLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTA3NjUzMjUsImV4cCI6MTY1MDg1MTcyNX0.3Fi7rtdroaxCIVzVlLvTn-8QjHa2y-RODc9MUeyQP5E
 
 ################################
 POST http://localhost:8080/api/role
@@ -17,12 +17,12 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"uuuu",
+    "username":"uuufuss",
     "password":"admin",
     "fullname":"Vũ Xuân Quý",
     "nameRole":"Customer",
-    "email":"xuanquidy@gmail.com",
-    "phone":"086833di23255",
+    "email":"xuanqufsidsy@gmail.com",
+    "phone":"086833dsfis23255",
     "address":"Tây Sơn Kiến Xương Thái Bình"
 }
 
