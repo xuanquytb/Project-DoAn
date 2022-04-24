@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "antd/dist/antd.css";
 import "../../Style/style.css";
 import "../../Style/base.css";
@@ -6,18 +6,15 @@ import "../../Style/style-Content.css";
 import { Layout, Menu, Input } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-const { SubMenu } = Menu;
-
-const { Header, Content, Footer, Sider } = Layout;
 import AuthDashboard from "../../view/AuthDashboard";
-import User from "../Admin/User/UserContent.jsx";
-import Admin from "../Admin/User/AdminContent.jsx";
-import Product from "../Admin/Product/Product";
 import Category from "../Admin/Category/Category";
+import AuthContext from "../../../Store/Context/AuthContext";
+const { SubMenu } = Menu;
+const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
     const location = useLocation();
-    console.log(location);
+
     const menuitem = [
         {
             key: 0,

@@ -1,4 +1,4 @@
-DELETE http://localhost:8080/api/auth/27
+GET http://localhost:8080/api/auth
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW4iLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTA3NjUzMjUsImV4cCI6MTY1MDg1MTcyNX0.3Fi7rtdroaxCIVzVlLvTn-8QjHa2y-RODc9MUeyQP5E
 
 ################################
