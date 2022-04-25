@@ -1,20 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "antd/dist/antd.css";
 import "../../Style/style.css";
 import "../../Style/base.css";
 import "../../Style/style-Content.css";
 import { Layout, Menu, Input } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import AuthDashboard from "../../view/AuthDashboard";
 import Category from "../Admin/Category/Category";
-import AuthContext from "../../../Store/Context/AuthContext";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
-    const location = useLocation();
-
     const menuitem = [
         {
             key: 0,
@@ -64,6 +60,7 @@ const DashBoard = () => {
             link: "/comment",
         },
     ];
+
     return (
         <div>
             <Router>
@@ -80,7 +77,7 @@ const DashBoard = () => {
                             mode='inline'
                         >
                             {menuitem.map((item) => (
-                                <Menu.Item key={item.key}>
+                                <Menu.Item key={item.link}>
                                     <span>{item.title}</span>
                                     <Link to={item.link} />
                                 </Menu.Item>

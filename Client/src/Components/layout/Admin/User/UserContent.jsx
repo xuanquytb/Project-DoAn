@@ -26,7 +26,6 @@ const UserContent = () => {
     });
 
     const handleDelete = async (id) => {
-        console.log(id.key);
         const result = await deleteUser(id.key);
     };
     const columns = [
@@ -43,24 +42,6 @@ const UserContent = () => {
             key: "fullname",
             width: "23%",
         },
-        // {
-        //     title: "Avatar",
-        //     dataIndex: "avatar",
-        //     key: "avatar",
-        //     width: "15%",
-        //     render: () => (
-        //         <img
-        //             style={{
-        //                 width: "50px",
-        //                 borderRadius: "40%",
-        //                 display: "flex",
-        //                 alignItems: "center",
-        //                 justifyContent: "center",
-        //             }}
-        //             src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-        //         />
-        //     ),
-        // },
         {
             title: "Email",
             dataIndex: "email",
