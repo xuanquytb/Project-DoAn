@@ -17,7 +17,7 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"uuufuss",
+    "username":"xuanquy",
     "password":"admin",
     "fullname":"Vũ Xuân Quý",
     "nameRole":"Customer",

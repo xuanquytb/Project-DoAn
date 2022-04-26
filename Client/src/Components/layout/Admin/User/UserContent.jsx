@@ -3,7 +3,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
-import { EyeOutlined } from "@ant-design/icons";
+import ShowDrawer from "../LayoutAnt/Drawer";
 
 const UserContent = () => {
     const {
@@ -11,6 +11,8 @@ const UserContent = () => {
         getCustomer,
         deleteUser,
     } = useContext(UserContext);
+    const [visible, setVisible] = useState(false);
+    const [user, setUser] = useState({});
 
     useEffect(() => getCustomer(), []);
 
@@ -28,6 +30,18 @@ const UserContent = () => {
     const handleDelete = async (id) => {
         const result = await deleteUser(id.key);
     };
+    const onClose = () => setVisible(false);
+    const handleShow = async (record) => {
+        setUser({
+            username: record.username,
+            fullname: record.fullname,
+            email: record.email,
+            phone: record.phone,
+            address: record.address,
+        });
+        setVisible(true);
+    };
+
     const columns = [
         {
             title: "Tên đăng nhập",
@@ -68,30 +82,26 @@ const UserContent = () => {
             render: (_, record) =>
                 users.length >= 0 ? (
                     <>
-                        <Popconfirm
-                            title='Bạn chắc chắn muốn xóa ?'
-                            //   onConfirm={() => handleDelete(record)}
+                        <Button
+                            style={{
+                                padding: 0,
+                                width: 30,
+                                marginRight: 5,
+                                borderRadius: 20,
+                            }}
+                            type='text'
+                            onClick={() => handleShow(record)}
                         >
-                            <Button
-                                style={{
-                                    padding: 0,
-                                    width: 30,
-                                    marginRight: 5,
-                                    borderRadius: 20,
-                                }}
-                                type='text'
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                viewBox='0 0 24 24'
+                                width='25'
+                                height='25'
                             >
-                                <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    viewBox='0 0 24 24'
-                                    width='25'
-                                    height='25'
-                                >
-                                    <path fill='none' d='M0 0h24v24H0z' />
-                                    <path d='M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' />
-                                </svg>
-                            </Button>
-                        </Popconfirm>
+                                <path fill='none' d='M0 0h24v24H0z' />
+                                <path d='M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' />
+                            </svg>
+                        </Button>
                         <Popconfirm
                             title='Bạn chắc chắn muốn xóa ?'
                             onConfirm={() => handleDelete(record)}
@@ -168,6 +178,7 @@ const UserContent = () => {
                     scroll={{ y: 350 }}
                 />
             </div>
+            <ShowDrawer input={user} visible={visible} onClose={onClose} />
         </>
     );
 };
