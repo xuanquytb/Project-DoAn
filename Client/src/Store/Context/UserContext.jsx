@@ -16,7 +16,7 @@ export const UserContext = createContext();
 const UsersContextProvider = ({ children }) => {
     // State
     const [userState, dispatch] = useReducer(userReducer, InitUser);
-    // Get all posts
+    // Get all user
     const getCustomer = async () => {
         try {
             const response = await axios.get(`${apiUrl}/auth/customer`);
@@ -32,7 +32,7 @@ const UsersContextProvider = ({ children }) => {
     };
     const getAdmin = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/auth/admin`);
+            const response = await axios.get(`${apiUrl}/admin`);
             if (response.data.success) {
                 dispatch({
                     type: USER_LOADED_SUCCESS,
@@ -55,51 +55,31 @@ const UsersContextProvider = ({ children }) => {
         }
     };
 
-    // Add user
-    // const addPost = async newPost => {
-    // 	try {
-    // 		const response = await axios.post(`${apiUrl}/user`, newPost)
-    // 		if (response.data.success) {
-    // 			dispatch({ type: ADD_POST, payload: response.data.post })
-    // 			return response.data
-    // 		}
-    // 	} catch (error) {
-    // 		return error.response.data
-    // 			? error.response.data
-    // 			: { success: false, message: 'Server error' }
-    // 	}
-    // }
-
-    // // Find post when user is updating post
-    // const findPost = postId => {
-    // 	const post = postState.posts.find(post => post._id === postId)
-    // 	dispatch({ type: FIND_POST, payload: post })
-    // }
-
     // // Update post
-    // const updatePost = async updatedPost => {
-    // 	try {
-    // 		const response = await axios.put(
-    // 			`${apiUrl}/posts/${updatedPost._id}`,
-    // 			updatedPost
-    // 		)
-    // 		if (response.data.success) {
-    // 			dispatch({ type: UPDATE_POST, payload: response.data.post })
-    // 			return response.data
-    // 		}
-    // 	} catch (error) {
-    // 		return error.response.data
-    // 			? error.response.data
-    // 			: { success: false, message: 'Server error' }
-    // 	}
-    // }
+    const updateCustomer = async (updatedCustomer) => {
+        try {
+            const response = await axios.put(
+                `${apiUrl}/auth/update`,
+                updatedCustomer
+            );
+            if (response.data.success) {
+                dispatch({ type: UPDATE_USER, payload: response.data.post });
+                return response.data;
+            }
+        } catch (error) {
+            return error.response.data
+                ? error.response.data
+                : { success: false, message: "Server error" };
+        }
+    };
 
-    // Post context data
+    // User context data
     const userContextData = {
         userState,
         getCustomer,
         getAdmin,
         deleteUser,
+        updateCustomer,
     };
 
     return (

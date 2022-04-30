@@ -4,6 +4,7 @@ import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 import ShowDrawer from "../LayoutAnt/Drawer";
+import ShowDrawerForm from "../LayoutAnt/DrawerForm";
 
 const UserContent = () => {
     const {
@@ -32,6 +33,16 @@ const UserContent = () => {
     };
     const onClose = () => setVisible(false);
     const handleShow = async (record) => {
+        setUser({
+            username: record.username,
+            fullname: record.fullname,
+            email: record.email,
+            phone: record.phone,
+            address: record.address,
+        });
+        setVisible(true);
+    };
+    const handleEdit = async (record) => {
         setUser({
             username: record.username,
             fullname: record.fullname,
@@ -127,8 +138,8 @@ const UserContent = () => {
                             </Button>
                         </Popconfirm>
                         <Popconfirm
-                            title='Bạn chắc chắn muốn sửa bài viết ?'
-                            //   onConfirm={() => handleEdit(record)}
+                            title='Bạn chắc chắn muốn sửa người dùng ?'
+                            onConfirm={() => handleEdit(record)}
                         >
                             <Button
                                 style={{
@@ -179,6 +190,7 @@ const UserContent = () => {
                 />
             </div>
             <ShowDrawer input={user} visible={visible} onClose={onClose} />
+            <ShowDrawerForm input={user} visible={visible} onClose={onClose} />
         </>
     );
 };

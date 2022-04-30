@@ -19,7 +19,7 @@ const DashBoard = () => {
         },
         {
             key: 1,
-            title: "Quản lí người dùng",
+            title: "Quản lí nhân viên",
             icon: "<UserOutlined />",
             link: "/admin",
         },

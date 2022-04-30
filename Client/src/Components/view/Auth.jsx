@@ -21,7 +21,10 @@ const Auth = ({ authRoute }) => {
         if (isAuthenticated == true) {
             if (isAuthenticated && roleUser.id === 2) {
                 return <Redirect to='/' />;
-            } else if (isAuthenticated && roleUser.id == 1) {
+            } else if (
+                isAuthenticated &&
+                (roleUser.id === 1 || roleUser.id === 3)
+            ) {
                 return <Redirect to='/dashboard' />;
             }
         }

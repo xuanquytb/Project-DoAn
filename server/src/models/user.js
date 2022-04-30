@@ -7,6 +7,9 @@ const Users = function (user) {
     this.phone = user.phone;
     this.address = user.address;
     this.idRole = user.idRole;
+    this.sex = user.sex;
+    this.dateOfBirth = user.dateOfBirth;
+    this.nameAvata = user.nameAvata;
 };
 
 const find_by_name_row = function (nameRow, value) {
@@ -28,20 +31,6 @@ const find_all_Customer = () => {
     return new Promise((resolve, reject) => {
         dbConn.query(
             "SELECT * FROM user where idRole = 2",
-            (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
-            }
-        );
-    });
-};
-
-const find_all_Admin = () => {
-    return new Promise((resolve, reject) => {
-        dbConn.query(
-            "SELECT * FROM user where idRole = 1",
             (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -74,6 +63,7 @@ const delete_By_Id = (id) => {
                 if (error) {
                     return reject(error);
                 } else {
+                    console.log(elements);
                     return resolve(elements.affectedRows);
                 }
             }
@@ -108,13 +98,29 @@ const InsertUser = function (userNew) {
     });
 };
 
+const UpdateUser = function (userUpdate, username) {
+    console.log(userUpdate.nameAvata);
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `Update user SET fullname = '${userUpdate.fullname}', email = '${userUpdate.email}', phone = '${userUpdate.phone}', address = '${userUpdate.address}',sex= '${userUpdate.sex}',nameAvata = '${userUpdate.nameAvata}',dateOfBirth= '${userUpdate.dateOfBirth}' WHERE (username = '${username}')`,
+            (err, element) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: element.affectedRows, ...element });
+                }
+            }
+        );
+    });
+};
+
 module.exports = {
     find_all_Customer,
     find_by_Id,
     find_by_username,
     InsertUser,
+    UpdateUser,
     find_by_name_row,
-    find_all_Admin,
     delete_By_Id,
     Users,
 };

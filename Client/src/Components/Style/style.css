@@ -1354,3 +1354,31 @@ ant-table-cell{
   display: flex;
   
 }
+
+.ant-picker-date-panel {
+  width: 318px !important;
+}
+
+.table.ant-picker-content {
+  width: 302px !important;
+}
+
+.ant-picker-date-panel .ant-picker-body {
+  padding: 9px 4px;
+  width: 302px;
+}
+
+.ant-picker-date-panel .ant-picker-content {
+  width: 310px;
+}
+
+th, td {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.ant-picker-cell {
+  padding: 3px 9px;
+  color: rgb(62 164 186 / 25%);
+  cursor: pointer;
+}

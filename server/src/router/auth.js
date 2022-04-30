@@ -9,10 +9,10 @@ const argon2 = require("argon2");
 const {
     Users,
     find_all_Customer,
-    find_all_Admin,
     find_by_name_row,
     find_by_username,
     InsertUser,
+    UpdateUser,
     delete_By_Id,
 } = require("../models/user");
 
@@ -47,7 +47,7 @@ Router.get("/", verifyToken, async (req, res) => {
 });
 Router.delete("/:id", verifyToken, async (req, res) => {
     try {
-        if (req.role.nameRole === "Admin") {
+        if (req.role.nameRole === "Administrators") {
             const result = await delete_By_Id(req.params.id);
             if (result != 1) {
                 return res
@@ -59,7 +59,7 @@ Router.delete("/:id", verifyToken, async (req, res) => {
                     .json({ success: true, message: "Xóa thành công" });
             }
         } else {
-            return res.status(500).json({
+            return res.status(405).json({
                 success: false,
                 message: "Tài khoản không được cấp phép",
             });
@@ -90,9 +90,9 @@ Router.get("/customer", verifyToken, async (req, res) => {
     }
 });
 
-Router.get("/admin", verifyToken, async (req, res) => {
+Router.get("/", verifyToken, async (req, res) => {
     try {
-        const users = await find_all_Admin();
+        const users = await find_all_Employee();
         if (!users) {
             return res
                 .status(202)
@@ -197,11 +197,77 @@ Router.post("/register", async (req, res) => {
         }
     }
 });
+Router.put("/update", async (req, res) => {
+    const {
+        username,
+        fullname,
+        sex,
+        dateOfBirth,
+        email,
+        phone,
+        address,
+        nameAvata,
+    } = req.body;
+    if (
+        !username ||
+        !fullname ||
+        !sex ||
+        !dateOfBirth ||
+        !email ||
+        !phone ||
+        !address ||
+        !nameAvata
+    ) {
+        res.status(400).json({
+            success: true,
+            message: "Nhập thiếu thông tin",
+        });
+    } else {
+        const user = await find_by_name_row("username", username);
+        if (user.length <= 0) {
+            res.status(400).json({
+                success: false,
+                message: "Tài khoản không tồn tại",
+            });
+        } else {
+            const newUpdate = new Users({
+                fullname,
+                email,
+                phone,
+                address,
+                sex,
+                dateOfBirth,
+                nameAvata,
+            });
+            try {
+                const result = await UpdateUser(newUpdate, username);
+                const users = await find_all_Customer();
+                if (result) {
+                    res.status(200).json({
+                        success: true,
+                        message: "Cập nhật thành công",
+                        users: users,
+                    });
+                } else {
+                    res.status(400).json({
+                        success: false,
+                        message: "Cập nhật thất bại",
+                    });
+                }
+            } catch (error) {
+                res.status(400).json({
+                    success: false,
+                    message: "Xảy ra lỗi : " + error,
+                });
+            }
+        }
+    }
+});
 
 Router.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
-        res.status(400).json({
+        res.status(500).json({
             success: false,
             message: "Nhập thiếu thông tin Tài khoản/Mật khẩu",
         });
@@ -209,9 +275,9 @@ Router.post("/login", async (req, res) => {
         const user = await find_by_username(username);
 
         if (!user) {
-            res.status(400).json({
+            res.status(500).json({
                 success: false,
-                message: "Tâì khoản không tồn tại",
+                message: "Tài khoản/Mật khẩu không chính xác",
             });
         } else {
             const nameRole = await find_by_id_role(user.idRole);
@@ -232,9 +298,9 @@ Router.post("/login", async (req, res) => {
                     user: user,
                 });
             } else {
-                res.status(400).json({
-                    success: true,
-                    message: "Đăng nhập thất bại",
+                res.status(200).json({
+                    success: false,
+                    message: "Tài khoản/Mật khẩu không chính xác",
                 });
             }
         }

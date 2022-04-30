@@ -8,7 +8,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     const {
         authState: { authLoading, isAuthenticated, roleUser },
     } = useContext(AuthContext);
-    console.log(isAuthenticated);
     if (authLoading) {
         return (
             <div className='spinner-containe'>
@@ -21,7 +20,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={(props) =>
-                isAuthenticated && roleUser.id === 1 ? (
+                isAuthenticated && (roleUser.id === 1 || roleUser.id === 3) ? (
                     <>
                         <Component {...rest} {...props} />
                     </>
