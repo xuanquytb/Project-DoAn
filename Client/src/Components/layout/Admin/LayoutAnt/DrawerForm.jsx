@@ -17,6 +17,7 @@ const { Option, OptGroup } = Select;
 const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
     const onFinish = (values) => {
         const userUpdate = {
+            id: input.id,
             fullname: values.fullname,
             email: values.email,
             phone: values.phone,

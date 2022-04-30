@@ -26,6 +26,8 @@ const UserContent = () => {
             email: users.email,
             phone: users.phone,
             address: users.address,
+            nameAvata: users.nameAvata,
+            sex: users.sex,
             key: users.id,
         };
     });
@@ -35,6 +37,7 @@ const UserContent = () => {
     };
     const onClose = () => {
         setVisibleShow(false);
+        setVisibleUpdate(false);
     };
 
     const handleShow = async (record) => {
@@ -47,6 +50,7 @@ const UserContent = () => {
             address: record.address,
             nameAvata: record.nameAvata,
             sex: record.sex,
+            id: record.key,
         });
         setVisibleShow(true);
     };
@@ -57,12 +61,18 @@ const UserContent = () => {
             email: record.email,
             phone: record.phone,
             address: record.address,
+            nameAvata: record.nameAvata,
+            sex: record.sex,
+            id: record.key,
         });
         setVisibleUpdate(true);
     };
 
     const handleUpdate = async (record) => {
         const result = await updateCustomer(record);
+        if (result) {
+            getCustomer();
+        }
     };
 
     const columns = [
