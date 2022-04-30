@@ -197,7 +197,7 @@ Router.post("/register", async (req, res) => {
         }
     }
 });
-Router.put("/update", verifyToken, async (req, res) => {
+Router.put("/update/:id", verifyToken, async (req, res) => {
     const { fullname, sex, dateOfBirth, email, phone, address, nameAvata } =
         req.body;
     if (
@@ -214,7 +214,7 @@ Router.put("/update", verifyToken, async (req, res) => {
             message: "Nhập thiếu thông tin",
         });
     } else {
-        const user = await find_by_name_row("id", 4);
+        const user = await find_by_name_row("id", req.params.id);
         if (user.length <= 0) {
             res.status(400).json({
                 success: false,
@@ -231,7 +231,7 @@ Router.put("/update", verifyToken, async (req, res) => {
                 nameAvata,
             });
             try {
-                const result = await UpdateUser(newUpdate, 4);
+                const result = await UpdateUser(newUpdate, req.params.id);
                 const users = await find_all_Customer();
                 if (result) {
                     res.status(200).json({

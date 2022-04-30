@@ -28,6 +28,8 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                     <p>{input.email}</p>
                     <p>{input.phone}</p>
                     <p>{input.address}</p>
+                    <p>{input.nameAvata}</p>
+                    <p>{input.sex}</p>
                 </div>
             </Skeleton>
         </Drawer>
