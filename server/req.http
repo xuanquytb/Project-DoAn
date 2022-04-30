@@ -20,9 +20,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvb
 
 
 ################################
-POST http://localhost:8080/api/auth/admin/create
+POST http://localhost:8080/api/admin/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW4iLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTA5NTMzNTAsImV4cCI6MTY1MTAzOTc1MH0.FPwNEs4kxyIsA0h_gZB83VqP3ZG22fHFWthtDpfaCF8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTEzMzUxMDYsImV4cCI6MTY1MTQyMTUwNn0.5QLJGXq34g176bh99EOpBNUlvu8Nakgk1nnFCqxSQeQ
 
 {
     "fullname":"Đặng thị hải nhật",
@@ -34,7 +34,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvb
     "password":"admin",
     "statusLock":"1",
     "dateOfBirth":"1999/03/23",
-    "nameRole":"Admin"
+    "nameRole":"Employee"
 }
 
 ################################
@@ -78,7 +78,7 @@ Content-Type: application/json
 ################################
 PUT http://localhost:8080/api/card/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpYXQiOjE2NTEyODg5NjgsImV4cCI6MTY1MTM3NTM2OH0.GRDPSHCfVOpQR82OPPCTQi1smbfoQOcdTPcDW7GGEHQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTEzMzUxMDYsImV4cCI6MTY1MTQyMTUwNn0.5QLJGXq34g176bh99EOpBNUlvu8Nakgk1nnFCqxSQeQ
 
 {
     "idMGG":"5"

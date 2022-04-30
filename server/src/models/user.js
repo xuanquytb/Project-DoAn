@@ -98,11 +98,10 @@ const InsertUser = function (userNew) {
     });
 };
 
-const UpdateUser = function (userUpdate, username) {
-    console.log(userUpdate.nameAvata);
+const UpdateUser = function (userUpdate, userId) {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `Update user SET fullname = '${userUpdate.fullname}', email = '${userUpdate.email}', phone = '${userUpdate.phone}', address = '${userUpdate.address}',sex= '${userUpdate.sex}',nameAvata = '${userUpdate.nameAvata}',dateOfBirth= '${userUpdate.dateOfBirth}' WHERE (username = '${username}')`,
+            `Update user SET fullname = '${userUpdate.fullname}', email = '${userUpdate.email}', phone = '${userUpdate.phone}', address = '${userUpdate.address}',sex= '${userUpdate.sex}',nameAvata = '${userUpdate.nameAvata}',dateOfBirth= '${userUpdate.dateOfBirth}' WHERE (id = '${userId}')`,
             (err, element) => {
                 if (err) {
                     return reject(err);

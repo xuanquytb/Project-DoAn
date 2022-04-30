@@ -20,6 +20,7 @@ const UsersContextProvider = ({ children }) => {
     const getCustomer = async () => {
         try {
             const response = await axios.get(`${apiUrl}/auth/customer`);
+            console.log(response);
             if (response.data.success) {
                 dispatch({
                     type: USER_LOADED_SUCCESS,
@@ -62,10 +63,11 @@ const UsersContextProvider = ({ children }) => {
                 `${apiUrl}/auth/update`,
                 updatedCustomer
             );
-            if (response.data.success) {
-                dispatch({ type: UPDATE_USER, payload: response.data.post });
-                return response.data;
-            }
+            console.log(response);
+            // if (response.data.success) {
+            //     dispatch({ type: UPDATE_USER, payload: response.data.post });
+            //     return response.data;
+            // }
         } catch (error) {
             return error.response.data
                 ? error.response.data

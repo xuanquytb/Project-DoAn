@@ -65,7 +65,7 @@ Router.get("/", verifyToken, async (req, res) => {
 });
 
 Router.post("/create", verifyToken, async (req, res) => {
-    if (req.role.id === 3) {
+    if (req.role.id === 1 || req.role.id === 2) {
         const {
             fullname,
             sex,

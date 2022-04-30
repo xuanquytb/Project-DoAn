@@ -11,32 +11,22 @@ import {
     Space,
     Image,
 } from "antd";
-import UserContext from "../../../../Store/Context/UserContext";
 
 const { Option, OptGroup } = Select;
 
-const ShowDrawer = ({ input, visible, onClose }) => {
-    // const {
-    //     userState: { users },
-    //     updateCustomer,
-    // } = useContext(UserContext);
-    const [valueForm, setValueForm] = useState({
-        fullname: "",
-        sex: "",
-        birthDate: "",
-    });
-    const onChangeValueForm = (e) =>
-        setValueForm({ ...valueForm, [e.target.name]: e.target.value });
-
-    console.log(valueForm);
-
-    function handleChange(value) {
-        setValueForm({ ...valueForm, ["sex"]: value });
-    }
-
-    function onChange(dateString) {
-        setValueForm({ ...valueForm, ["birthDate"]: dateString });
-    }
+const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
+    const onFinish = (values) => {
+        const userUpdate = {
+            fullname: values.fullname,
+            email: values.email,
+            phone: values.phone,
+            address: values.address,
+            nameAvata: "Defau.jpg",
+            sex: values.sex,
+            dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
+        };
+        onUpdate(userUpdate);
+    };
     return (
         <Drawer
             destroyOnClose
@@ -45,7 +35,7 @@ const ShowDrawer = ({ input, visible, onClose }) => {
             width={500}
             onClose={onClose}
         >
-            <Form layout='vertical' hideRequiredMark>
+            <Form layout='vertical' hideRequiredMark onFinish={onFinish}>
                 <Row gutter={16}>
                     <Col span={9}></Col>
                     <Col span={9}>
@@ -59,13 +49,14 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                 </Row>
                 <Row gutter={16}>
                     <Col span={12}>
-                        <Form.Item name='username' label='Tên đăng nhập'>
+                        <Form.Item label='Tên đăng nhập'>
                             <Input disabled placeholder={input.username} />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item
                             label='Họ và tên'
+                            name='fullname'
                             rules={[
                                 {
                                     required: true,
@@ -73,11 +64,7 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                                 },
                             ]}
                         >
-                            <Input
-                                name='fullname'
-                                placeholder={input.fullname}
-                                onChange={onChangeValueForm}
-                            />
+                            <Input placeholder={input.fullname} />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -93,10 +80,7 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                                 },
                             ]}
                         >
-                            <Select
-                                style={{ width: 200 }}
-                                onSelect={handleChange}
-                            >
+                            <Select style={{ width: 200 }}>
                                 <OptGroup label='Giới tính'>
                                     <Option value='Nam'>Nam</Option>
                                     <Option value='Nữ'>Nữ</Option>
@@ -112,7 +96,6 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                             <DatePicker
                                 format='DD-MM-YYYY'
                                 placeholder='DD-MM-YYYY'
-                                onChange={onChange}
                             />
                         </Form.Item>
                     </Col>

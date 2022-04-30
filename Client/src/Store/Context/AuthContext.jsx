@@ -43,10 +43,28 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => loadUser(), []);
 
     const loginUser = async (userForm) => {
-        const response = await axios.post(
-            `http://localhost:8080/api/auth/login`,
-            userForm
-        );
+        const response = await axios.post(`${apiUrl}/admin/login`, userForm);
+        if (response.data.success) {
+            try {
+                localStorage.setItem(
+                    LOCAL_STORAGE_TOKEN_NAME,
+                    response.data.token
+                );
+                await loadUser();
+                return response.data;
+            } catch (error) {
+                if (error.response.data) {
+                    error.response.data;
+                } else {
+                    return { success: false, message: error.message };
+                }
+            }
+        } else {
+            return response.data;
+        }
+    };
+    const loginAdmin = async (userForm) => {
+        const response = await axios.post(`${apiUrl}/admin/login`, userForm);
         if (response.data.success) {
             try {
                 localStorage.setItem(
@@ -97,6 +115,35 @@ const AuthContextProvider = ({ children }) => {
             } else {
                 return response.data;
             }
+        }
+    };
+    const updateUser = async (userForm) => {
+        const user = {
+            fullname: userForm.fullname,
+            email: userForm.email,
+            phone: userForm.phone,
+            address: userForm.address,
+            nameImage: userForm.nameImage,
+            dateOfBirth: userForm.dateOfBirth,
+        };
+        const response = await axios.post(`${apiUrl}/auth/register`, user);
+        if (response.data.success) {
+            try {
+                localStorage.setItem(
+                    LOCAL_STORAGE_TOKEN_NAME,
+                    response.data.tokenAccess
+                );
+                await loadUser();
+                return response.data;
+            } catch (error) {
+                if (error.response.data) {
+                    error.response.data;
+                } else {
+                    return { success: false, message: error.message };
+                }
+            }
+        } else {
+            return response.data;
         }
     };
 

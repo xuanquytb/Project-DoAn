@@ -197,19 +197,10 @@ Router.post("/register", async (req, res) => {
         }
     }
 });
-Router.put("/update", async (req, res) => {
-    const {
-        username,
-        fullname,
-        sex,
-        dateOfBirth,
-        email,
-        phone,
-        address,
-        nameAvata,
-    } = req.body;
+Router.put("/update", verifyToken, async (req, res) => {
+    const { fullname, sex, dateOfBirth, email, phone, address, nameAvata } =
+        req.body;
     if (
-        !username ||
         !fullname ||
         !sex ||
         !dateOfBirth ||
@@ -223,7 +214,7 @@ Router.put("/update", async (req, res) => {
             message: "Nhập thiếu thông tin",
         });
     } else {
-        const user = await find_by_name_row("username", username);
+        const user = await find_by_name_row("id", 4);
         if (user.length <= 0) {
             res.status(400).json({
                 success: false,
@@ -240,7 +231,7 @@ Router.put("/update", async (req, res) => {
                 nameAvata,
             });
             try {
-                const result = await UpdateUser(newUpdate, username);
+                const result = await UpdateUser(newUpdate, 4);
                 const users = await find_all_Customer();
                 if (result) {
                     res.status(200).json({
@@ -281,7 +272,6 @@ Router.post("/login", async (req, res) => {
             });
         } else {
             const nameRole = await find_by_id_role(user.idRole);
-            console.log(nameRole);
             const validPassword = await argon2.verify(
                 user.passwordEn,
                 password

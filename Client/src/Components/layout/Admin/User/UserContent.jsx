@@ -11,8 +11,10 @@ const UserContent = () => {
         userState: { users },
         getCustomer,
         deleteUser,
+        updateCustomer,
     } = useContext(UserContext);
-    const [visible, setVisible] = useState(false);
+    const [visibleShow, setVisibleShow] = useState(false);
+    const [visibleUpdate, setVisibleUpdate] = useState(false);
     const [user, setUser] = useState({});
 
     useEffect(() => getCustomer(), []);
@@ -31,16 +33,22 @@ const UserContent = () => {
     const handleDelete = async (id) => {
         const result = await deleteUser(id.key);
     };
-    const onClose = () => setVisible(false);
+    const onClose = () => {
+        setVisibleShow(false);
+    };
+
     const handleShow = async (record) => {
+        console.log(record);
         setUser({
             username: record.username,
             fullname: record.fullname,
             email: record.email,
             phone: record.phone,
             address: record.address,
+            nameAvata: record.nameAvata,
+            sex: record.sex,
         });
-        setVisible(true);
+        setVisibleShow(true);
     };
     const handleEdit = async (record) => {
         setUser({
@@ -50,7 +58,11 @@ const UserContent = () => {
             phone: record.phone,
             address: record.address,
         });
-        setVisible(true);
+        setVisibleUpdate(true);
+    };
+
+    const handleUpdate = async (record) => {
+        const result = await updateCustomer(record);
     };
 
     const columns = [
@@ -189,8 +201,13 @@ const UserContent = () => {
                     scroll={{ y: 350 }}
                 />
             </div>
-            <ShowDrawer input={user} visible={visible} onClose={onClose} />
-            <ShowDrawerForm input={user} visible={visible} onClose={onClose} />
+            <ShowDrawer input={user} visible={visibleShow} onClose={onClose} />
+            <ShowDrawerForm
+                input={user}
+                visible={visibleUpdate}
+                onClose={onClose}
+                onUpdate={handleUpdate}
+            />
         </>
     );
 };
