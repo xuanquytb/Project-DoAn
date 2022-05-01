@@ -91,7 +91,7 @@ const InsertCategory = function (categoryNew) {
     });
 };
 
-const UpdateCategory = function (categoryUpdate, nameCategory) {
+const UpdateCategory = function (categoryUpdate, id) {
     // console.log(categoryUpdate.nameAvata);
     return new Promise((resolve, reject) => {
         dbConn.query(

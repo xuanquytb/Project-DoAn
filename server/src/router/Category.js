@@ -110,228 +110,128 @@ Router.get("/allCategory", verifyToken, async (req, res) => {
         });
 }
 });
+
+Router.post("/addCategory", verifyToken, async (req, res) => {
+    if (req.role.id === 1 || req.role.id === 3) {
+        const {
+            nameCategory,
+            image,
+            description,
+        } = req.body;
+
+        if (
+            !nameCategory ||
+            !image ||
+            !description 
+        ) {
+            res.status(400).json({
+                success: true,
+                message: "Nhập thiếu thông tin",
+            });
+        } else {
+            const nameCategoryRe = await find_by_name_row_category("nameCategory", nameCategory);
+            if (nameCategoryRe.length > 0) {
+                res.status(400).json({
+                    success: false,
+                    message: "Ngành hàng đã tồn tại",
+                });
+            } else {
+                try {
+                    const newCategoryItem = new Category({
+                        nameCategory,
+                        image,
+                        description,
+                    })
+                    const newCategoryRe = await InsertCategory(newCategoryItem);
+                    if(newCategoryRe){
+                        res.status(200).json({
+                            success:true,
+                            message: "Thêm thành công",
+                            nameCategory: nameCategory,
+                        })
+                    }else{
+                        res.status(400).json({
+                            success:false,
+                            message:"Thêm thất bại",
+                        });
+                    }
+                } catch (error) {
+                    res.status(400).json({
+                        success:false,
+                        message: "Xảy ra lỗi : " + error,
+                    })
+                }
+            }
+        }
+    } else {
+        return res.status(405).json({
+            success: false,
+            message: "Tài khoản không được cấp phép",
+        });
+    }
+});
+
+Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
+    if (req.role.id === 1 || req.role.id === 3) {
+        const {
+            nameCategory,
+            image,
+            description,
+        } = req.body;
+        if (
+            !nameCategory ||
+            !image ||
+            !description 
+        ) {
+            res.status(400).json({
+                success: true,
+                message: "Nhập thiếu thông tin",
+            });
+        } else {
+            const nameCategoryRe = await find_by_name_row_category("nameCategory", req.params.id);
+            if (nameCategoryRe.length > 0) {
+                res.status(400).json({
+                    success: false,
+                    message: "Ngành hàng đã tồn tại",
+                });
+            } else {
+                try {
+                    // console.log(req.params.id);
+                    const newCategoryItem = new Category({
+                        nameCategory,
+                        image,
+                        description,
+                    })
+                    const newCategoryRe = await UpdateCategory(newCategoryItem,req.params.id);
+                    if(newCategoryRe){
+                        res.status(200).json({
+                            success:true,
+                            message: "Cập nhật thành công",
+                            nameCategory: nameCategory,
+                        })
+                    }else{
+                        res.status(400).json({
+                            success:false,
+                            message:"Cập nhật thất bại",
+                        });
+                    }
+                } catch (error) {
+                    res.status(400).json({
+                        success:false,
+                        message: "Xảy ra lỗi : " + error,
+                    })
+                }
+            }
+        }
+    } else {
+        return res.status(405).json({
+            success: false,
+            message: "Tài khoản không được cấp phép",
+        });
+    }
+});
 //còn add card với update card
-// Router.post("/addCategory", async (req, res) => {
-//     const result = await find_Emp_by_name_row("id",req.userId)
-//     if(result)  {
-//         const { nameCategory , image , description } = req.body;
-//         if (!nameCategory || !image || !description) {
-//             res.status(400).json({
-//                 success: true,
-//                 message: "Nhập thiếu thông tin",
-//             });
-//         } else {
-//             const category = await find_by_name_row_category("id", req.id);
-//             if (category.length <= 0) {
-//                 const newCategory = new Category({
-//                     nameCategory,
-//                     image,
-//                     description,
-//                 })
-//                 try {
-//                     const insCategory = await InsertCategory(newCategory);
-//                         if(insCategory) {
-//                             const categoryNew = await find_by_name_row_category
-//                         }
-            
-//                             if (result) {
-//                                 const cardNew = await find_by_name_row_card(
-//                                     "idCustomer",
-//                                     idCustomer
-//                                 );
-//                                 res.status(200).json({
-//                                     success: true,
-//                                     message: "Thêm sản phẩm thành công",
-//                                     card: cardNew,
-//                                 });
-//                             } else {
-//                                 res.status(400).json({
-//                                     success: false,
-//                                     message: "Thêm sản phẩm thất bại",
-//                                 });
-//                             }
-//                         } catch (error) {
-//                             res.status(400).json({
-//                                 success: false,
-//                                 message: "Xảy ra lỗi : " + error,
-//                             });
-//                         }
-//                     }
-//                 req.nameCategory
-//                 res.status(400).json({
-//                     success: false,
-//                     message: "Tài khoản không tồn tại",
-//                 });
-//             } 
-//             // else {
-//             //     const newCard = new Card({
-//             //         req.userId,
-//             //         idMGG,
-//             //         stateCard,
-//             //     });
-//             //     try {
-//             //         const result = await InsertCard(newCard);
-    
-//             //         if (result) {
-//             //             const cardNew = await find_by_name_row_card(
-//             //                 "idCustomer",
-//             //                 idCustomer
-//             //             );
-//             //             res.status(200).json({
-//             //                 success: true,
-//             //                 message: "Thêm sản phẩm thành công",
-//             //                 card: cardNew,
-//             //             });
-//             //         } else {
-//             //             res.status(400).json({
-//             //                 success: false,
-//             //                 message: "Thêm sản phẩm thất bại",
-//             //             });
-//             //         }
-//             //     } catch (error) {
-//             //         res.status(400).json({
-//             //             success: false,
-//             //             message: "Xảy ra lỗi : " + error,
-//             //         });
-//             //     }
-//             // }
-//         }
-//     } else{
-//         return res.status(405).json({
-//             success: false,
-//             message: "Tài khoản không tồn tại",
-//         });
-// }
-// });
-
-// Router.get("/", verifyToken, async (req, res) => {
-//     try {
-//         const users = await find_all_Employee();
-//         if (!users) {
-//             return res
-//                 .status(202)
-//                 .json({ success: false, message: "User not found" });
-//         } else {
-//             return res
-//                 .status(200)
-//                 .json({ success: true, users, role: req.role });
-//         }
-//     } catch (error) {
-//         return res
-//             .status(500)
-//             .json({ success: false, message: "Server Error" });
-//     }
-// });
-
-// Router.post("/register", async (req, res) => {
-//     const { username, password, fullname, nameRole, email, phone, address } =
-//         req.body;
-
-//     if (
-//         !username ||
-//         !password ||
-//         !fullname ||
-//         !nameRole ||
-//         !email ||
-//         !phone ||
-//         !address
-//     ) {
-//         res.status(400).json({
-//             success: true,
-//             message: "Nhập thiếu thông tin",
-//         });
-//     } else {
-//         const user = await find_by_name_row("username", username);
-//         if (user.length > 0) {
-//             res.status(400).json({
-//                 success: false,
-//                 message: "Tài khoản đã tồn tại",
-//             });
-//         } else {
-//             const emailValid = await find_by_name_row("email", email);
-
-//             if (emailValid.length > 0) {
-//                 res.status(400).json({
-//                     success: false,
-//                     message: "Email đã tồn tại",
-//                 });
-//             } else {
-//                 const phoneValid = await find_by_name_row("phone", phone);
-//                 if (phoneValid.length > 0) {
-//                     res.status(400).json({
-//                         success: false,
-//                         message: "Số điện thoại đã tồn tại",
-//                     });
-//                 } else {
-//                     const hashPassword = await argon2.hash(password);
-//                     const role = await find_by_name_row_role(
-//                         "nameRole",
-//                         nameRole
-//                     );
-//                     const newUser = new Users({
-//                         username,
-//                         password: hashPassword,
-//                         fullname,
-//                         email,
-//                         phone,
-//                         address,
-//                         idRole: role.id,
-//                     });
-//                     try {
-//                         const result = await InsertUser(newUser);
-//                         if (result) {
-//                             const token = GenerateToken({
-//                                 userId: result.id,
-//                                 role: role,
-//                             });
-//                             const userNew = await find_by_name_row(
-//                                 "id",
-//                                 result.id
-//                             );
-//                             res.status(200).json({
-//                                 success: true,
-//                                 tokenAccess: token,
-//                                 message: "Thêm thành công",
-//                                 user: userNew,
-//                             });
-//                         } else {
-//                             res.status(400).json({
-//                                 success: false,
-//                                 message: "Thêm thất bại",
-//                             });
-//                         }
-//                     } catch (error) {
-//                         res.status(400).json({
-//                             success: false,
-//                             message: "Xảy ra lỗi : " + error,
-//                         });
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// });
 // Router.put("/update", async (req, res) => {
-//     const {
-//         username,
-//         fullname,
-//         sex,
-//         dateOfBirth,
-//         email,
-//         phone,
-//         address,
-//         nameAvata,
-//     } = req.body;
-//     if (
-//         !username ||
-//         !fullname ||
-//         !sex ||
-//         !dateOfBirth ||
-//         !email ||
-//         !phone ||
-//         !address ||
-//         !nameAvata
-//     ) {
 //         res.status(400).json({
 //             success: true,
 //             message: "Nhập thiếu thông tin",
