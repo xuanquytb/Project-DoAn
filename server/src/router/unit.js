@@ -7,15 +7,14 @@ const jwt = require("jsonwebtoken");
 const argon2 = require("argon2");
 
 const {
-    find_all_Category,
+    find_by_name_row_unit,
+    find_all_Unit,
     find_by_Id,
-    find_by_name_row_category,
     delete_By_Id,
-    // find_by_nameCategory,
-    InsertCategory,
-    UpdateCategory,
-    Category,
-} = require("../models/category");
+    InsertUnit,
+    UpdateUnit,
+    Unit
+} = require("../models/unit");
 const {
     find_Emp_by_name_row,
 } = require("../models/Employee");
@@ -84,19 +83,19 @@ Router.delete("/:id", verifyToken, async (req, res) => {
     
 });
 
-Router.get("/allCategory", verifyToken, async (req, res) => {
+Router.get("/allUnit", verifyToken, async (req, res) => {
     const result = await find_Emp_by_name_row("id",req.userId)
     if(result)  {
         try {
-            const categorys = await find_all_Category();
-            if (!categorys) {
+            const units = await find_all_Unit();
+            if (!units) {
                 return res
                     .status(202)
                     .json({ success: false, message: "User not found" });
             } else {
                 return res
                     .status(200)
-                    .json({ success: true, categorys });
+                    .json({ success: true, units });
             }
         } catch (error) {
             return res
@@ -111,17 +110,15 @@ Router.get("/allCategory", verifyToken, async (req, res) => {
 }
 });
 
-Router.post("/addCategory", verifyToken, async (req, res) => {
+Router.post("/addUnit", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
         const {
-            nameCategory,
-            image,
+            nameUnit,
             description,
         } = req.body;
 
         if (
-            !nameCategory ||
-            !image ||
+            !nameUnit ||            
             !description 
         ) {
             res.status(400).json({
@@ -129,25 +126,24 @@ Router.post("/addCategory", verifyToken, async (req, res) => {
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            const nameCategoryRe = await find_by_name_row_category("nameCategory", nameCategory);
-            if (nameCategoryRe.length > 0) {
+            const nameUnitRe = await find_by_name_row_unit("nameUnit", nameUnit);
+            if (nameUnitRe.length > 0) {
                 res.status(400).json({
                     success: false,
-                    message: "Ngành hàng đã tồn tại",
+                    message: "Đơn vị tính đã tồn tại",
                 });
             } else {
                 try {
-                    const newCategoryItem = new Category({
-                        nameCategory,
-                        image,
+                    const newUnitItem = new Unit({
+                        nameUnit,
                         description,
                     })
-                    const newCategoryRe = await InsertCategory(newCategoryItem);
-                    if(newCategoryRe){
+                    const newUnitRe = await InsertUnit(newUnitItem);
+                    if(newUnitRe){
                         res.status(200).json({
                             success:true,
                             message: "Thêm thành công",
-                            nameCategory: nameCategory,
+                            nameUnit: nameUnit,
                         })
                     }else{
                         res.status(400).json({
@@ -171,16 +167,14 @@ Router.post("/addCategory", verifyToken, async (req, res) => {
     }
 });
 
-Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
+Router.put("/updateUnit/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
         const {
-            nameCategory,
-            image,
+            nameUnit,
             description,
         } = req.body;
         if (
-            !nameCategory ||
-            !image ||
+            !nameUnit ||
             !description 
         ) {
             res.status(400).json({
@@ -188,25 +182,24 @@ Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            const nameCategoryRe = await find_by_name_row_category("nameCategory", req.params.id);
-            if (nameCategoryRe.length > 0) {
+            const nameUnitRe = await find_by_name_row_unit("nameUnit", req.params.id);
+            if (nameUnitRe.length > 0) {
                 res.status(400).json({
                     success: false,
-                    message: "Ngành hàng đã tồn tại",
+                    message: "Đơn vị tính đã tồn tại",
                 });
             } else {
                 try {
-                    const newCategoryItem = new Category({
-                        nameCategory,
-                        image,
+                    const newUnitItem = new Unit({
+                        nameUnit,
                         description,
                     })
-                    const newCategoryRe = await UpdateCategory(newCategoryItem,req.params.id);
-                    if(newCategoryRe){
+                    const newUnitRe = await UpdateUnit(newUnitItem,req.params.id);
+                    if(newUnitRe){
                         res.status(200).json({
                             success:true,
                             message: "Cập nhật thành công",
-                            nameCategory: nameCategory,
+                            nameUnit: nameUnit,
                         })
                     }else{
                         res.status(400).json({
@@ -229,5 +222,4 @@ Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
         });
     }
 });
-
 module.exports = Router;
