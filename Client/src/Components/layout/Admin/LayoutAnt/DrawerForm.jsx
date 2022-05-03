@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import {
@@ -17,6 +17,18 @@ import {
 const { Option, OptGroup } = Select;
 
 const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
+    const [fileList, setFileList] = useState([]);
+    useEffect(() => {
+        setFileList([
+            {
+                uid: "-1",
+                name: "Avata",
+                status: "done",
+                url: `http://localhost:8080/image/${input.nameAvata}`,
+            },
+        ]);
+    }, [input]);
+
     const onFinish = (values) => {
         const userUpdate = {
             id: input.id,
@@ -24,40 +36,16 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
             email: values.email,
             phone: values.phone,
             address: values.address,
-            nameAvata: "Defau.jpg",
             sex: values.sex,
             dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
         };
         onUpdate(userUpdate);
     };
 
-    const [fileList, setFileList] = useState([
-        {
-            uid: "-1",
-            name: "avata.png",
-            status: "done",
-            url: `http://localhost:8080/image/image-1651557506143.png`,
-        },
-    ]);
-
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
     };
 
-    const onPreview = async (file) => {
-        let src = file.url;
-        if (!src) {
-            src = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file.originFileObj);
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow.document.write(image.outerHTML);
-    };
     return (
         <Drawer
             destroyOnClose
@@ -71,11 +59,10 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                     <Col span={9}></Col>
                     <Col span={9}>
                         <Upload
-                            action='http://localhost:8080/api/upload/image'
+                            action={`http://localhost:8080/api/upload/image/user/${input.id}`}
                             listType='picture-card'
                             fileList={fileList}
                             onChange={onChange}
-                            onPreview={onPreview}
                             name='photo'
                         >
                             {fileList.length < 1 && "+ Upload"}

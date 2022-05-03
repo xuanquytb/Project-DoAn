@@ -198,17 +198,8 @@ Router.post("/register", async (req, res) => {
     }
 });
 Router.put("/update/:id", verifyToken, async (req, res) => {
-    const { fullname, sex, dateOfBirth, email, phone, address, nameAvata } =
-        req.body;
-    if (
-        !fullname ||
-        !sex ||
-        !dateOfBirth ||
-        !email ||
-        !phone ||
-        !address ||
-        !nameAvata
-    ) {
+    const { fullname, sex, dateOfBirth, email, phone, address } = req.body;
+    if (!fullname || !sex || !dateOfBirth || !email || !phone || !address) {
         res.status(400).json({
             success: true,
             message: "Nhập thiếu thông tin",
@@ -228,7 +219,6 @@ Router.put("/update/:id", verifyToken, async (req, res) => {
                 address,
                 sex,
                 dateOfBirth,
-                nameAvata,
             });
             try {
                 const result = await UpdateUser(newUpdate, req.params.id);

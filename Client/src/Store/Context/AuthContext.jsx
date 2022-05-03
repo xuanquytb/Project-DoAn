@@ -123,7 +123,6 @@ const AuthContextProvider = ({ children }) => {
             email: userForm.email,
             phone: userForm.phone,
             address: userForm.address,
-            nameImage: userForm.nameImage,
             dateOfBirth: userForm.dateOfBirth,
         };
         const response = await axios.post(`${apiUrl}/auth/register`, user);

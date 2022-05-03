@@ -16,6 +16,7 @@ const UserContent = () => {
     const [visibleShow, setVisibleShow] = useState(false);
     const [visibleUpdate, setVisibleUpdate] = useState(false);
     const [user, setUser] = useState({});
+    const [userEdit, setUseruserEdit] = useState({});
 
     useEffect(() => getCustomer(), []);
 
@@ -41,7 +42,6 @@ const UserContent = () => {
     };
 
     const handleShow = async (record) => {
-        console.log(record);
         setUser({
             username: record.username,
             fullname: record.fullname,
@@ -55,7 +55,7 @@ const UserContent = () => {
         setVisibleShow(true);
     };
     const handleEdit = async (record) => {
-        setUser({
+        setUseruserEdit({
             username: record.username,
             fullname: record.fullname,
             email: record.email,
@@ -213,7 +213,7 @@ const UserContent = () => {
             </div>
             <ShowDrawer input={user} visible={visibleShow} onClose={onClose} />
             <ShowDrawerForm
-                input={user}
+                input={userEdit}
                 visible={visibleUpdate}
                 onClose={onClose}
                 onUpdate={handleUpdate}

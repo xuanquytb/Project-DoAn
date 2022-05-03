@@ -101,7 +101,21 @@ const InsertUser = function (userNew) {
 const UpdateUser = function (userUpdate, userId) {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `Update user SET fullname = '${userUpdate.fullname}', email = '${userUpdate.email}', phone = '${userUpdate.phone}', address = '${userUpdate.address}',sex= '${userUpdate.sex}',nameAvata = '${userUpdate.nameAvata}',dateOfBirth= '${userUpdate.dateOfBirth}' WHERE (id = '${userId}')`,
+            `Update user SET fullname = '${userUpdate.fullname}', email = '${userUpdate.email}', phone = '${userUpdate.phone}', address = '${userUpdate.address}',sex= '${userUpdate.sex}',dateOfBirth= '${userUpdate.dateOfBirth}' WHERE (id = '${userId}')`,
+            (err, element) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: element.affectedRows, ...element });
+                }
+            }
+        );
+    });
+};
+const UpdateUserAvata = function (nameAvata, userId) {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `Update user SET nameAvata = '${nameAvata}' WHERE (id = '${userId}')`,
             (err, element) => {
                 if (err) {
                     return reject(err);
@@ -121,5 +135,6 @@ module.exports = {
     UpdateUser,
     find_by_name_row,
     delete_By_Id,
+    UpdateUserAvata,
     Users,
 };
