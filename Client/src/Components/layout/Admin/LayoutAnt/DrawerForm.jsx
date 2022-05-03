@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import {
     Drawer,
     Form,
@@ -28,6 +30,34 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
         };
         onUpdate(userUpdate);
     };
+
+    const [fileList, setFileList] = useState([
+        {
+            uid: "-1",
+            name: "avata.png",
+            status: "done",
+            url: `http://localhost:8080/image/image-1651557506143.png`,
+        },
+    ]);
+
+    const onChange = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
+    };
+
+    const onPreview = async (file) => {
+        let src = file.url;
+        if (!src) {
+            src = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj);
+                reader.onload = () => resolve(reader.result);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow.document.write(image.outerHTML);
+    };
     return (
         <Drawer
             destroyOnClose
@@ -40,11 +70,16 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                 <Row gutter={16}>
                     <Col span={9}></Col>
                     <Col span={9}>
-                        <Image
-                            width={100}
-                            style={{ borderRadius: "50%" }}
-                            src='https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-                        />
+                        <Upload
+                            action='http://localhost:8080/api/upload/image'
+                            listType='picture-card'
+                            fileList={fileList}
+                            onChange={onChange}
+                            onPreview={onPreview}
+                            name='photo'
+                        >
+                            {fileList.length < 1 && "+ Upload"}
+                        </Upload>
                     </Col>
                     <Col span={9}></Col>
                 </Row>
