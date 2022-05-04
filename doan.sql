@@ -106,6 +106,58 @@ INSERT INTO `employee` VALUES (2,'Đặng Thị Hải Nhật','Nữ','hainhaAtdm
 UNLOCK TABLES;
 
 --
+-- Table structure for table `feedback`
+--
+
+DROP TABLE IF EXISTS `feedback`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `feedback` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `description` text NOT NULL,
+  `ImageFeedback` varchar(200) NOT NULL,
+  `createDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ImageFeedback` (`ImageFeedback`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feedback`
+--
+
+LOCK TABLES `feedback` WRITE;
+/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `origin`
+--
+
+DROP TABLE IF EXISTS `origin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `origin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nameOrigin` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nameOrigin` (`nameOrigin`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `origin`
+--
+
+LOCK TABLES `origin` WRITE;
+/*!40000 ALTER TABLE `origin` DISABLE KEYS */;
+INSERT INTO `origin` VALUES (1,'Hải phòng','kiến an'),(2,'Thanh Hóa','hà trung'),(4,'Vinh','vinh');
+/*!40000 ALTER TABLE `origin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `role`
 --
 
@@ -208,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-02  0:56:40
+-- Dump completed on 2022-05-04 15:49:07
