@@ -3,8 +3,8 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
-import ShowDrawer from "../LayoutAnt/Drawer";
-import ShowDrawerForm from "../LayoutAnt/DrawerForm";
+import ShowDrawer from "../LayoutAnt/DrawerCustomerShow";
+import ShowDrawerForm from "../LayoutAnt/DrawerCustomer";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
@@ -96,13 +96,6 @@ const UserContent = () => {
     };
 
     const columns = [
-        {
-            title: "Tên đăng nhập",
-            dataIndex: "username",
-            key: "username",
-            width: "18%",
-        },
-
         {
             title: "Họ và tên",
             dataIndex: "fullname",

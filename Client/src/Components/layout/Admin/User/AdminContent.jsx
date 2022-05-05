@@ -3,8 +3,8 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
-import ShowDrawer from "../LayoutAnt/Drawer";
-import ShowDrawerForm from "../LayoutAnt/DrawerFormeEmployee";
+import ShowDrawer from "../LayoutAnt/DrawerEmployeeShow";
+import ShowDrawerForm from "../LayoutAnt/DrawerEmployee";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
@@ -91,13 +91,6 @@ const AdminContent = () => {
         }
     };
     const columns = [
-        {
-            title: "Tên đăng nhập",
-            dataIndex: "username",
-            key: "username",
-            width: "18%",
-        },
-
         {
             title: "Họ và tên",
             dataIndex: "fullname",

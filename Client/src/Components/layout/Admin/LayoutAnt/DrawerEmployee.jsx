@@ -1,6 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import React from "react";
 import moment from "moment";
 import {
     Drawer,
