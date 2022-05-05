@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import moment from "moment";
 import {
     Drawer,
     Form,
@@ -10,6 +10,8 @@ import {
     Input,
     Select,
     DatePicker,
+    Space,
+    Image,
 } from "antd";
 
 const { Option, OptGroup } = Select;
@@ -52,7 +54,20 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
             width={500}
             onClose={onClose}
         >
-            <Form layout='vertical' hideRequiredMark onFinish={onFinish}>
+            <Form
+                layout='vertical'
+                hideRequiredMark
+                onFinish={onFinish}
+                initialValues={{
+                    ["username"]: input.username,
+                    ["fullname"]: input.fullname,
+                    ["sex"]: input.sex,
+                    ["email"]: input.email,
+                    ["phone"]: input.phone,
+                    ["address"]: input.address,
+                    ["ngaysinh"]: moment(input.ngaysinh),
+                }}
+            >
                 <Row gutter={16}>
                     <Col span={9}></Col>
                     <Col span={9}>
@@ -133,7 +148,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                                 },
                             ]}
                         >
-                            <Input placeholder='Please enter user name' />
+                            <Input />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -148,7 +163,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                                 },
                             ]}
                         >
-                            <Input placeholder='Please enter user name' />
+                            <Input />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -159,7 +174,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                             label='Địa chỉ nhận hàng'
                             width={600}
                         >
-                            <Input placeholder='Please enter user name' />
+                            <Input />
                         </Form.Item>
                     </Col>
                 </Row>

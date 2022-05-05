@@ -1382,3 +1382,16 @@ th, td {
   color: rgb(62 164 186 / 25%);
   cursor: pointer;
 }
+
+.ant-upload-list-picture-card .ant-upload-list-item {
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.ant-upload-list-picture-card .ant-upload-list-item-info {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}

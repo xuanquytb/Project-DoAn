@@ -31,6 +31,7 @@ const UserContent = () => {
             address: users.address,
             nameAvata: users.nameAvata,
             sex: users.sex,
+            ngaysinh: users.dateOfBirth,
             key: users.id,
         };
     });
@@ -50,8 +51,9 @@ const UserContent = () => {
             email: record.email,
             phone: record.phone,
             address: record.address,
-            nameAvata: record.nameAvata,
             sex: record.sex,
+            nameAvata: record.nameAvata,
+            ngaysinh: record.ngaysinh,
             id: record.key,
         });
         setVisibleShow(true);
@@ -63,8 +65,9 @@ const UserContent = () => {
             email: record.email,
             phone: record.phone,
             address: record.address,
-            nameAvata: record.nameAvata,
             sex: record.sex,
+            nameAvata: record.nameAvata,
+            ngaysinh: record.ngaysinh,
             id: record.key,
         });
         setVisibleUpdate(true);
