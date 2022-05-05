@@ -16,13 +16,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/role", RouterRole);     
+app.use("/api/role", RouterRole);
 app.use("/api/auth", RouterAuth);
 app.use("/api/admin", RouterAuthAdmin);
 app.use("/api/category", RouterCategory);
 app.use("/api/unit", RouterUnit);
 app.use("/api/origin", RouterOrigin);
-app.use("/api/origin", RouterOrigin);
+// app.use("/api/origin", RouterOrigin); thừa
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);
 

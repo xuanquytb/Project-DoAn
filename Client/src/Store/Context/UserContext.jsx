@@ -54,6 +54,18 @@ const UsersContextProvider = ({ children }) => {
             console.log(error);
         }
     };
+    const deleteEmployee = async (employeeId) => {
+        try {
+            const response = await axios.delete(
+                `${apiUrl}/admin/${employeeId}`
+            );
+            console.log(response);
+            if (response.data.success)
+                dispatch({ type: DELETE_USER, payload: employeeId });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     // // Update user
     const updateCustomer = async (updatedCustomer) => {
@@ -72,13 +84,35 @@ const UsersContextProvider = ({ children }) => {
                 : { success: false, message: "Server error" };
         }
     };
+    // Update employee
+    const updateEmployee = async (updatedEmployee) => {
+        try {
+            const response = await axios.put(
+                `${apiUrl}/auth/update/${updatedEmployee.id}`,
+                updatedEmployee
+            );
+            if (response.data.success) {
+                dispatch({
+                    type: UPDATE_USER,
+                    payload: response.data.employees,
+                });
+                return response.data;
+            }
+        } catch (error) {
+            return error.response.data
+                ? error.response.data
+                : { success: false, message: "Server error" };
+        }
+    };
 
     // User context data
     const userContextData = {
         userState,
-        getCustomer,
         getAdmin,
+        getCustomer,
+        deleteEmployee,
         deleteUser,
+        updateEmployee,
         updateCustomer,
     };
 

@@ -10,8 +10,6 @@ import {
     Input,
     Select,
     DatePicker,
-    Space,
-    Image,
 } from "antd";
 
 const { Option, OptGroup } = Select;

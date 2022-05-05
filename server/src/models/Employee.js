@@ -70,6 +70,35 @@ const delete_Emp_By_Id = (id) => {
     });
 };
 
+const UpdateUserAvata = function (nameAvata, userId) {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `Update user SET nameAvata = '${nameAvata}' WHERE (id = '${userId}')`,
+            (err, element) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: element.affectedRows, ...element });
+                }
+            }
+        );
+    });
+};
+
+const UpdateEmployee = function (employeeUpdate, employeeId) {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `Update employee SET fullname = '${employeeUpdate.fullname}', email = '${employeeUpdate.email}', phone = '${employeeUpdate.phone}', address = '${employeeUpdate.address}',sex= '${employeeUpdate.sex}',dateOfBirth= '${employeeUpdate.dateOfBirth}' WHERE (id = '${employeeId}')`,
+            (err, element) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: element.affectedRows, ...element });
+                }
+            }
+        );
+    });
+};
 const find_Emp_by_username = function (username) {
     return new Promise((resolve, reject) => {
         dbConn.query(
@@ -104,5 +133,6 @@ module.exports = {
     find_Emp_by_name_row,
     find_all_Employee,
     delete_Emp_By_Id,
+    UpdateEmployee,
     Employee,
 };

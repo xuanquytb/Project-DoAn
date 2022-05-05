@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 import ShowDrawer from "../LayoutAnt/Drawer";
 import ShowDrawerForm from "../LayoutAnt/DrawerForm";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const UserContent = () => {
     const {
@@ -72,6 +74,21 @@ const UserContent = () => {
         const result = await updateCustomer(record);
         if (result) {
             getCustomer();
+            notification.open({
+                className: "custom-class",
+                description: "Cập nhật thành công",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+        } else {
+            notification.open({
+                description: "Cập nhật thất bại",
+                className: "custom-class",
+                style: {
+                    width: 350,
+                    backgroundColor: "#fff2f0",
+                },
+                type: "error",
+            });
         }
     };
 

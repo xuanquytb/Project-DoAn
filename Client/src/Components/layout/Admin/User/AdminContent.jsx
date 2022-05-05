@@ -3,12 +3,22 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
+import ShowDrawer from "../LayoutAnt/Drawer";
+import ShowDrawerForm from "../LayoutAnt/DrawerFormeEmployee";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const AdminContent = () => {
     const {
         userState: { users },
         getAdmin,
+        deleteEmployee,
+        updateEmployee,
     } = useContext(UserContext);
+    const [visibleShow, setVisibleShow] = useState(false);
+    const [visibleUpdate, setVisibleUpdate] = useState(false);
+    const [user, setUser] = useState({});
+    const [userEdit, setUseruserEdit] = useState({});
 
     useEffect(() => getAdmin(), []);
 
@@ -19,9 +29,67 @@ const AdminContent = () => {
             email: users.email,
             phone: users.phone,
             address: users.address,
+            sex: users.sex,
+            ngaysinh: users.dateOfBirth,
             key: users.id,
         };
     });
+    const handleDelete = async (id) => {
+        const result = await deleteEmployee(id.key);
+    };
+    const onClose = () => {
+        setVisibleShow(false);
+        setVisibleUpdate(false);
+    };
+
+    const handleShow = async (record) => {
+        setUser({
+            username: record.username,
+            fullname: record.fullname,
+            email: record.email,
+            phone: record.phone,
+            address: record.address,
+            sex: record.sex,
+            ngaysinh: record.ngaysinh,
+            id: record.key,
+        });
+        setVisibleShow(true);
+    };
+    const handleEdit = async (record) => {
+        setUseruserEdit({
+            username: record.username,
+            fullname: record.fullname,
+            email: record.email,
+            phone: record.phone,
+            address: record.address,
+            sex: record.sex,
+            ngaysinh: record.ngaysinh,
+            id: record.key,
+        });
+        setVisibleUpdate(true);
+    };
+
+    const handleUpdate = async (record) => {
+        const result = await updateEmployee(record);
+        if (result) {
+            getCustomer();
+            notification.open({
+                className: "custom-class",
+                description: "Cập nhật thành công",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+        } else {
+            notification.open({
+                description: "Cập nhật thất bại",
+                className: "custom-class",
+                style: {
+                    width: 350,
+                    backgroundColor: "#fff2f0",
+                },
+                type: "error",
+            });
+        }
+    };
     const columns = [
         {
             title: "Tên đăng nhập",
@@ -62,30 +130,26 @@ const AdminContent = () => {
             render: (_, record) =>
                 users.length >= 0 ? (
                     <>
-                        <Popconfirm
-                            title='Bạn chắc chắn muốn xóa ?'
-                            //   onConfirm={() => handleDelete(record)}
+                        <Button
+                            style={{
+                                padding: 0,
+                                width: 30,
+                                marginRight: 5,
+                                borderRadius: 20,
+                            }}
+                            type='text'
+                            onClick={() => handleShow(record)}
                         >
-                            <Button
-                                style={{
-                                    padding: 0,
-                                    width: 30,
-                                    marginRight: 5,
-                                    borderRadius: 20,
-                                }}
-                                type='text'
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                viewBox='0 0 24 24'
+                                width='25'
+                                height='25'
                             >
-                                <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    viewBox='0 0 24 24'
-                                    width='25'
-                                    height='25'
-                                >
-                                    <path fill='none' d='M0 0h24v24H0z' />
-                                    <path d='M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' />
-                                </svg>
-                            </Button>
-                        </Popconfirm>
+                                <path fill='none' d='M0 0h24v24H0z' />
+                                <path d='M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' />
+                            </svg>
+                        </Button>
                         <Popconfirm
                             title='Bạn chắc chắn muốn xóa ?'
                             onConfirm={() => handleDelete(record)}
@@ -111,8 +175,8 @@ const AdminContent = () => {
                             </Button>
                         </Popconfirm>
                         <Popconfirm
-                            title='Bạn chắc chắn muốn sửa bài viết ?'
-                            //   onConfirm={() => handleEdit(record)}
+                            title='Bạn chắc chắn muốn sửa người dùng ?'
+                            onConfirm={() => handleEdit(record)}
                         >
                             <Button
                                 style={{
@@ -138,7 +202,6 @@ const AdminContent = () => {
                 ) : null,
         },
     ];
-
     return (
         <>
             <div className='content'>
@@ -160,6 +223,13 @@ const AdminContent = () => {
                     scroll={{ y: 350 }}
                 />
             </div>
+            <ShowDrawer input={user} visible={visibleShow} onClose={onClose} />
+            <ShowDrawerForm
+                input={userEdit}
+                visible={visibleUpdate}
+                onClose={onClose}
+                onUpdate={handleUpdate}
+            />
         </>
     );
 };
