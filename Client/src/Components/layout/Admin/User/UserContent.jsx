@@ -216,9 +216,9 @@ const UserContent = () => {
                 </Button>
                 <Table
                     key={users._id}
-                    // components={components}
+                    size='small'
+                    bordered={false}
                     rowClassName={() => "editable-row"}
-                    bordered
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}

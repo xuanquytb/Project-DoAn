@@ -88,7 +88,7 @@ const UsersContextProvider = ({ children }) => {
     const updateEmployee = async (updatedEmployee) => {
         try {
             const response = await axios.put(
-                `${apiUrl}/auth/update/${updatedEmployee.id}`,
+                `${apiUrl}/admin/update/${updatedEmployee.id}`,
                 updatedEmployee
             );
             if (response.data.success) {

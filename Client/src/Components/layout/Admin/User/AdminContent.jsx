@@ -71,8 +71,9 @@ const AdminContent = () => {
 
     const handleUpdate = async (record) => {
         const result = await updateEmployee(record);
+        console.log(result);
         if (result) {
-            getCustomer();
+            getAdmin();
             notification.open({
                 className: "custom-class",
                 description: "Cập nhật thành công",
@@ -209,8 +210,8 @@ const AdminContent = () => {
                     <Link to={"/postUser"}>Thêm Mới</Link>
                 </Button>
                 <Table
+                    size='small'
                     rowClassName={() => "editable-row"}
-                    bordered
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}
