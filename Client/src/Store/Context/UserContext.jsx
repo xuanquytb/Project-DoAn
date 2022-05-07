@@ -32,7 +32,7 @@ const UsersContextProvider = ({ children }) => {
     };
     const getAdmin = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/admin`);
+            const response = await axios.get(`${apiUrl}/admin/allAdmin`);
             if (response.data.success) {
                 dispatch({
                     type: USER_LOADED_SUCCESS,

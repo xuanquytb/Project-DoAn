@@ -119,12 +119,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvb
     "description":"1"
 }
 ###########################
-PUT http://localhost:8080/api/category/updateCategory/5
+PUT http://localhost:8080/api/category/updateCategory/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTEzNDQxMzUsImV4cCI6MTY1MTQzMDUzNX0.PBtnQZ2JbwXSsOemUb5yv1797TGnTghFCCF6pIiNiDc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTE3MzM4NjMsImV4cCI6MTY1MTgyMDI2M30.dNyaxeJfupZjK5uGaairSihuakPh0u-0uqWuvEhvw1g
 
 {
-    "nameCategory":"Đồ điện lạnh11",
+    "nameCategory":"Hàng điện tử 1",
     "image":"4",
     "description":"1"
 }

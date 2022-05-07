@@ -29,6 +29,26 @@ const GenerateToken = (payload) => {
 
 Router.get("/", verifyToken, async (req, res) => {
     try {
+        const user = await find_Emp_by_name_row("id", req.userId);
+        console.log(user);
+        if (!user) {
+            return res
+                .status(202)
+                .json({ success: false, message: "User not found" });
+        } else {
+            return res
+                .status(200)
+                .json({ success: true, user, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+
+Router.get("/allAdmin", verifyToken, async (req, res) => {
+    try {
         const users = await find_all_Employee();
         if (!users) {
             return res

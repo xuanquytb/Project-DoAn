@@ -16,9 +16,7 @@ const {
     UpdateCategory,
     Category,
 } = require("../models/category");
-const {
-    find_Emp_by_name_row,
-} = require("../models/Employee");
+const { find_Emp_by_name_row } = require("../models/Employee");
 
 const { find_by_id_role, find_by_name_row_role } = require("../models/role");
 
@@ -50,8 +48,8 @@ Router.get("/", verifyToken, async (req, res) => {
     }
 });
 Router.delete("/:id", verifyToken, async (req, res) => {
-    const result = await find_Emp_by_name_row("id",req.userId)
-    if(result){
+    const result = await find_Emp_by_name_row("id", req.userId);
+    if (result) {
         try {
             if (req.role.nameRole === "Administrators") {
                 const result = await delete_By_Id(req.params.id);
@@ -75,18 +73,17 @@ Router.delete("/:id", verifyToken, async (req, res) => {
                 .status(500)
                 .json({ success: false, message: "Server Error" });
         }
-    }else{
-            return res.status(405).json({
-                success: false,
-                message: "Tài khoản không tồn tại",
-            });
+    } else {
+        return res.status(405).json({
+            success: false,
+            message: "Tài khoản không tồn tại",
+        });
     }
-    
 });
 
 Router.get("/allCategory", verifyToken, async (req, res) => {
-    const result = await find_Emp_by_name_row("id",req.userId)
-    if(result)  {
+    const result = await find_Emp_by_name_row("id", req.userId);
+    if (result) {
         try {
             const categorys = await find_all_Category();
             if (!categorys) {
@@ -94,42 +91,35 @@ Router.get("/allCategory", verifyToken, async (req, res) => {
                     .status(202)
                     .json({ success: false, message: "User not found" });
             } else {
-                return res
-                    .status(200)
-                    .json({ success: true, categorys });
+                return res.status(200).json({ success: true, categorys });
             }
         } catch (error) {
             return res
                 .status(500)
                 .json({ success: false, message: "Server Error" });
         }
-    } else{
+    } else {
         return res.status(405).json({
             success: false,
             message: "Tài khoản không tồn tại",
         });
-}
+    }
 });
 
 Router.post("/addCategory", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const {
-            nameCategory,
-            image,
-            description,
-        } = req.body;
+        const { nameCategory, image, description } = req.body;
 
-        if (
-            !nameCategory ||
-            !image ||
-            !description 
-        ) {
+        if (!nameCategory || !image || !description) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            const nameCategoryRe = await find_by_name_row_category("nameCategory", nameCategory);
+            const nameCategoryRe = await find_by_name_row_category(
+                "nameCategory",
+                nameCategory
+            );
             if (nameCategoryRe.length > 0) {
                 res.status(400).json({
                     success: false,
@@ -141,25 +131,25 @@ Router.post("/addCategory", verifyToken, async (req, res) => {
                         nameCategory,
                         image,
                         description,
-                    })
+                    });
                     const newCategoryRe = await InsertCategory(newCategoryItem);
-                    if(newCategoryRe){
+                    if (newCategoryRe) {
                         res.status(200).json({
-                            success:true,
+                            success: true,
                             message: "Thêm thành công",
                             nameCategory: nameCategory,
-                        })
-                    }else{
+                        });
+                    } else {
                         res.status(400).json({
-                            success:false,
-                            message:"Thêm thất bại",
+                            success: false,
+                            message: "Thêm thất bại",
                         });
                     }
                 } catch (error) {
                     res.status(400).json({
-                        success:false,
+                        success: false,
                         message: "Xảy ra lỗi : " + error,
-                    })
+                    });
                 }
             }
         }
@@ -173,26 +163,21 @@ Router.post("/addCategory", verifyToken, async (req, res) => {
 
 Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const {
-            nameCategory,
-            image,
-            description,
-        } = req.body;
-        if (
-            !nameCategory ||
-            !image ||
-            !description 
-        ) {
+        const { nameCategory, image, description } = req.body;
+        if (!nameCategory || !image || !description) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            const nameCategoryRe = await find_by_name_row_category("nameCategory", req.params.id);
+            const nameCategoryRe = await find_by_name_row_category(
+                "nameCategory",
+                nameCategory
+            );
             if (nameCategoryRe.length > 0) {
                 res.status(400).json({
                     success: false,
-                    message: "Ngành hàng đã tồn tại",
+                    message: "Tên ngành hàng đã được sử dụng",
                 });
             } else {
                 try {
@@ -200,25 +185,28 @@ Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
                         nameCategory,
                         image,
                         description,
-                    })
-                    const newCategoryRe = await UpdateCategory(newCategoryItem,req.params.id);
-                    if(newCategoryRe){
+                    });
+                    const newCategoryRe = await UpdateCategory(
+                        newCategoryItem,
+                        req.params.id
+                    );
+                    if (newCategoryRe) {
                         res.status(200).json({
-                            success:true,
+                            success: true,
                             message: "Cập nhật thành công",
                             nameCategory: nameCategory,
-                        })
-                    }else{
+                        });
+                    } else {
                         res.status(400).json({
-                            success:false,
-                            message:"Cập nhật thất bại",
+                            success: false,
+                            message: "Cập nhật thất bại",
                         });
                     }
                 } catch (error) {
                     res.status(400).json({
-                        success:false,
+                        success: false,
                         message: "Xảy ra lỗi : " + error,
-                    })
+                    });
                 }
             }
         }

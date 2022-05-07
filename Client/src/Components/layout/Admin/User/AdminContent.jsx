@@ -118,7 +118,7 @@ const AdminContent = () => {
         },
         {
             title: "Thao Tác",
-            width: "20%",
+            width: "15%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>

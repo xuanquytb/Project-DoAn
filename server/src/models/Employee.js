@@ -20,6 +20,7 @@ const find_Emp_by_name_row = function (nameRow, value) {
                 if (err) {
                     return reject(err);
                 } else {
+                    console.log(elements);
                     return resolve(elements);
                 }
             }

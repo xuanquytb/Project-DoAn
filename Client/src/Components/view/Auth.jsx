@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "../auth/Login.jsx";
+import LoginAdmin from "../authAdmin/Login";
 import Register from "../auth/Register";
 import { AuthContext } from "../../Store/Context/AuthContext";
 import { useContext } from "react";
@@ -34,6 +35,7 @@ const Auth = ({ authRoute }) => {
         <>
             {authRoute === "login" && <Login />}
             {authRoute === "register" && <Register />}
+            {authRoute === "loginAdmin" && <LoginAdmin />}
         </>
     );
 

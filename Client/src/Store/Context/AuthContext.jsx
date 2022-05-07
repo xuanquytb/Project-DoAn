@@ -43,28 +43,7 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => loadUser(), []);
 
     const loginUser = async (userForm) => {
-        const response = await axios.post(`${apiUrl}/admin/login`, userForm);
-        if (response.data.success) {
-            try {
-                localStorage.setItem(
-                    LOCAL_STORAGE_TOKEN_NAME,
-                    response.data.token
-                );
-                await loadUser();
-                return response.data;
-            } catch (error) {
-                if (error.response.data) {
-                    error.response.data;
-                } else {
-                    return { success: false, message: error.message };
-                }
-            }
-        } else {
-            return response.data;
-        }
-    };
-    const loginAdmin = async (userForm) => {
-        const response = await axios.post(`${apiUrl}/admin/login`, userForm);
+        const response = await axios.post(`${apiUrl}/auth/login`, userForm);
         if (response.data.success) {
             try {
                 localStorage.setItem(

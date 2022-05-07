@@ -122,7 +122,7 @@ const UserContent = () => {
         },
         {
             title: "Thao Tác",
-            width: "20%",
+            width: "15%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>
@@ -200,7 +200,6 @@ const UserContent = () => {
                 ) : null,
         },
     ];
-
     return (
         <>
             <div className='content'>
