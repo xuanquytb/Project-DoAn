@@ -14,6 +14,8 @@ const {
     InsertUser,
     UpdateUser,
     delete_By_Id,
+    find_all_Administrators,
+    find_all_Employee,
 } = require("../models/user");
 
 const { find_by_id_role, find_by_name_row_role } = require("../models/role");
@@ -74,6 +76,42 @@ Router.delete("/:id", verifyToken, async (req, res) => {
 Router.get("/customer", verifyToken, async (req, res) => {
     try {
         const users = await find_all_Customer();
+        if (!users) {
+            return res
+                .status(202)
+                .json({ success: false, message: "User not found" });
+        } else {
+            return res
+                .status(200)
+                .json({ success: true, users, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+Router.get("/allEmployee", verifyToken, async (req, res) => {
+    try {
+        const users = await find_all_Employee();
+        if (!users) {
+            return res
+                .status(202)
+                .json({ success: false, message: "User not found" });
+        } else {
+            return res
+                .status(200)
+                .json({ success: true, users, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+Router.get("/allAdmin", verifyToken, async (req, res) => {
+    try {
+        const users = await find_all_Administrators();
         if (!users) {
             return res
                 .status(202)

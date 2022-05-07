@@ -41,6 +41,33 @@ const find_all_Customer = () => {
     });
 };
 
+const find_all_Employee = () => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            "SELECT * FROM user where idRole = 3",
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            }
+        );
+    });
+};
+const find_all_Administrators = () => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            "SELECT * FROM user where idRole = 1",
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
+            }
+        );
+    });
+};
+
 const find_by_Id = (id) => {
     return new Promise((resolve, reject) => {
         dbConn.query(
@@ -128,6 +155,8 @@ const UpdateUserAvata = function (nameAvata, userId) {
 };
 
 module.exports = {
+    find_all_Administrators,
+    find_all_Employee,
     find_all_Customer,
     find_by_Id,
     find_by_username,

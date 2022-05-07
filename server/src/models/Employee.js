@@ -71,21 +71,6 @@ const delete_Emp_By_Id = (id) => {
     });
 };
 
-const UpdateUserAvata = function (nameAvata, userId) {
-    return new Promise((resolve, reject) => {
-        dbConn.query(
-            `Update user SET nameAvata = '${nameAvata}' WHERE (id = '${userId}')`,
-            (err, element) => {
-                if (err) {
-                    return reject(err);
-                } else {
-                    return resolve({ id: element.affectedRows, ...element });
-                }
-            }
-        );
-    });
-};
-
 const UpdateEmployee = function (employeeUpdate, employeeId) {
     return new Promise((resolve, reject) => {
         dbConn.query(

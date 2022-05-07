@@ -3,10 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { Button } from "antd";
 import { AuthContext } from "../../../Store/Context/AuthContext";
-import { AuthAdminContext } from "../../../Store/Context/AuthAdminContext";
 
 const Header = () => {
-    const { authState, logout } = useContext(AuthAdminContext);
+    const { authState, logout } = useContext(AuthContext);
 
     const history = useHistory();
     const logoutHan = async (e) => {
@@ -356,14 +355,10 @@ const Header = () => {
                             <div className='infor-user'>
                                 <div className='header__user-login'>
                                     {/* --------------------------------------------- */}
-                                    {AuthAdminContext.isAuthenticated ===
-                                    true ? (
+                                    {authState.isAuthenticated === true ? (
                                         <span className='user__account'>
                                             <span className='user__name'>
-                                                {
-                                                    AuthAdminContext.user[0]
-                                                        .fullname
-                                                }
+                                                {authState.user[0].fullname}
                                             </span>
                                             <i className='fas fa-sort-down user__account-icon'></i>
                                         </span>

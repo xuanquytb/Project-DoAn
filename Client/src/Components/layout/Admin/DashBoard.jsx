@@ -19,42 +19,48 @@ const DashBoard = () => {
         },
         {
             key: 1,
-            title: "Quản lí nhân viên",
+            title: "Quản trị viên",
             icon: "<UserOutlined />",
             link: "/admin",
         },
         {
             key: 2,
+            title: "Quản lí nhân viên",
+            icon: "<UserOutlined />",
+            link: "/employee",
+        },
+        {
+            key: 3,
             title: "Quản lí khách hàng",
             icon: "<UserOutlined />",
             link: "/user",
         },
         {
-            key: 3,
+            key: 4,
             title: "Quản lý đơn hàng",
             icon: "<AlignCenterOutlined />",
             link: "/order",
         },
         {
-            key: 4,
+            key: 5,
             title: "Quản lý ngành hàng",
             icon: "<LaptopOutlined />",
             link: "/category",
         },
         {
-            key: 5,
+            key: 6,
             title: "Quản lý sản phẩm",
             icon: "<LaptopOutlined />",
             link: "/product",
         },
         {
-            key: 6,
+            key: 7,
             title: "Quản lý bài đăng",
             icon: "<EditOutlined />",
             link: "/new",
         },
         {
-            key: 7,
+            key: 8,
             title: "Quản lý bình luận",
             icon: "<MessageOutlined />",
             link: "/comment",
@@ -116,6 +122,15 @@ const DashBoard = () => {
                                     <AuthDashboard
                                         {...props}
                                         authRoute='customer'
+                                    />
+                                )}
+                            />
+                            <Route
+                                path='/employee'
+                                render={(props) => (
+                                    <AuthDashboard
+                                        {...props}
+                                        authRoute='employee'
                                     />
                                 )}
                             />

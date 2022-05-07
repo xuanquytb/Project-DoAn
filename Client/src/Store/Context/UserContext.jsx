@@ -30,9 +30,22 @@ const UsersContextProvider = ({ children }) => {
             dispatch({ type: USER_LOADED_FAIL });
         }
     };
+    const getEmployee = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/auth/allEmployee`);
+            if (response.data.success) {
+                dispatch({
+                    type: USER_LOADED_SUCCESS,
+                    payload: response.data.users,
+                });
+            }
+        } catch (error) {
+            dispatch({ type: USER_LOADED_FAIL });
+        }
+    };
     const getAdmin = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/admin/allAdmin`);
+            const response = await axios.get(`${apiUrl}/auth/allAdmin`);
             if (response.data.success) {
                 dispatch({
                     type: USER_LOADED_SUCCESS,
@@ -50,18 +63,6 @@ const UsersContextProvider = ({ children }) => {
             console.log(response);
             if (response.data.success)
                 dispatch({ type: DELETE_USER, payload: userId });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    const deleteEmployee = async (employeeId) => {
-        try {
-            const response = await axios.delete(
-                `${apiUrl}/admin/${employeeId}`
-            );
-            console.log(response);
-            if (response.data.success)
-                dispatch({ type: DELETE_USER, payload: employeeId });
         } catch (error) {
             console.log(error);
         }
@@ -84,35 +85,14 @@ const UsersContextProvider = ({ children }) => {
                 : { success: false, message: "Server error" };
         }
     };
-    // Update employee
-    const updateEmployee = async (updatedEmployee) => {
-        try {
-            const response = await axios.put(
-                `${apiUrl}/admin/update/${updatedEmployee.id}`,
-                updatedEmployee
-            );
-            if (response.data.success) {
-                dispatch({
-                    type: UPDATE_USER,
-                    payload: response.data.employees,
-                });
-                return response.data;
-            }
-        } catch (error) {
-            return error.response.data
-                ? error.response.data
-                : { success: false, message: "Server error" };
-        }
-    };
 
     // User context data
     const userContextData = {
         userState,
         getAdmin,
+        getEmployee,
         getCustomer,
-        deleteEmployee,
         deleteUser,
-        updateEmployee,
         updateCustomer,
     };
 
