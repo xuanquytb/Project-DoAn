@@ -26,9 +26,9 @@ app.use("/api/upload", RouterUpload);
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);
 
-app.get("/image/:id", (req, res) => {
-    res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));
-});
+// app.get("/image/:id", (req, res) => {
+//     res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));
+// });
 
 app.listen(process.env.PORT, () =>
     console.log("Máy chủ đã chạy tại công 8080")
