@@ -68,8 +68,68 @@ const UsersContextProvider = ({ children }) => {
         }
     };
 
+    const registerAdmin = async (Admin) => {
+        if (Admin.password === Admin.passwordRe) {
+            const user = {
+                username: Admin.username,
+                password: Admin.password,
+                fullname: Admin.fullname,
+                nameRole: "Administrators",
+                email: Admin.email,
+                phone: Admin.phone,
+                address: Admin.address,
+                sex: Admin.sex,
+                dateOfBirth: Admin.dateOfBirth,
+            };
+            const response = await axios.post(
+                `${apiUrl}/auth/createAdmin`,
+                user
+            );
+            if (response.data.success) {
+                return response.data;
+            } else {
+                return response.data;
+            }
+        }
+    };
+    const registerEmployee = async (Employee) => {
+        if (Employee.password === Employee.rePassword) {
+            const user = {
+                username: Employee.username,
+                password: Employee.password,
+                fullname: Employee.fullname,
+                nameRole: "Employee",
+                email: Employee.email,
+                phone: Employee.phone,
+                address: "Chưa cập nhật địa chỉ",
+            };
+            const response = await axios.post(
+                `${apiUrl}/auth/createAdmin`,
+                user
+            );
+            if (response.data.success) {
+                try {
+                    localStorage.setItem(
+                        LOCAL_STORAGE_TOKEN_NAME,
+                        response.data.tokenAccess
+                    );
+                    await loadUser();
+                    return response.data;
+                } catch (error) {
+                    if (error.response.data) {
+                        error.response.data;
+                    } else {
+                        return { success: false, message: error.message };
+                    }
+                }
+            } else {
+                return response.data;
+            }
+        }
+    };
+
     // // Update user
-    const updateCustomer = async (updatedCustomer) => {
+    const updateUser = async (updatedCustomer) => {
         try {
             const response = await axios.put(
                 `${apiUrl}/auth/update/${updatedCustomer.id}`,
@@ -93,7 +153,8 @@ const UsersContextProvider = ({ children }) => {
         getEmployee,
         getCustomer,
         deleteUser,
-        updateCustomer,
+        updateUser,
+        registerAdmin,
     };
 
     return (

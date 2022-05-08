@@ -4,7 +4,6 @@ const cors = require("cors");
 const path = require("path");
 const RouterRole = require("./router/role");
 const RouterAuth = require("./router/auth");
-const RouterAuthAdmin = require("./router/authAdmin");
 const RouterCard = require("./router/card");
 const RouterCategory = require("./router/category");
 const RouterUnit = require("./router/unit");
@@ -18,11 +17,10 @@ app.use(cors());
 
 app.use("/api/role", RouterRole);
 app.use("/api/auth", RouterAuth);
-app.use("/api/admin", RouterAuthAdmin);
 app.use("/api/category", RouterCategory);
 app.use("/api/unit", RouterUnit);
 app.use("/api/origin", RouterOrigin);
-// app.use("/api/origin", RouterOrigin); thừa
+app.use("/api/upload", RouterUpload);
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);
 

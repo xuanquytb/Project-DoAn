@@ -34,12 +34,25 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"employee1",
+    "username":"employee2d",
     "password":"admin",
-    "fullname":"employee1",
-    "nameRole":"Employee",
-    "email":"employee@gmail.com",
-    "phone":"05466546489",
+    "fullname":"employee2d",
+    "nameRole":"Administrators",
+    "email":"employe2@gmail.com",
+    "phone":"05466546d482d",
+    "address":"Kiến Xương Thái Bình"
+}
+################################
+POST http://localhost:8080/api/auth/createAdmin
+Content-Type: application/json
+
+{
+    "username":"employee2d",
+    "password":"admin",
+    "fullname":"employee2d",
+    "nameRole":"Administrators",
+    "email":"employe2@gmail.com",
+    "phone":"05466546d482d",
     "address":"Kiến Xương Thái Bình"
 }
 ################################

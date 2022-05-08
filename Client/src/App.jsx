@@ -60,6 +60,11 @@ function App() {
                         />
                         <ProtectedRoute
                             exact
+                            path='/employee'
+                            component={Dashboard}
+                        />
+                        <ProtectedRoute
+                            exact
                             path='/category'
                             component={Dashboard}
                         />

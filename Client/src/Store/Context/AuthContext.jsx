@@ -96,34 +96,6 @@ const AuthContextProvider = ({ children }) => {
             }
         }
     };
-    const updateUser = async (userForm) => {
-        const user = {
-            fullname: userForm.fullname,
-            email: userForm.email,
-            phone: userForm.phone,
-            address: userForm.address,
-            dateOfBirth: userForm.dateOfBirth,
-        };
-        const response = await axios.post(`${apiUrl}/auth/register`, user);
-        if (response.data.success) {
-            try {
-                localStorage.setItem(
-                    LOCAL_STORAGE_TOKEN_NAME,
-                    response.data.tokenAccess
-                );
-                await loadUser();
-                return response.data;
-            } catch (error) {
-                if (error.response.data) {
-                    error.response.data;
-                } else {
-                    return { success: false, message: error.message };
-                }
-            }
-        } else {
-            return response.data;
-        }
-    };
 
     const logout = (stateUser) => {
         if (stateUser === true) {

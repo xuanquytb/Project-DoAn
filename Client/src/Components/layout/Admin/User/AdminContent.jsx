@@ -3,8 +3,9 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Input, Button, Popconfirm, Form } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
-import ShowDrawer from "../LayoutAnt/DrawerEmployeeShow";
-import ShowDrawerForm from "../LayoutAnt/DrawerEmployee";
+import ShowDrawer from "../LayoutAnt/DrawerCustomerShow";
+import ShowDrawerForm from "../LayoutAnt/DrawerCustomer";
+import ShowDrawerCreate from "../LayoutAnt/DrawerCreateAdmin";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
@@ -12,10 +13,12 @@ const AdminContent = () => {
     const {
         userState: { users },
         getAdmin,
-        deleteEmployee,
-        updateEmployee,
+        deleteUser,
+        updateUser,
+        registerAdmin,
     } = useContext(UserContext);
     const [visibleShow, setVisibleShow] = useState(false);
+    const [visibleCreate, setVisibleCreate] = useState(false);
     const [visibleUpdate, setVisibleUpdate] = useState(false);
     const [user, setUser] = useState({});
     const [userEdit, setUseruserEdit] = useState({});
@@ -29,17 +32,19 @@ const AdminContent = () => {
             email: users.email,
             phone: users.phone,
             address: users.address,
+            nameAvata: users.nameAvata,
             sex: users.sex,
             ngaysinh: users.dateOfBirth,
             key: users.id,
         };
     });
     const handleDelete = async (id) => {
-        const result = await deleteEmployee(id.key);
+        const result = await deleteUser(id.key);
     };
     const onClose = () => {
         setVisibleShow(false);
         setVisibleUpdate(false);
+        setVisibleCreate(false);
     };
 
     const handleShow = async (record) => {
@@ -50,10 +55,14 @@ const AdminContent = () => {
             phone: record.phone,
             address: record.address,
             sex: record.sex,
+            nameAvata: record.nameAvata,
             ngaysinh: record.ngaysinh,
             id: record.key,
         });
         setVisibleShow(true);
+    };
+    const handleShowCreate = async () => {
+        setVisibleCreate(true);
     };
     const handleEdit = async (record) => {
         setUseruserEdit({
@@ -63,6 +72,7 @@ const AdminContent = () => {
             phone: record.phone,
             address: record.address,
             sex: record.sex,
+            nameAvata: record.nameAvata,
             ngaysinh: record.ngaysinh,
             id: record.key,
         });
@@ -70,7 +80,7 @@ const AdminContent = () => {
     };
 
     const handleUpdate = async (record) => {
-        const result = await updateEmployee(record);
+        const result = await updateUser(record);
         console.log(result);
         if (result) {
             getAdmin();
@@ -82,6 +92,28 @@ const AdminContent = () => {
         } else {
             notification.open({
                 description: "Cập nhật thất bại",
+                className: "custom-class",
+                style: {
+                    width: 350,
+                    backgroundColor: "#fff2f0",
+                },
+                type: "error",
+            });
+        }
+    };
+    const handleRegister = async (record) => {
+        const result = await registerAdmin(record);
+        console.log(result);
+        if (result) {
+            getAdmin();
+            notification.open({
+                className: "custom-class",
+                description: "Đăng ký thành công",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+        } else {
+            notification.open({
+                description: "Đăng ký thất bại",
                 className: "custom-class",
                 style: {
                     width: 350,
@@ -205,9 +237,9 @@ const AdminContent = () => {
                     style={{
                         marginBottom: 16,
                     }}
-                    onClick={() => addNews()}
+                    onClick={() => handleShowCreate()}
                 >
-                    <Link to={"/postUser"}>Thêm Mới</Link>
+                    Tạo mới
                 </Button>
                 <Table
                     size='small'
@@ -217,6 +249,11 @@ const AdminContent = () => {
                     scroll={{ y: 350 }}
                 />
             </div>
+            <ShowDrawerCreate
+                visible={visibleCreate}
+                onClose={onClose}
+                handleRegister={handleRegister}
+            />
             <ShowDrawer input={user} visible={visibleShow} onClose={onClose} />
             <ShowDrawerForm
                 input={userEdit}

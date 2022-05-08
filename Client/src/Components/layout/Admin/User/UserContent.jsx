@@ -203,16 +203,6 @@ const UserContent = () => {
     return (
         <>
             <div className='content'>
-                <Button
-                    className='btn-addNew'
-                    type='primary'
-                    style={{
-                        marginBottom: 16,
-                    }}
-                    onClick={() => addNews()}
-                >
-                    <Link to={"/postUser"}>Thêm Mới</Link>
-                </Button>
                 <Table
                     key={users._id}
                     size='small'
@@ -221,6 +211,7 @@ const UserContent = () => {
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}
+                    style={{ marginTop: 50 }}
                 />
             </div>
             <ShowDrawer input={user} visible={visibleShow} onClose={onClose} />

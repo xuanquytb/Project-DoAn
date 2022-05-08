@@ -235,6 +235,107 @@ Router.post("/register", async (req, res) => {
         }
     }
 });
+Router.post("/createAdmin", async (req, res) => {
+    const {
+        username,
+        password,
+        fullname,
+        nameRole,
+        email,
+        phone,
+        address,
+        sex,
+        dateOfBirth,
+    } = req.body;
+    console.log(req.body);
+    if (
+        !username ||
+        !password ||
+        !fullname ||
+        !nameRole ||
+        !email ||
+        !phone ||
+        !address ||
+        !sex ||
+        !dateOfBirth
+    ) {
+        res.status(400).json({
+            success: true,
+            message: "Nhập thiếu thông tin",
+        });
+    } else {
+        const user = await find_by_name_row("username", username);
+        if (user.length > 0) {
+            res.status(400).json({
+                success: false,
+                message: "Tài khoản đã tồn tại",
+            });
+        } else {
+            const emailValid = await find_by_name_row("email", email);
+
+            if (emailValid.length > 0) {
+                res.status(400).json({
+                    success: false,
+                    message: "Email đã tồn tại",
+                });
+            } else {
+                const phoneValid = await find_by_name_row("phone", phone);
+                if (phoneValid.length > 0) {
+                    res.status(400).json({
+                        success: false,
+                        message: "Số điện thoại đã tồn tại",
+                    });
+                } else {
+                    const hashPassword = await argon2.hash(password);
+                    const role = await find_by_name_row_role(
+                        "nameRole",
+                        nameRole
+                    );
+                    const newUser = new Users({
+                        username,
+                        password: hashPassword,
+                        fullname,
+                        email,
+                        phone,
+                        address,
+                        sex,
+                        dateOfBirth,
+                        idRole: role.id,
+                    });
+                    try {
+                        const result = await InsertUser(newUser);
+                        if (result) {
+                            const token = GenerateToken({
+                                userId: result.id,
+                                role: role,
+                            });
+                            const userNew = await find_by_name_row(
+                                "id",
+                                result.id
+                            );
+                            res.status(200).json({
+                                success: true,
+                                tokenAccess: token,
+                                message: "Thêm thành công",
+                                user: userNew,
+                            });
+                        } else {
+                            res.status(400).json({
+                                success: false,
+                                message: "Thêm thất bại",
+                            });
+                        }
+                    } catch (error) {
+                        res.status(400).json({
+                            success: false,
+                            message: "Xảy ra lỗi : " + error,
+                        });
+                    }
+                }
+            }
+        }
+    }
+});
 Router.put("/update/:id", verifyToken, async (req, res) => {
     const { fullname, sex, dateOfBirth, email, phone, address } = req.body;
     if (!fullname || !sex || !dateOfBirth || !email || !phone || !address) {

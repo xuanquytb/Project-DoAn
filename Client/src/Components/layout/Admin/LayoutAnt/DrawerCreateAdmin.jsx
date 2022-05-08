@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Upload } from "antd";
 import moment from "moment";
 import {
     Drawer,
@@ -12,12 +13,25 @@ import {
 } from "antd";
 
 const { Option, OptGroup } = Select;
-const dateFormat = "YYYY-MM-DD";
-const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
-    console.log(input);
+
+const ShowDrawer = ({ visible, onClose, handleRegister }) => {
+    const [fileList, setFileList] = useState([]);
+    useEffect(() => {
+        setFileList([
+            {
+                uid: "-1",
+                name: "Avata",
+                status: "done",
+                url: `http://localhost:8080/image/${"image-1651593261305.png"}`,
+            },
+        ]);
+    }, []);
+
     const onFinish = (values) => {
         const userUpdate = {
-            id: input.id,
+            username: values.username,
+            password: values.password,
+            passwordRe: values.passwordRe,
             fullname: values.fullname,
             email: values.email,
             phone: values.phone,
@@ -25,35 +39,50 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
             sex: values.sex,
             dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
         };
-        onUpdate(userUpdate);
+        handleRegister(userUpdate);
+    };
+
+    const onChange = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
     };
 
     return (
         <Drawer
             destroyOnClose
-            title={input.fullname}
+            title={"Tạo mới"}
             visible={visible}
             width={500}
             onClose={onClose}
         >
-            <Form
-                layout='vertical'
-                hideRequiredMark
-                onFinish={onFinish}
-                initialValues={{
-                    ["username"]: input.username,
-                    ["fullname"]: input.fullname,
-                    ["sex"]: input.sex,
-                    ["email"]: input.email,
-                    ["phone"]: input.phone,
-                    ["address"]: input.address,
-                    ["ngaysinh"]: moment(input.ngaysinh),
-                }}
-            >
+            <Form layout='vertical' hideRequiredMark onFinish={onFinish}>
+                <Row gutter={16}>
+                    <Col span={9}></Col>
+                    <Col span={9}>
+                        <Upload
+                            listType='picture-card'
+                            fileList={fileList}
+                            onChange={onChange}
+                            name='photo'
+                        >
+                            {fileList.length < 1 && "+ Upload"}
+                        </Upload>
+                    </Col>
+                    <Col span={9}></Col>
+                </Row>
                 <Row gutter={16}>
                     <Col span={12}>
-                        <Form.Item label='Tên đăng nhập' name='username'>
-                            <Input disabled />
+                        <Form.Item
+                            label='Tên đăng nhập'
+                            name='username'
+                            rules={[
+                                {
+                                    required: true,
+                                    message:
+                                        "Tên đăng nhập không được để trống",
+                                },
+                            ]}
+                        >
+                            <Input />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -83,7 +112,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                                 },
                             ]}
                         >
-                            <Select style={{ width: 200 }} name='sex'>
+                            <Select style={{ width: 200 }}>
                                 <OptGroup label='Giới tính'>
                                     <Option value='Nam'>Nam</Option>
                                     <Option value='Nữ'>Nữ</Option>
@@ -134,6 +163,36 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                         </Form.Item>
                     </Col>
                 </Row>
+                <Row gutter={16}>
+                    <Col span={12}>
+                        <Form.Item
+                            name='password'
+                            label='Mật khẩu'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Không được để trống",
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item
+                            name='passwordRe'
+                            label='Nhập lại mật khẩu'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Không được để trống",
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
                 <Row gutter={19}>
                     <Col span={20}>
                         <Form.Item
@@ -147,7 +206,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
                 </Row>
                 <Form.Item wrapperCol={{ offset: 20, span: 16 }}>
                     <Button type='primary' htmlType='submit'>
-                        Cập nhật
+                        Đăng ký
                     </Button>
                 </Form.Item>
             </Form>
