@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
+import { Table, Input, Button, Popconfirm, Form, message } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Store/Context/UserContext";
 import ShowDrawer from "../LayoutAnt/DrawerCustomerShow";
 import ShowDrawerForm from "../LayoutAnt/DrawerCustomer";
-import ShowDrawerCreate from "../LayoutAnt/DrawerCreateAdmin";
+import ShowDrawerCreate from "../LayoutAnt/DrawerCreate";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
@@ -81,7 +81,6 @@ const AdminContent = () => {
 
     const handleUpdate = async (record) => {
         const result = await updateUser(record);
-        console.log(result);
         if (result) {
             getAdmin();
             notification.open({
@@ -104,7 +103,7 @@ const AdminContent = () => {
     const handleRegister = async (record) => {
         const result = await registerAdmin(record);
         console.log(result);
-        if (result) {
+        if (result.success) {
             getAdmin();
             notification.open({
                 className: "custom-class",
@@ -113,7 +112,8 @@ const AdminContent = () => {
             });
         } else {
             notification.open({
-                description: "Đăng ký thất bại",
+                description: result.message,
+                message: "Đăng ký thất bại",
                 className: "custom-class",
                 style: {
                     width: 350,

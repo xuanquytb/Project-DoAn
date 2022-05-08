@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Drawer, Skeleton, Switch, Descriptions, Badge, Image } from "antd";
+import React from "react";
+import { Drawer, Descriptions, Badge, Image } from "antd";
 
 const ShowDrawer = ({ input, visible, onClose }) => {
-    console.log(input);
     return (
         <Drawer
             destroyOnClose

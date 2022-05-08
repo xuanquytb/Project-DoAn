@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
 import moment from "moment";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {
     Drawer,
     Form,
@@ -22,7 +23,7 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                 uid: "-1",
                 name: "Avata",
                 status: "done",
-                url: `http://localhost:8080/image/${"image-1651593261305.png"}`,
+                url: `http://localhost:8080/image/${"default.png"}`,
             },
         ]);
     }, []);
@@ -54,11 +55,19 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
             width={500}
             onClose={onClose}
         >
-            <Form layout='vertical' hideRequiredMark onFinish={onFinish}>
+            <Form
+                layout='vertical'
+                hideRequiredMark
+                onFinish={onFinish}
+                initialValues={{
+                    ["sex"]: "Khác",
+                }}
+            >
                 <Row gutter={16}>
                     <Col span={9}></Col>
                     <Col span={9}>
                         <Upload
+                            disabled
                             listType='picture-card'
                             fileList={fileList}
                             onChange={onChange}
@@ -82,7 +91,7 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input placeholder='Tên đăng nhập' allowClear />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -96,7 +105,7 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input placeholder='Họ và tên' allowClear />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -141,10 +150,11 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 {
                                     required: true,
                                     message: "Email không được để trống",
+                                    email: true,
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input placeholder='abcxyz@gmail.com' allowClear />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -159,7 +169,12 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input
+                                placeholder='0xxxx.xxx.xxx'
+                                allowClear
+                                maxLength={11}
+                                showCount
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -175,7 +190,17 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input.Password
+                                placeholder='Mật khẩu'
+                                allowClear
+                                iconRender={(visible) =>
+                                    visible ? (
+                                        <EyeTwoTone />
+                                    ) : (
+                                        <EyeInvisibleOutlined />
+                                    )
+                                }
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -189,7 +214,17 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input.Password
+                                placeholder='Nhập lại mật khẩu'
+                                allowClear
+                                iconRender={(visible) =>
+                                    visible ? (
+                                        <EyeTwoTone />
+                                    ) : (
+                                        <EyeInvisibleOutlined />
+                                    )
+                                }
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -200,7 +235,7 @@ const ShowDrawer = ({ visible, onClose, handleRegister }) => {
                             label='Địa chỉ nhận hàng'
                             width={600}
                         >
-                            <Input />
+                            <Input placeholder='Địa chỉ' allowClear />
                         </Form.Item>
                     </Col>
                 </Row>

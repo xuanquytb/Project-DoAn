@@ -80,6 +80,7 @@ const UsersContextProvider = ({ children }) => {
                 address: Admin.address,
                 sex: Admin.sex,
                 dateOfBirth: Admin.dateOfBirth,
+                nameAvata: "default.png",
             };
             const response = await axios.post(
                 `${apiUrl}/auth/createAdmin`,
@@ -90,10 +91,16 @@ const UsersContextProvider = ({ children }) => {
             } else {
                 return response.data;
             }
+        } else {
+            return {
+                success: false,
+                type: "wrongPass",
+                message: "Mật khẩu nhập lại không chính xác",
+            };
         }
     };
     const registerEmployee = async (Employee) => {
-        if (Employee.password === Employee.rePassword) {
+        if (Employee.password === Employee.passwordRe) {
             const user = {
                 username: Employee.username,
                 password: Employee.password,
@@ -101,30 +108,26 @@ const UsersContextProvider = ({ children }) => {
                 nameRole: "Employee",
                 email: Employee.email,
                 phone: Employee.phone,
-                address: "Chưa cập nhật địa chỉ",
+                address: Employee.address,
+                sex: Employee.sex,
+                dateOfBirth: Employee.dateOfBirth,
+                nameAvata: "default.png",
             };
             const response = await axios.post(
-                `${apiUrl}/auth/createAdmin`,
+                `${apiUrl}/auth/createEmloyee`,
                 user
             );
             if (response.data.success) {
-                try {
-                    localStorage.setItem(
-                        LOCAL_STORAGE_TOKEN_NAME,
-                        response.data.tokenAccess
-                    );
-                    await loadUser();
-                    return response.data;
-                } catch (error) {
-                    if (error.response.data) {
-                        error.response.data;
-                    } else {
-                        return { success: false, message: error.message };
-                    }
-                }
+                return response.data;
             } else {
                 return response.data;
             }
+        } else {
+            return {
+                success: false,
+                type: "wrongPass",
+                message: "Mật khẩu nhập lại không chính xác",
+            };
         }
     };
 
@@ -155,6 +158,7 @@ const UsersContextProvider = ({ children }) => {
         deleteUser,
         updateUser,
         registerAdmin,
+        registerEmployee,
     };
 
     return (

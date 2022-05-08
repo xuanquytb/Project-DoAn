@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
 import moment from "moment";
+import { UserContext } from "../../../../Store/Context/UserContext";
 import {
     Drawer,
     Form,
@@ -10,14 +11,13 @@ import {
     Input,
     Select,
     DatePicker,
-    Space,
-    Image,
 } from "antd";
 
 const { Option, OptGroup } = Select;
 
 const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
     const [fileList, setFileList] = useState([]);
+    const { getAdmin } = useContext(UserContext);
     useEffect(() => {
         setFileList([
             {
@@ -44,6 +44,7 @@ const ShowDrawer = ({ input, visible, onClose, onUpdate }) => {
 
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
+        getAdmin();
     };
 
     return (
