@@ -10,6 +10,7 @@ const RouterUnit = require("./router/unit");
 const RouterOrigin = require("./router/origin");
 const RouterImageProduct = require("./router/ImageProduct");
 const RouterManufacturer = require("./router/manufacturer");
+const RouterProduct = require("./router/Product");
 const RouterNewsCategory = require("./router/newsCategory");
 const RouterUpload = require("../Middleware/upload");
 
@@ -24,6 +25,7 @@ app.use("/api/unit", RouterUnit);
 app.use("/api/origin", RouterOrigin);
 app.use("/api/ImageProduct", RouterImageProduct);
 app.use("/api/manufacturer", RouterManufacturer);
+app.use("/api/product", RouterProduct);
 app.use("/api/upload", RouterUpload);
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);

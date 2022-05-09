@@ -1,30 +1,37 @@
 DELETE http://localhost:8080/api/auth
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTEyODUyNTcsImV4cCI6MTY1MTM3MTY1N30.LzVxTGY0Ed4aYghp6bKE2IKYMB4COzH1YFlKURAbsqk
 #######################################
-GET http://localhost:8080/api/manufacturer/allmanufacturer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIwMTQxNTUsImV4cCI6MTY1MjEwMDU1NX0.NMxcM0QSH4zqrlQ1dh6K7KfaMDQRdXXJYCh1v7dCmng
+GET http://localhost:8080/api/product/allproduct
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
 #########################
-DELETE http://localhost:8080/api/manufacturer/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIwMTQxNTUsImV4cCI6MTY1MjEwMDU1NX0.NMxcM0QSH4zqrlQ1dh6K7KfaMDQRdXXJYCh1v7dCmng
+DELETE http://localhost:8080/api/product/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
 ################################
-POST http://localhost:8080/api/manufacturer/addmanufacturer
+POST http://localhost:8080/api/product/addproduct
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIwMTQxNTUsImV4cCI6MTY1MjEwMDU1NX0.NMxcM0QSH4zqrlQ1dh6K7KfaMDQRdXXJYCh1v7dCmng
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
 
 {
-    "nameManufacturer":"7",
-    "phone":"1234",
-    "address":"hp",
-    "mail":"a@gmail.com"
+    "nameProduct":"7",
+    "description":"1234",
+    "warranty":"hp",
+    "quantity":"a@gmail.com",
+    "promotional":"1234",
+    "status":"hp",
+    "image":"2.ing",
+    "idCategory":"a@gmail.com",
+    "idUnit":"7",
+    "idManufacturer":"1234",
+    "idOrigin":"hp"
 }
 
 ###########################
-PUT http://localhost:8080/api/manufacturer/updatemanufacturer/3
+PUT http://localhost:8080/api/product/updateproduct/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIwMTQxNTUsImV4cCI6MTY1MjEwMDU1NX0.NMxcM0QSH4zqrlQ1dh6K7KfaMDQRdXXJYCh1v7dCmng
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
 
 {
-    "nameManufacturer":"ô dù",
+    "nameproduct":"ô dù",
     "phone":"1234",
     "address":"TH",
     "mail":"a@gmail.com"
