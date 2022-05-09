@@ -7,14 +7,14 @@ const jwt = require("jsonwebtoken");
 const argon2 = require("argon2");
 
 const {
-    find_by_name_row_imageProduct,
-    find_all_ImageProduct,
+    find_by_name_row_manufacturer,
+    find_all_Manufacturer,
     find_by_Id,
     delete_By_Id,
-    InsertImageProduct,
-    UpdateImageProduct,
-    ImageProduct,
-} = require("../models/imageProduct");
+    InsertManufacturer,
+    UpdateManufacturer,
+    Manufacturer,
+} = require("../models/manufacturer");
 const { find_Emp_by_name_row } = require("../models/Employee");
 
 const { find_by_id_role, find_by_name_row_role } = require("../models/role");
@@ -80,17 +80,17 @@ Router.delete("/:id", verifyToken, async (req, res) => {
     }
 });
 
-Router.get("/allImageProduct", verifyToken, async (req, res) => {
+Router.get("/allManufacturer", verifyToken, async (req, res) => {
     const result = await find_Emp_by_name_row("id", req.userId);
     if (result) {
         try {
-            const imageProducts = await find_all_ImageProduct();
-            if (!imageProducts) {
+            const manufacturers = await find_all_Manufacturer();
+            if (!manufacturers) {
                 return res
                     .status(202)
                     .json({ success: false, message: "User not found" });
             } else {
-                return res.status(200).json({ success: true, imageProducts });
+                return res.status(200).json({ success: true, manufacturers });
             }
         } catch (error) {
             return res
@@ -105,38 +105,52 @@ Router.get("/allImageProduct", verifyToken, async (req, res) => {
     }
 });
 
-Router.post("/addImageProduct", verifyToken, async (req, res) => {
+Router.post("/addManufacturer", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { idProduct, nameImageProduct } = req.body;
+        const { nameManufacturer, phone, address , mail } = req.body;
 
-        if (!idProduct || !nameImageProduct) {
+        if (!nameManufacturer || !phone || !address || !mail ) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            try {
-                const newImageProductItem = new ImageProduct({
-                    idProduct,
-                    nameImageProduct,
-                });
-                const newImageProductRe = await InsertImageProduct(newImageProductItem);
-                if (newImageProductRe) {
-                    res.status(200).json({
-                        success: true,
-                        message: "Thêm thành công",
-                        nameImageProduct: nameImageProduct,
-                    });
-                } else {
-                    res.status(400).json({
-                        success: false,
-                        message: "Thêm thất bại",
-                    });                    }
-            } catch (error) {
+            const nameManufacturerRe = await find_by_name_row_manufacturer(
+                "nameManufacturer",
+                nameManufacturer
+            );
+            if (nameManufacturerRe.length > 0) {
                 res.status(400).json({
                     success: false,
-                    message: "Xảy ra lỗi : " + error,
+                    message: "Tên hãng sản xuất đã tồn tại",
                 });
+            } else {
+                try {
+                    const newManufacturerItem = new Manufacturer({
+                        nameManufacturer,
+                        phone,
+                        address,
+                        mail,
+                    });
+                    const newManufacturerRe = await InsertManufacturer(newManufacturerItem);
+                    if (newManufacturerRe) {
+                        res.status(200).json({
+                            success: true,
+                            message: "Thêm thành công",
+                            nameManufacturer: nameManufacturer,
+                        });
+                    } else {
+                        res.status(400).json({
+                            success: false,
+                            message: "Thêm thất bại",
+                        });
+                    }
+                } catch (error) {
+                    res.status(400).json({
+                        success: false,
+                        message: "Xảy ra lỗi : " + error,
+                    });
+                }
             }
         }
     } else {
@@ -147,39 +161,54 @@ Router.post("/addImageProduct", verifyToken, async (req, res) => {
     }
 });
 
-Router.put("/updateImageProduct/:id", verifyToken, async (req, res) => {
+Router.put("/updateManufacturer/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { idProduct, nameImageProduct } = req.body;
-        if (!idProduct || !nameImageProduct) {
+        const { nameManufacturer, phone, address , mail } = req.body;
+        if (!nameManufacturer || !phone || !address || !mail ) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            try {
-                const newImageProductItem = new ImageProduct({
-                    idProduct,
-                    nameImageProduct,
-                });
-                const newImageProductRe = await UpdateImageProduct(
-                    newImageProductItem,
-                    req.params.id
-                );
-                if (newImageProductRe) {
-                    res.status(200).json({
-                        success: true,
-                        message: "Cập nhật thành công",
-                    });
-                } else {
-                    res.status(400).json({
-                        success: false,
-                        message: "Cập nhật thất bại",
-                    });                    }
-            } catch (error) {
+            const nameManufacturerRe = await find_by_name_row_manufacturer(
+                "nameManufacturer",
+                nameManufacturer
+            );
+            if (nameManufacturerRe.length > 0) {
                 res.status(400).json({
                     success: false,
-                    message: "Xảy ra lỗi : " + error,
+                    message: "Tên hãng sản xuất đã được sử dụng",
                 });
+            } else {
+                try {
+                    const newManufacturerItem = new Manufacturer({
+                        nameManufacturer,
+                        phone,
+                        address,
+                        mail,
+                    });
+                    const newManufacturerRe = await UpdateManufacturer(
+                        newManufacturerItem,
+                        req.params.id
+                    );
+                    if (newManufacturerRe) {
+                        res.status(200).json({
+                            success: true,
+                            message: "Cập nhật thành công",
+                            nameManufacturer: nameManufacturer,
+                        });
+                    } else {
+                        res.status(400).json({
+                            success: false,
+                            message: "Cập nhật thất bại",
+                        });
+                    }
+                } catch (error) {
+                    res.status(400).json({
+                        success: false,
+                        message: "Xảy ra lỗi : " + error,
+                    });
+                }
             }
         }
     } else {
