@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: webthaotran
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.29
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -132,6 +132,61 @@ LOCK TABLES `feedback` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `imageproduct`
+--
+
+DROP TABLE IF EXISTS `imageproduct`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `imageproduct` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idProduct` int NOT NULL,
+  `nameImageProduct` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `imageproduct`
+--
+
+LOCK TABLES `imageproduct` WRITE;
+/*!40000 ALTER TABLE `imageproduct` DISABLE KEYS */;
+INSERT INTO `imageproduct` VALUES (1,10,'undefined'),(2,1,'2.png'),(4,1,'4.png'),(5,5,'5.png'),(6,6,'6.png'),(8,8,'undefined');
+/*!40000 ALTER TABLE `imageproduct` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `manufacturer`
+--
+
+DROP TABLE IF EXISTS `manufacturer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `manufacturer` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nameManufacturer` varchar(200) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` text NOT NULL,
+  `mail` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nameManufacturer` (`nameManufacturer`),
+  UNIQUE KEY `phone` (`phone`),
+  UNIQUE KEY `mail` (`mail`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `manufacturer`
+--
+
+LOCK TABLES `manufacturer` WRITE;
+/*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
+INSERT INTO `manufacturer` VALUES (1,'ĐHHH','0123456789','484 lạch tray','dhhh@gmail.com'),(3,'ô dù','1234','TH','a@gmail.com');
+/*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `origin`
 --
 
@@ -155,6 +210,49 @@ LOCK TABLES `origin` WRITE;
 /*!40000 ALTER TABLE `origin` DISABLE KEYS */;
 INSERT INTO `origin` VALUES (1,'Hải phòng','kiến an'),(2,'Thanh Hóa','hà trung'),(4,'Vinh','vinh');
 /*!40000 ALTER TABLE `origin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nameProduct` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  `warranty` int NOT NULL,
+  `quantity` int NOT NULL,
+  `price` double NOT NULL,
+  `promotional` double NOT NULL,
+  `status` int NOT NULL,
+  `image` varchar(150) NOT NULL,
+  `idCategory` int NOT NULL,
+  `idUnit` int NOT NULL,
+  `idManufacturer` int NOT NULL,
+  `idOrigin` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nameProduct` (`nameProduct`),
+  KEY `idCategory` (`idCategory`),
+  KEY `idUnit` (`idUnit`),
+  KEY `idManufacturer` (`idManufacturer`),
+  KEY `idOrigin` (`idOrigin`),
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `product_ibfk_2` FOREIGN KEY (`idUnit`) REFERENCES `unit` (`id`),
+  CONSTRAINT `product_ibfk_3` FOREIGN KEY (`idManufacturer`) REFERENCES `manufacturer` (`id`),
+  CONSTRAINT `product_ibfk_4` FOREIGN KEY (`idOrigin`) REFERENCES `origin` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -247,7 +345,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (3,'Đặng thị hải nhật','hainhat','$argon2i$v=19$m=4096,t=3,p=1$/FbnngqHRGKNUvkFyOpTjw$RoZNoyPkGuNvqBQ7bBulTY4pfeNVd0tbNa62cBvA8ak',NULL,NULL,'hainhat@gmail.com','086833ds546','Tây Sơn Kiến Xương Thái Bình',1,0,0,2,'2022-04-30 09:45:11',NULL),(4,'Đặng thị hải nhật','xuanquy1','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc',NULL,NULL,'hxuanquy@gmail.com','54654664','Tây Sơn Kiến Xương Thái Bình',1,0,0,2,'2022-04-30 10:09:05',NULL),(5,'Lê Quốc Huy','admin','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc','Nam','1980-09-12','huy@gmail.com','123456789','Hải Phòng',0,0,0,2,'2022-04-30 23:21:28','default.jpg');
+INSERT INTO `user` VALUES (3,'Đặng thị hải nhật','hainhat','$argon2i$v=19$m=4096,t=3,p=1$/FbnngqHRGKNUvkFyOpTjw$RoZNoyPkGuNvqBQ7bBulTY4pfeNVd0tbNa62cBvA8ak',NULL,NULL,'hainhat@gmail.com','086833ds546','Tây Sơn Kiến Xương Thái Bình',1,0,0,2,'2022-04-30 09:45:11',NULL),(4,'Đặng thị hải nhật','xuanquy1','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc',NULL,NULL,'hxuanquy@gmail.com','54654664','Tây Sơn Kiến Xương Thái Bình',1,0,0,2,'2022-04-30 10:09:05',NULL),(5,'Lê Quốc Huy','admin','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc','Nam','1980-09-12','huy@gmail.com','123456789','Hải Phòng',0,0,0,1,'2022-04-30 23:21:28','default.jpg');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -260,4 +358,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-04 15:49:07
+-- Dump completed on 2022-05-10 23:05:05
