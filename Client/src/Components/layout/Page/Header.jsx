@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { Button } from "antd";
 import { AuthContext } from "../../../Store/Context/AuthContext";
 
+import "../Page/style/Header.css";
+
 const Header = () => {
     const { authState, logout } = useContext(AuthContext);
-
+    const [countProduct, setCountProduct] = useState(0);
     const history = useHistory();
     const logoutHan = async (e) => {
         e.preventDefault();
@@ -21,6 +23,13 @@ const Header = () => {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const handClickCheckOut = (e) => {
+        history.push("/checkout");
+    };
+    const handClickReturnHome = (e) => {
+        history.push("/");
     };
 
     return (
@@ -50,10 +59,11 @@ const Header = () => {
                     </div>
                     <div className='header__logo'>
                         <img
-                            src='../../../../image/header/tiki__logo.png'
+                            src='../../../../image/header/TN__logo.png'
                             alt=''
                             width='60'
                             height='40'
+                            onClick={handClickReturnHome}
                         />
                     </div>
                     <div className='header__search'>
@@ -341,15 +351,44 @@ const Header = () => {
                                         <span>0</span>
                                     </div>
                                 </div>
-                                <div className='header__category-info'>
-                                    <span>
-                                        <Link to='http://localhost:3000/checkout'></Link>
-                                    </span>
-                                </div>
-                                <div className='header__category-detail-show'>
-                                    <div className='Header-cart-show'></div>
-                                    <div className='Body-cart-show'></div>
-                                    <div className='Footer-cart-show'></div>
+                                <div className='header__category-info'></div>
+                                <div
+                                    className='header__category-detail-show'
+                                    onClick={handClickCheckOut}
+                                >
+                                    <div className='Header-cart-show'>
+                                        Sản phẩm mới thêm
+                                    </div>
+                                    <div className='Body-cart-show'>
+                                        {countProduct !== 0 ? (
+                                            "Xin chào"
+                                        ) : (
+                                            <span>
+                                                <img
+                                                    className='image-cart-empty'
+                                                    style={{ height: "210px" }}
+                                                    src='../../../../image/header/cart_4.png'
+                                                    alt=''
+                                                />
+                                                <div
+                                                    style={{
+                                                        margin: "0px 123px",
+                                                        color: "#108ee9",
+                                                        fontSize: "17px",
+                                                    }}
+                                                >
+                                                    Giỏ hàng còn trống
+                                                </div>
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className='Footer-cart-show'>
+                                        <div className='btn-checkOut'>
+                                            <Button onClick={handClickCheckOut}>
+                                                Xem giỏ hàng
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className='infor-user'>

@@ -140,47 +140,6 @@
   display: flex;
 }
 
-.header__category-detail-show{
-  content: "";
-  display: none;
-  position: absolute;
-  width: 400px;
-  height: 260.8px;
-  border-radius: 2.5px;
-  top: 38px;
-  right: -21px;
-  z-index: 15;
-  box-shadow: rgb(0 0 0 / 18%) 0px 6px 12px 0px;
-  border: 1px solid #efefef;
-  background: rgb(255, 255, 255);
-}
-
-.header__category-detail-show::before{
-  content: "";
-  display: block;
-  position: absolute;
-  width: 80px;
-  height: 22px;
-  top: -19px;
-  right: -2px;
-  z-index: 15;
-  background: transparent;
-}
-
-
-.header__category-detail-show::after{
-  content: "";
-  border-style: solid;
-  border-width: 13px 16px;
-  position: absolute;
-  top: -26px;
-  right: 17px;
-  border-color: transparent transparent #fff transparent;
-}
-
-.header__category:hover .header__category-detail-show{
-  display: block;
-}
 
 .user__login,
 .user__account {

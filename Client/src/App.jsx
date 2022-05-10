@@ -38,11 +38,7 @@ function App() {
                             )}
                         />
 
-                        <ProtectedRoute
-                            exact
-                            path='/checkout'
-                            component={Checkout}
-                        />
+                        <Route exact path='/checkout' component={Checkout} />
                         <ProtectedRoute
                             exact
                             path='/dashboard'

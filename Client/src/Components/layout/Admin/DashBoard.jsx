@@ -1,16 +1,20 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import "antd/dist/antd.css";
 import "../../Style/style.css";
 import "../../Style/base.css";
 import "../../Style/style-Content.css";
-import { Layout, Menu, Input } from "antd";
+import { Layout, Menu, Input, Button } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AuthDashboard from "../../view/AuthDashboard";
 import Category from "../Admin/Category/Category";
+import AuthContext from "../../../Store/Context/AuthContext";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashBoard = () => {
+    const history = useHistory();
+
     const menuitem = [
         {
             key: 0,
@@ -67,6 +71,16 @@ const DashBoard = () => {
         },
     ];
 
+    const handClick = (e) => {
+        e.preventDefault();
+        history.push("/");
+    };
+    const logoutHan = async (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token_doan");
+        window.location.reload();
+    };
+
     return (
         <div>
             <Router>
@@ -75,13 +89,46 @@ const DashBoard = () => {
                         <img
                             src='../../../../image/header/tiki__logo.png'
                             alt=''
-                            style={{ height: "60px", margin: "24px" }}
+                            style={{ height: "50px", marginLeft: "24px" }}
                         />
+
                         <Menu
                             theme='light'
                             defaultSelectedKeys={["0"]}
                             mode='inline'
                         >
+                            <div className='IconDa'>
+                                <Button
+                                    style={{ marginLeft: "10px" }}
+                                    onClick={handClick}
+                                >
+                                    <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        viewBox='0 0 24 24'
+                                        width='20'
+                                        height='20'
+                                    >
+                                        <path fill='none' d='M0 0h24v24H0z' />
+                                        <path d='M20 20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9zM7.5 13a4.5 4.5 0 1 0 9 0h-2a2.5 2.5 0 1 1-5 0h-2z' />
+                                    </svg>
+                                </Button>
+                                <Button
+                                    style={{
+                                        marginLeft: "10px",
+                                    }}
+                                    onClick={logoutHan}
+                                >
+                                    <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        viewBox='0 0 24 24'
+                                        width='20'
+                                        height='20'
+                                    >
+                                        <path fill='none' d='M0 0h24v24H0z' />
+                                        <path d='M5 2h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm4 9V8l-5 4 5 4v-3h6v-2H9z' />
+                                    </svg>
+                                </Button>
+                            </div>
                             {menuitem.map((item) => (
                                 <Menu.Item key={item.link}>
                                     <span>{item.title}</span>
