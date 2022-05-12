@@ -9,6 +9,10 @@ import ModalProduct from "./viewAntd/modalProduct";
 
 const Container = () => {
     const [visible, setVisible] = useState(false);
+
+    const showModal = (e) => {
+        setVisible(true);
+    };
     return (
         <>
             <div className='main'>
@@ -125,7 +129,772 @@ const Container = () => {
                             <div className='row no-gutters content__active'>
                                 <div
                                     className='col l-2 c-6 m-4'
-                                    onClick={() => setVisible(true)}
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
+                                >
+                                    <div className='content__body-item'>
+                                        <img
+                                            src='../../../image/content/image1.png'
+                                            alt=''
+                                            className='content__body-img'
+                                        />
+                                        <div className='content__body-info'>
+                                            <span className='info__name'>
+                                                Điện thoại Samsung Galaxy Z
+                                                Fold2 5G (128GB / 256GB) - Hàng
+                                                chính hãng Sam Sung Việt Nam
+                                            </span>
+                                            <div className='info__vote'>
+                                                <div className='info__vote-icon'>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                    <i className='fas fa-star'></i>
+                                                </div>
+                                                <span className='info__vote-quantily'>
+                                                    124 đã bán
+                                                </span>
+                                            </div>
+                                            <div className='slider__content-price'>
+                                                <span className='item__price'>
+                                                    32.743.000 đ
+                                                </span>
+                                                <span className='item__discount'>
+                                                    -35%
+                                                </span>
+                                            </div>
+                                            <img
+                                                src='https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png'
+                                                alt=''
+                                                width='124px'
+                                                height='18px'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    className='col l-2 c-6 m-4'
+                                    onClick={showModal}
                                 >
                                     <div className='content__body-item'>
                                         <img

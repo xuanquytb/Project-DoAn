@@ -30,15 +30,12 @@ const find_by_name_row_product = function (nameRow, value) {
 
 const find_all_Product = () => {
     return new Promise((resolve, reject) => {
-        dbConn.query(
-            `SELECT * FROM product `,
-            (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
+        dbConn.query(`SELECT * FROM product `, (error, elements) => {
+            if (error) {
+                return reject(error);
             }
-        );
+            return resolve(elements);
+        });
     });
 };
 
@@ -74,13 +71,17 @@ const delete_By_Id = (id) => {
 
 const InsertProduct = function (productNew) {
     return new Promise((resolve, reject) => {
-        dbConn.query("Insert Into product SET ?", productNew, (err, elements) => {
-            if (err) {
-                return reject(err);
-            } else {
-                return resolve({ id: elements.insertId, ...elements });
+        dbConn.query(
+            "Insert Into product SET ?",
+            productNew,
+            (err, elements) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: elements.insertId, ...elements });
+                }
             }
-        });
+        );
     });
 };
 
