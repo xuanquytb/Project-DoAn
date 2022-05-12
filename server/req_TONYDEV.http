@@ -117,3 +117,6 @@ Content-Type: application/json
     "password":"admin"
    
 }
+###
+GET http://localhost:8080/api/ImageProduct/allImage
+Content-Type: application/json

@@ -4,7 +4,7 @@ import Landing from "./Components/layout/Landing";
 import Auth from "./Components/view/Auth";
 
 import Dashboard from "./Components/layout/Admin/DashBoard";
-import Checkout from "./Components/layout/Page/Checkout/Cart";
+import Checkout from "./Components/layout/Page/Checkout/Cart copy";
 import AuthContextProvider from "./Store/Context/AuthContext";
 import UserContextProvider from "./Store/Context/UserContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";

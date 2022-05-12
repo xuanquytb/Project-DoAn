@@ -1,4 +1,5 @@
 const dbConn = require("../Common/Common");
+
 const ImageProduct = function (imageProduct) {
     this.idProduct = imageProduct.idProduct;
     this.nameImageProduct = imageProduct.nameImageProduct;
@@ -21,15 +22,22 @@ const find_by_name_row_imageProduct = function (nameRow, value) {
 
 const find_all_ImageProduct = () => {
     return new Promise((resolve, reject) => {
-        dbConn.query(
-            `SELECT * FROM imageProduct `,
-            (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
+        dbConn.query(`SELECT * FROM imageProduct `, (error, elements) => {
+            if (error) {
+                return reject(error);
             }
-        );
+            return resolve(elements);
+        });
+    });
+};
+const find_all_Image = () => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(`SELECT nameImage FROM imagetable `, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
     });
 };
 
@@ -65,13 +73,17 @@ const delete_By_Id = (id) => {
 
 const InsertImageProduct = function (imageProductNew) {
     return new Promise((resolve, reject) => {
-        dbConn.query("Insert Into imageProduct SET ?", imageProductNew, (err, elements) => {
-            if (err) {
-                return reject(err);
-            } else {
-                return resolve({ id: elements.insertId, ...elements });
+        dbConn.query(
+            "Insert Into imageProduct SET ?",
+            imageProductNew,
+            (err, elements) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: elements.insertId, ...elements });
+                }
             }
-        });
+        );
     });
 };
 
@@ -97,5 +109,6 @@ module.exports = {
     delete_By_Id,
     InsertImageProduct,
     UpdateImageProduct,
+    find_all_Image,
     ImageProduct,
 };

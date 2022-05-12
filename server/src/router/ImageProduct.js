@@ -13,6 +13,7 @@ const {
     delete_By_Id,
     InsertImageProduct,
     UpdateImageProduct,
+    find_all_Image,
     ImageProduct,
 } = require("../models/imageProduct");
 const { find_Emp_by_name_row } = require("../models/Employee");
@@ -105,6 +106,27 @@ Router.get("/allImageProduct", verifyToken, async (req, res) => {
     }
 });
 
+Router.get("/allImage", async (req, res) => {
+    try {
+        const imageProducts = await find_all_Image();
+        if (!imageProducts) {
+            return res
+                .status(202)
+                .json({ success: false, message: "User not found" });
+        } else {
+            const image = [];
+            imageProducts.forEach((element) => {
+                image.push(element.nameImage);
+            });
+            return res.status(200).json({ success: true, ListImage: image });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+
 Router.post("/addImageProduct", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
         const { idProduct, nameImageProduct } = req.body;
@@ -120,7 +142,9 @@ Router.post("/addImageProduct", verifyToken, async (req, res) => {
                     idProduct,
                     nameImageProduct,
                 });
-                const newImageProductRe = await InsertImageProduct(newImageProductItem);
+                const newImageProductRe = await InsertImageProduct(
+                    newImageProductItem
+                );
                 if (newImageProductRe) {
                     res.status(200).json({
                         success: true,
@@ -131,7 +155,8 @@ Router.post("/addImageProduct", verifyToken, async (req, res) => {
                     res.status(400).json({
                         success: false,
                         message: "Thêm thất bại",
-                    });                    }
+                    });
+                }
             } catch (error) {
                 res.status(400).json({
                     success: false,
@@ -174,7 +199,8 @@ Router.put("/updateImageProduct/:id", verifyToken, async (req, res) => {
                     res.status(400).json({
                         success: false,
                         message: "Cập nhật thất bại",
-                    });                    }
+                    });
+                }
             } catch (error) {
                 res.status(400).json({
                     success: false,
