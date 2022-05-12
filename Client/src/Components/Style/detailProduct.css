@@ -97,7 +97,7 @@
     color: gray;
     width: 665px;
     height: 35px;
-    margin-top: 15px;
+    margin-top: 76px;
     font-size: 15px;
     display: flex;
     justify-content: space-around;
@@ -112,8 +112,22 @@
 }
 .color-product h3{
    margin-right: 20px;
+
 }
 
 .qualiti-product span{
     margin-right: 17px;
+}
+
+.title-detail{
+    height: 50px;
+    width: 1115px;
+    background-color: #fafafa;
+    font-size: 19px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.color-product{
+    margin-top: 10px;
 }
