@@ -17,16 +17,7 @@ const {
 } = require("../models/product");
 const { find_Emp_by_name_row } = require("../models/Employee");
 
-const { find_by_id_role, find_by_name_row_role } = require("../models/role");
-
 const verifyToken = require("../../Middleware/Auth");
-
-const GenerateToken = (payload) => {
-    const token = jwt.sign(payload, process.env.secret_token, {
-        expiresIn: "1d",
-    });
-    return token;
-};
 
 Router.get("/", verifyToken, async (req, res) => {
     try {
@@ -107,9 +98,33 @@ Router.get("/allProduct", verifyToken, async (req, res) => {
 
 Router.post("/addProduct", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { nameProduct, description, warranty, quantity, promotional, status, image, idCategory, idUnit, idManufacturer, idOrigin } = req.body;
+        const {
+            nameProduct,
+            description,
+            warranty,
+            quantity,
+            promotional,
+            status,
+            image,
+            idCategory,
+            idUnit,
+            idManufacturer,
+            idOrigin,
+        } = req.body;
 
-        if (!nameProduct || !description || !warranty || !quantity || !promotional || !status || !image || !idCategory || !idUnit || !idManufacturer || !idOrigin) {
+        if (
+            !nameProduct ||
+            !description ||
+            !warranty ||
+            !quantity ||
+            !promotional ||
+            !status ||
+            !image ||
+            !idCategory ||
+            !idUnit ||
+            !idManufacturer ||
+            !idOrigin
+        ) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
@@ -162,8 +177,32 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
 
 Router.put("/updateProduct/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { nameProduct, description, warranty, quantity, promotional, status, image, idCategory, idUnit, idManufacturer, idOrigin } = req.body;
-        if (!nameProduct || !description || !warranty || !quantity || !promotional || !status || !image || !idCategory || !idUnit || !idManufacturer || !idOrigin) {
+        const {
+            nameProduct,
+            description,
+            warranty,
+            quantity,
+            promotional,
+            status,
+            image,
+            idCategory,
+            idUnit,
+            idManufacturer,
+            idOrigin,
+        } = req.body;
+        if (
+            !nameProduct ||
+            !description ||
+            !warranty ||
+            !quantity ||
+            !promotional ||
+            !status ||
+            !image ||
+            !idCategory ||
+            !idUnit ||
+            !idManufacturer ||
+            !idOrigin
+        ) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
