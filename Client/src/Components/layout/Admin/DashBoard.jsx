@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AuthDashboard from "../../view/AuthDashboard";
 import Category from "../Admin/Category/Category";
-import AuthContext from "../../../Store/Context/AuthContext";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -87,7 +86,7 @@ const DashBoard = () => {
                 <Layout style={{ minHeight: "100vh" }}>
                     <Sider>
                         <img
-                            src='../../../../image/header/tiki__logo.png'
+                            src='../../../../image/header/TN__logo.png'
                             alt=''
                             style={{ height: "50px", marginLeft: "24px" }}
                         />
@@ -97,7 +96,7 @@ const DashBoard = () => {
                             defaultSelectedKeys={["0"]}
                             mode='inline'
                         >
-                            <div className='IconDa'>
+                            {/* <div className='IconDa'>
                                 <Button
                                     style={{ marginLeft: "10px" }}
                                     onClick={handClick}
@@ -128,7 +127,7 @@ const DashBoard = () => {
                                         <path d='M5 2h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm4 9V8l-5 4 5 4v-3h6v-2H9z' />
                                     </svg>
                                 </Button>
-                            </div>
+                            </div> */}
                             {menuitem.map((item) => (
                                 <Menu.Item key={item.link}>
                                     <span>{item.title}</span>
