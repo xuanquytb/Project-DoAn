@@ -2,6 +2,7 @@ import React from "react";
 import { Drawer, Descriptions, Badge, Image } from "antd";
 
 const ShowDrawer = ({ input, visible, onClose }) => {
+    console.log(input);
     return (
         <Drawer
             destroyOnClose
@@ -15,38 +16,34 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                 style={{
                     borderRadius: "50%",
                 }}
-                src={`http://localhost:8080/image/${input.nameAvata}`}
+                src={`http://localhost:8080/image/${input.image}`}
             />
-            <Descriptions
-                title='Thông tin tài khoản'
-                layout='vertical'
-                bordered
-            >
+            <Descriptions title='Thông tin sản phẩm' layout='vertical' bordered>
                 <Descriptions.Item label='Trạng thái' span={5}>
                     <Badge status='processing' text='Đang hoạt động' />
                 </Descriptions.Item>
-                <Descriptions.Item label='Tên đăng nhập'>
-                    {input.username}
+                <Descriptions.Item label='Tên sản phẩm'>
+                    {input.nameProduct}
                 </Descriptions.Item>
 
-                <Descriptions.Item label='Họ và tên'>
-                    {input.fullname}
+                <Descriptions.Item label='Bảo hành' span={2}>
+                    {input.warranty}
                 </Descriptions.Item>
 
-                <Descriptions.Item label='Giới tính'>
-                    {input.sex}
+                <Descriptions.Item label='Số lượng'>
+                    {input.quantity}
                 </Descriptions.Item>
 
-                <Descriptions.Item label='Email' span={2}>
-                    {input.email}
+                <Descriptions.Item label='Giá gốc'>
+                    {input.price}
                 </Descriptions.Item>
-
-                <Descriptions.Item label='Số điện thoại'>
-                    {input.phone}
+                <Descriptions.Item label='Giá khuyến mại'>
+                    {input.promotional}
                 </Descriptions.Item>
-
-                <Descriptions.Item label='Địa chỉ'>
-                    {input.address}
+            </Descriptions>
+            <Descriptions title='' layout='vertical' bordered>
+                <Descriptions.Item label='Chi tiết sản phẩm'>
+                    {input.description}
                 </Descriptions.Item>
             </Descriptions>
             <div style={{ padding: 10 }}></div>

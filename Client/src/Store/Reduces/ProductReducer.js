@@ -30,7 +30,9 @@ const productReducer = (state, action) => {
         case DELETE_PRODUCT:
             return {
                 ...state,
-                products: state.users.filter((user) => user.id !== payload),
+                products: state.products.filter(
+                    (product) => product.id !== payload
+                ),
             };
         case UPDATE_PRODUCT:
             const newProducts = state.users.map((product) =>

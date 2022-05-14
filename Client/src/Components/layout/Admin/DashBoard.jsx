@@ -10,7 +10,13 @@ import AuthDashboard from "../../view/AuthDashboard";
 import Category from "../Admin/Category/Category";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
-
+import {
+    DesktopOutlined,
+    PieChartOutlined,
+    FileOutlined,
+    TeamOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 const DashBoard = () => {
     const history = useHistory();
 
@@ -45,16 +51,22 @@ const DashBoard = () => {
             link: "/order",
         },
         {
+            key: 6,
+            title: "Quản lý sản phẩm",
+            icon: "<LaptopOutlined />",
+            link: "/product",
+        },
+        {
             key: 5,
             title: "Quản lý ngành hàng",
             icon: "<LaptopOutlined />",
             link: "/category",
         },
         {
-            key: 6,
-            title: "Quản lý sản phẩm",
-            icon: "<LaptopOutlined />",
-            link: "/product",
+            key: 9,
+            title: "Quản lý thương hiệu",
+            icon: "<MessageOutlined />",
+            link: "/brand",
         },
         {
             key: 7,
@@ -88,7 +100,11 @@ const DashBoard = () => {
                         <img
                             src='../../../../image/header/TN__logo.png'
                             alt=''
-                            style={{ height: "50px", marginLeft: "24px" }}
+                            style={{
+                                height: "50px",
+                                marginLeft: "24px",
+                                overflow: "auto",
+                            }}
                         />
 
                         <Menu
@@ -198,7 +214,24 @@ const DashBoard = () => {
                                     />
                                 )}
                             />
-                            <Route path='/category' component={Category} />
+                            <Route
+                                path='/category'
+                                render={(props) => (
+                                    <AuthDashboard
+                                        {...props}
+                                        authRoute='category'
+                                    />
+                                )}
+                            />
+                            <Route
+                                path='/brand'
+                                render={(props) => (
+                                    <AuthDashboard
+                                        {...props}
+                                        authRoute='brand'
+                                    />
+                                )}
+                            />
                         </Content>
                         <Footer style={{ textAlign: "center" }}>
                             VMU ©2022 Created by XUÂN QUÝ

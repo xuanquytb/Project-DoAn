@@ -21,3 +21,21 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const FIND_PRODUCT = "FIND_PRODUCT";
+/////////////////////////////////////////////////////////
+// Category//////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const CATEGORY_LOADED_SUCCESS = "CATEGORY_LOADED_SUCCESS";
+export const CATEGORY_LOADED_FAIL = "CATEGORY_LOADED_FAIL";
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
+export const FIND_CATEGORY = "FIND_CATEGORY";
+/////////////////////////////////////////////////////////
+// Brand/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const BRAND_LOADED_SUCCESS = "BRAND_LOADED_SUCCESS";
+export const BRAND_LOADED_FAIL = "BRAND_LOADED_FAIL";
+export const ADD_BRAND = "ADD_BRAND";
+export const DELETE_BRAND = "DELETE_BRAND";
+export const UPDATE_BRAND = "UPDATE_BRAND";
+export const FIND_BRAND = "FIND_BRAND";

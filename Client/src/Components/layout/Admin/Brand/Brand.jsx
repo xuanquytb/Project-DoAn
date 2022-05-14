@@ -1,35 +1,37 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { Table, Input, Button, Popconfirm } from "antd";
-import DrawerCreate from "./DrawerAntd/DrawerCreate";
-import DrawerCategoryShow from "./DrawerAntd/DrawerCategoryShow";
-import DrawerCategoryUpdate from "./DrawerAntd/DrawerCategoryUpdate";
-import { CategoryContext } from "../../../../Store/Context/CategoryContext";
+import DrawerCreate from "./DrawerAntd/DrawerBrandCreate";
+import DrawerBrandShow from "./DrawerAntd/DrawerBrandShow";
+import DrawerBrandUpdate from "./DrawerAntd/DrawerBrandUpdate";
+import { BrandContext } from "../../../../Store/Context/BrandContext";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
-const CategoryContent = () => {
+const BrandContent = () => {
     const {
-        categoryState: { categorys },
-        getCategory,
-        deleteCategory,
-        createCategory,
-        updateCategory,
-    } = useContext(CategoryContext);
+        brandState: { brands },
+        getBrand,
+        deleteBrand,
+        createBrand,
+        updateBrand,
+    } = useContext(BrandContext);
 
     const [visibleShow, setVisibleShow] = useState(false);
     const [visibleCreate, setVisibleCreate] = useState(false);
     const [visibleUpdate, setVisibleUpdate] = useState(false);
-    const [category, setCategory] = useState({});
-    const [categoryEdit, setCategoryEdit] = useState({});
+    const [brand, setBrand] = useState({});
+    const [brandEdit, setBrandEdit] = useState({});
 
-    useEffect(() => getCategory(), []);
-    const dataSource = categorys.map((category) => {
+    useEffect(() => getBrand(), []);
+    const dataSource = brands.map((brand) => {
         return {
-            key: category.id,
-            nameCategory: category.nameCategory,
-            image: category.image,
-            description: category.description,
+            key: brand.id,
+            nameManufacturer: brand.nameManufacturer,
+            phone: brand.phone,
+            address: brand.address,
+            nameImage: brand.nameImage,
+            mail: brand.mail,
         };
     });
 
@@ -40,41 +42,16 @@ const CategoryContent = () => {
     };
 
     const handleDelete = async (id) => {
-        const result = await deleteCategory(id.key);
-    };
-
-    const handleShow = async (record) => {
-        setCategory({
-            id: record.key,
-            nameCategory: record.nameCategory,
-            image: record.image,
-            description: record.description,
-        });
-        setVisibleShow(true);
-    };
-
-    const handleEdit = async (record) => {
-        setCategoryEdit({
-            id: record.key,
-            nameCategory: record.nameCategory,
-            image: record.image,
-            description: record.description,
-        });
-        setVisibleUpdate(true);
-    };
-
-    const handleUpdate = async (record) => {
-        const result = await updateCategory(record);
+        const result = await deleteBrand(id.key);
         if (result) {
-            getCategory();
             notification.open({
                 className: "custom-class",
-                description: "Cập nhật thành công",
+                description: "Xóa thành công",
                 icon: <SmileOutlined style={{ color: "#108ee9" }} />,
             });
         } else {
             notification.open({
-                description: "Cập nhật thất bại",
+                description: "Xóa thất bại",
                 className: "custom-class",
                 style: {
                     width: 350,
@@ -85,15 +62,43 @@ const CategoryContent = () => {
         }
     };
 
+    const handleShow = async (record) => {
+        console.log("record" + record);
+        setBrand({
+            id: record.key,
+            nameManufacturer: record.nameManufacturer,
+            phone: record.phone,
+            address: record.address,
+            nameImage: record.nameImage,
+            mail: record.mail,
+        });
+        setVisibleShow(true);
+    };
+
+    const handleEdit = async (record) => {
+        setBrandEdit({
+            id: record.key,
+            nameManufacturer: record.nameManufacturer,
+            phone: record.phone,
+            address: record.address,
+            nameImage: record.nameImage,
+            mail: record.mail,
+        });
+        setVisibleUpdate(true);
+    };
+
+    const handleUpdate = async (record) => {
+        const result = await updateBrand(record);
+    };
+
     const handleShowCreate = async () => {
         setVisibleCreate(true);
     };
 
     const handleCreate = async (record) => {
-        const result = await createCategory(record);
+        const result = await createBrand(record);
         if (result.success) {
-            console.log(categorys);
-            getCategory();
+            getBrand();
             notification.open({
                 className: "custom-class",
                 description: "Thêm thành công",
@@ -115,25 +120,37 @@ const CategoryContent = () => {
 
     const columns = [
         {
-            title: "Tên ngành hàng",
-            dataIndex: "nameCategory",
-            key: "nameCategory",
-            width: "10%",
+            title: "Tên thương hiệu",
+            dataIndex: "nameManufacturer",
+            key: "nameManufacturer",
+            width: "18%",
             editable: true,
         },
         {
-            title: "Mô tả",
-            dataIndex: "description",
-            key: "description",
-            width: "40%",
+            title: "Số điện thoại",
+            dataIndex: "phone",
+            key: "phone",
+            width: "10%",
+        },
+        {
+            title: "Email",
+            dataIndex: "mail",
+            key: "mail",
+            width: "20%",
+        },
+        {
+            title: "Địa chỉ",
+            dataIndex: "address",
+            key: "address",
+            width: "20%",
         },
         {
             title: "Thao Tác",
-            width: "7%",
+            width: "9%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>
-                categorys.length >= 0 ? (
+                brands.length >= 0 ? (
                     <>
                         <Button
                             style={{
@@ -236,13 +253,13 @@ const CategoryContent = () => {
                 onClose={onClose}
                 handleCreate={handleCreate}
             />
-            <DrawerCategoryShow
-                input={category}
+            <DrawerBrandShow
+                input={brand}
                 visible={visibleShow}
                 onClose={onClose}
             />
-            <DrawerCategoryUpdate
-                input={categoryEdit}
+            <DrawerBrandUpdate
+                input={brandEdit}
                 visible={visibleUpdate}
                 onClose={onClose}
                 onUpdate={handleUpdate}
@@ -251,4 +268,4 @@ const CategoryContent = () => {
     );
 };
 
-export default CategoryContent;
+export default BrandContent;

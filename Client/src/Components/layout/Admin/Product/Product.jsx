@@ -23,7 +23,7 @@ const ProductContent = () => {
     const [productEdit, setProductEdit] = useState({});
 
     const handleDelete = async (id) => {
-        const result = await deleteUser(id.key);
+        const result = await deleteProduct(id.key);
     };
     const onClose = () => {
         setVisibleShow(false);
@@ -31,93 +31,89 @@ const ProductContent = () => {
         setVisibleCreate(false);
     };
 
+    const handleShow = async (record) => {
+        setProduct({
+            nameProduct: record.nameProduct,
+            description: record.description,
+            warranty: record.warranty,
+            quantity: record.quantity,
+            promotional: record.promotional,
+            price: record.price,
+            status: record.status,
+            image: record.image,
+            idCategory: record.idCategory,
+            idUnit: record.idUnit,
+            idManufacturer: record.idManufacturer,
+            idOrigin: record.idOrigin,
+            key: record.id,
+        });
+        setVisibleShow(true);
+    };
+
+    const handleEdit = async (record) => {
+        // setUseruserEdit({
+        //     username: record.username,
+        //     fullname: record.fullname,
+        //     email: record.email,
+        //     phone: record.phone,
+        //     address: record.address,
+        //     sex: record.sex,
+        //     nameAvata: record.nameAvata,
+        //     ngaysinh: record.ngaysinh,
+        //     id: record.key,
+        // });
+        setVisibleUpdate(true);
+    };
+
     const dataSource = products.map((product) => {
         return {
-            username: product.username,
-            fullname: product.fullname,
-            email: product.email,
-            phone: product.phone,
-            address: product.address,
-            nameAvata: product.nameAvata,
-            sex: product.sex,
-            ngaysinh: product.dateOfBirth,
+            nameProduct: product.nameProduct,
+            description: product.description,
+            warranty: product.warranty,
+            quantity: product.quantity,
+            promotional: product.promotional,
+            price: product.price,
+            status: product.status,
+            image: product.image,
+            idCategory: product.idCategory,
+            idUnit: product.idUnit,
+            idManufacturer: product.idManufacturer,
+            idOrigin: product.idOrigin,
             key: product.id,
         };
     });
-    const dataSource = [
-        {
-            key: "1",
-            name: "Bếp ga đôi",
-            mota: "Bếp gas dương 2 lò nấu, mặt kính chịu lực,Kiềng bếp bằng thép tráng men, Chế độ tiết kiệm gas",
-            giaban: "3000000 đ",
-            trangthai: "Còn Hàng",
-            sl: "20",
-        },
-        {
-            key: "2",
-            name: "Bếp hồng ngoại",
-            mota: "Các chế độ nấu gồm hấp, hâm nóng, BBQ, giữ ấm, nấu lẩu và xào.Công suất: 200, 500, 800, 1000, 1300, 1600, 1800 và 2000W sử dụng khi chọn nấu lẩu.",
-            giaban: "600000 đ",
-            trangthai: "Còn Hàng",
-            sl: "10",
-        },
-        {
-            key: "3",
-            name: "Quạt Xiaomi 4 cánh tích điện",
-            mota: "Quạt tích điện để bàn mini F6  mang trên mình thiết kế khá tinh tế, hoạt động bền bỉ, linh hoạt chuyển đổi cấp độ gió hứa hẹn khiến người dùng hài lòng ngay từ cái nhìn đầu tiên.",
-            giaban: "30000 đ",
-            trangthai: "Còn Hàng",
-            sl: "50",
-        },
-        {
-            key: "4",
-            name: "Gia dụng nhà vệ sinh",
-            mota: "Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn",
-            giaban: "3000000",
-            trangthai: "Còn Hàng",
-            sl: "300",
-        },
-        {
-            key: "5",
-            name: "Gia dụng sân vườn",
-            mota: "Các sản phẩm có thể sử dụng trong nhà bếp, làm cho căn bếp trở nên gọn gàng và nấu ăn thú vị hơn",
-            giaban: "3000000",
-            trangthai: "Còn Hàng",
-            sl: "300",
-        },
-    ];
 
     const columns = [
         {
             title: "Tên sản phẩm",
             width: 60,
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "nameProduct",
+            key: "nameProduct",
             fixed: "left",
         },
         {
             title: "Mô tả",
             width: 130,
-            dataIndex: "mota",
-            key: "age",
+            dataIndex: "description",
+            key: "description",
             fixed: "left",
         },
         {
             title: "Giá bán",
-            dataIndex: "giaban",
-            key: "1",
+            dataIndex: "price",
+            key: "price",
             width: 50,
         },
         {
             title: "Trạng thái",
-            dataIndex: "trangthai",
-            key: "2",
+            dataIndex: "status",
+            key: "status",
             width: 60,
         },
         {
             title: "Số lượng",
-            dataIndex: "sl",
-            key: "3",
+            dataIndex: "quantity",
+            key: "quantity",
             width: 50,
         },
         {

@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
-import moment from "moment";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import {
     Drawer,

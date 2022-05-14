@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import UserContent from "../../Components/layout/Admin/User/UserContent";
 import AdminContent from "../../Components/layout/Admin/User/AdminContent";
+import CategoryContent from "../../Components/layout/Admin/Category/Category";
 import EmployeeContent from "../../Components/layout/Admin/User/EmployeeContent";
 import ProductContent from "../../Components/layout/Admin/Product/Product";
-import ProductContextProvider from "../../Store/Context/ProductContext";
+import BrandContent from "../../Components/layout/Admin/Brand/Brand";
 
 const AuthDashboard = ({ authRoute }) => {
     const body = (
@@ -11,11 +12,9 @@ const AuthDashboard = ({ authRoute }) => {
             {authRoute === "customer" && <UserContent />}
             {authRoute === "employee" && <EmployeeContent />}
             {authRoute === "admin" && <AdminContent />}
-            {authRoute === "product" && (
-                <ProductContextProvider>
-                    <ProductContent />
-                </ProductContextProvider>
-            )}
+            {authRoute === "category" && <CategoryContent />}
+            {authRoute === "product" && <ProductContent />}
+            {authRoute === "brand" && <BrandContent />}
         </>
     );
 
