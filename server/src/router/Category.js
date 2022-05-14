@@ -22,13 +22,6 @@ const { find_by_id_role, find_by_name_row_role } = require("../models/role");
 
 const verifyToken = require("../../Middleware/Auth");
 
-const GenerateToken = (payload) => {
-    const token = jwt.sign(payload, process.env.secret_token, {
-        expiresIn: "1d",
-    });
-    return token;
-};
-
 Router.get("/", verifyToken, async (req, res) => {
     try {
         const user = await find_by_name_row("id", req.userId);
@@ -163,8 +156,8 @@ Router.post("/addCategory", verifyToken, async (req, res) => {
 
 Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { nameCategory, image, description } = req.body;
-        if (!nameCategory || !image || !description) {
+        const { nameCategory, description } = req.body;
+        if (!nameCategory || !description) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
@@ -174,40 +167,36 @@ Router.put("/updateCategory/:id", verifyToken, async (req, res) => {
                 "nameCategory",
                 nameCategory
             );
-            if (nameCategoryRe.length > 0) {
-                res.status(400).json({
-                    success: false,
-                    message: "Tên ngành hàng đã được sử dụng",
+            try {
+                const newCategoryItem = new Category({
+                    nameCategory,
+                    description,
                 });
-            } else {
-                try {
-                    const newCategoryItem = new Category({
-                        nameCategory,
-                        image,
-                        description,
+                const newCategoryRe = await UpdateCategory(
+                    newCategoryItem,
+                    req.params.id
+                );
+                const Categorys = await find_all_Category(
+                    newCategoryItem,
+                    req.params.id
+                );
+                if (newCategoryRe) {
+                    res.status(200).json({
+                        success: true,
+                        message: "Cập nhật thành công",
+                        categorys: Categorys,
                     });
-                    const newCategoryRe = await UpdateCategory(
-                        newCategoryItem,
-                        req.params.id
-                    );
-                    if (newCategoryRe) {
-                        res.status(200).json({
-                            success: true,
-                            message: "Cập nhật thành công",
-                            nameCategory: nameCategory,
-                        });
-                    } else {
-                        res.status(400).json({
-                            success: false,
-                            message: "Cập nhật thất bại",
-                        });
-                    }
-                } catch (error) {
+                } else {
                     res.status(400).json({
                         success: false,
-                        message: "Xảy ra lỗi : " + error,
+                        message: "Cập nhật thất bại",
                     });
                 }
+            } catch (error) {
+                res.status(400).json({
+                    success: false,
+                    message: "Xảy ra lỗi : " + error,
+                });
             }
         }
     } else {

@@ -4,6 +4,7 @@ const Product = function (product) {
     this.description = product.description;
     this.warranty = product.warranty;
     this.quantity = product.quantity;
+    this.price = product.price;
     this.promotional = product.promotional;
     this.status = product.status;
     this.image = product.image;

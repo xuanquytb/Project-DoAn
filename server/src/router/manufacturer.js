@@ -90,7 +90,9 @@ Router.get("/allManufacturer", verifyToken, async (req, res) => {
                     .status(202)
                     .json({ success: false, message: "User not found" });
             } else {
-                return res.status(200).json({ success: true, manufacturers });
+                return res
+                    .status(200)
+                    .json({ success: true, brands: manufacturers });
             }
         } catch (error) {
             return res
@@ -107,9 +109,9 @@ Router.get("/allManufacturer", verifyToken, async (req, res) => {
 
 Router.post("/addManufacturer", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { nameManufacturer, phone, address , mail } = req.body;
+        const { nameManufacturer, phone, address, mail } = req.body;
 
-        if (!nameManufacturer || !phone || !address || !mail ) {
+        if (!nameManufacturer || !phone || !address || !mail) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
@@ -130,9 +132,12 @@ Router.post("/addManufacturer", verifyToken, async (req, res) => {
                         nameManufacturer,
                         phone,
                         address,
+                        nameImage: "default.png",
                         mail,
                     });
-                    const newManufacturerRe = await InsertManufacturer(newManufacturerItem);
+                    const newManufacturerRe = await InsertManufacturer(
+                        newManufacturerItem
+                    );
                     if (newManufacturerRe) {
                         res.status(200).json({
                             success: true,
@@ -163,8 +168,8 @@ Router.post("/addManufacturer", verifyToken, async (req, res) => {
 
 Router.put("/updateManufacturer/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
-        const { nameManufacturer, phone, address , mail } = req.body;
-        if (!nameManufacturer || !phone || !address || !mail ) {
+        const { nameManufacturer, phone, address, mail } = req.body;
+        if (!nameManufacturer || !phone || !address || !mail) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
@@ -174,41 +179,35 @@ Router.put("/updateManufacturer/:id", verifyToken, async (req, res) => {
                 "nameManufacturer",
                 nameManufacturer
             );
-            if (nameManufacturerRe.length > 0) {
-                res.status(400).json({
-                    success: false,
-                    message: "Tên hãng sản xuất đã được sử dụng",
+            try {
+                const newManufacturerItem = new Manufacturer({
+                    nameManufacturer,
+                    phone,
+                    address,
+                    mail,
                 });
-            } else {
-                try {
-                    const newManufacturerItem = new Manufacturer({
-                        nameManufacturer,
-                        phone,
-                        address,
-                        mail,
+                const newManufacturerRe = await UpdateManufacturer(
+                    newManufacturerItem,
+                    req.params.id
+                );
+                const brands = await find_all_Manufacturer();
+                if (newManufacturerRe) {
+                    res.status(200).json({
+                        success: true,
+                        message: "Cập nhật thành công",
+                        brands: brands,
                     });
-                    const newManufacturerRe = await UpdateManufacturer(
-                        newManufacturerItem,
-                        req.params.id
-                    );
-                    if (newManufacturerRe) {
-                        res.status(200).json({
-                            success: true,
-                            message: "Cập nhật thành công",
-                            nameManufacturer: nameManufacturer,
-                        });
-                    } else {
-                        res.status(400).json({
-                            success: false,
-                            message: "Cập nhật thất bại",
-                        });
-                    }
-                } catch (error) {
+                } else {
                     res.status(400).json({
                         success: false,
-                        message: "Xảy ra lỗi : " + error,
+                        message: "Cập nhật thất bại",
                     });
                 }
+            } catch (error) {
+                res.status(400).json({
+                    success: false,
+                    message: "Xảy ra lỗi : " + error,
+                });
             }
         }
     } else {

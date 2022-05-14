@@ -22,15 +22,12 @@ const find_by_name_row_category = function (nameRow, value) {
 
 const find_all_Category = () => {
     return new Promise((resolve, reject) => {
-        dbConn.query(
-            `SELECT * FROM category `,
-            (error, elements) => {
-                if (error) {
-                    return reject(error);
-                }
-                return resolve(elements);
+        dbConn.query(`SELECT * FROM category `, (error, elements) => {
+            if (error) {
+                return reject(error);
             }
-        );
+            return resolve(elements);
+        });
     });
 };
 
@@ -81,13 +78,17 @@ const delete_By_Id = (id) => {
 
 const InsertCategory = function (categoryNew) {
     return new Promise((resolve, reject) => {
-        dbConn.query("Insert Into category SET ?", categoryNew, (err, elements) => {
-            if (err) {
-                return reject(err);
-            } else {
-                return resolve({ id: elements.insertId, ...elements });
+        dbConn.query(
+            "Insert Into category SET ?",
+            categoryNew,
+            (err, elements) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: elements.insertId, ...elements });
+                }
             }
-        });
+        );
     });
 };
 
@@ -95,7 +96,22 @@ const UpdateCategory = function (categoryUpdate, id) {
     // console.log(categoryUpdate.nameAvata);
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `Update category SET nameCategory = '${categoryUpdate.nameCategory}', image = '${categoryUpdate.image}', description = '${categoryUpdate.description}' WHERE (id = '${id}')`,
+            `Update category SET nameCategory = '${categoryUpdate.nameCategory}', description = '${categoryUpdate.description}' WHERE (id = '${id}')`,
+            (err, element) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve({ id: element.affectedRows, ...element });
+                }
+            }
+        );
+    });
+};
+
+const UpdateCategoryAvata = function (nameImage, categoryId) {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `Update category SET image = '${nameImage}' WHERE (id = '${categoryId}')`,
             (err, element) => {
                 if (err) {
                     return reject(err);
@@ -115,5 +131,6 @@ module.exports = {
     // find_by_nameCategory,
     InsertCategory,
     UpdateCategory,
+    UpdateCategoryAvata,
     Category,
 };

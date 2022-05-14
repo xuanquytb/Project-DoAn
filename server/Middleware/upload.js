@@ -3,6 +3,8 @@ const express = require("express");
 const multer = require("multer");
 
 const { UpdateUserAvata } = require("../src/models/user");
+const { UpdateCategoryAvata } = require("../src/models/category");
+const { UpdateImageManufacturer } = require("../src/models/manufacturer");
 
 const Router = express.Router();
 
@@ -31,6 +33,37 @@ const upload = multer({
 
 Router.post("/image/user/:id", upload.single("photo"), async (req, res) => {
     const result = await UpdateUserAvata(req.file.filename, req.params.id);
+    if (result) {
+        res.status(200).json({
+            success: true,
+            message: "Cập nhật thành công",
+        });
+    } else {
+        res.status(200).json({
+            success: false,
+            message: "Cập nhật thất bại",
+        });
+    }
+});
+Router.post("/image/category/:id", upload.single("photo"), async (req, res) => {
+    const result = await UpdateCategoryAvata(req.file.filename, req.params.id);
+    if (result) {
+        res.status(200).json({
+            success: true,
+            message: "Cập nhật thành công",
+        });
+    } else {
+        res.status(200).json({
+            success: false,
+            message: "Cập nhật thất bại",
+        });
+    }
+});
+Router.post("/image/brand/:id", upload.single("photo"), async (req, res) => {
+    const result = await UpdateImageManufacturer(
+        req.file.filename,
+        req.params.id
+    );
     if (result) {
         res.status(200).json({
             success: true,
