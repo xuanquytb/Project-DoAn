@@ -17,6 +17,14 @@ const multerConfig = multer.diskStorage({
         callback(null, `image-${Date.now()}.${ext}`);
     },
 });
+const multerConfigImageProduct = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "./src/public/upload/Product");
+    },
+    filename: (req, file, callback) => {
+        callback(null, `${file.originalname}`);
+    },
+});
 
 const isImage = (req, file, callback) => {
     if (file.mimetype.startsWith("image")) {
@@ -28,6 +36,10 @@ const isImage = (req, file, callback) => {
 
 const upload = multer({
     storage: multerConfig,
+    fileFilter: isImage,
+});
+const uploadImageProduct = multer({
+    storage: multerConfigImageProduct,
     fileFilter: isImage,
 });
 
@@ -76,13 +88,16 @@ Router.post("/image/brand/:id", upload.single("photo"), async (req, res) => {
         });
     }
 });
-Router.post("/image/product", upload.single("photo"), async (req, res) => {
-    console.log(req);
-    // res.status(200).json({
-    //     success: true,
-    //     message: "Đã thêm ảnh sản phẩm",
-    //     // fileName: req.file.filename,
-    // });
-});
+Router.post(
+    "/image/product",
+    uploadImageProduct.single("photo"),
+    async (req, res) => {
+        res.status(200).json({
+            success: true,
+            message: "Đã thêm ảnh sản phẩm",
+            // fileName: req.file.filename,
+        });
+    }
+);
 
 module.exports = Router;

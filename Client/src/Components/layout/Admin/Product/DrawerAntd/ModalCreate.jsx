@@ -37,21 +37,24 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
     };
-
-    console.log(state.value);
     const onFinish = (values) => {
-        console.log(values);
-        // const userUpdate = {
-        //     username: values.username,
-        //     password: values.password,
-        //     passwordRe: values.passwordRe,
-        //     fullname: values.fullname,
-        //     email: values.email,
-        //     phone: values.phone,
-        //     address: values.address,
-        //     sex: values.sex,
-        //     dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
+        console.log(values.origin.value);
+        // console.log(values);
+        // const productUpdate = {
+        //     nameProduct: values.nameProduct,
+        //     description: state.value,
+        //     warranty: values.warranty,
+        //     quantity: values.quantity,
+        //     price: values.price,
+        //     promotional: values.promotional,
+        //     status: values.status,
+        //     image: values.nameImage.file.name,
+        //     idCategory: values.idCategory,
+        //     idUnit: values.idUnit,
+        //     idManufacturer: values.idManufacturer,
+        //     idOrigin: values.idOrigin,
         // };
+        // console.log(productUpdate);
         // handleRegister(userUpdate);
     };
 
@@ -343,7 +346,8 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                             onChange={onChange}
                                             name='photo'
                                         >
-                                            {fileList.length < 1 && "+ Upload"}
+                                            {fileList.length < 1 &&
+                                                "+ Chọn ảnh"}
                                         </Upload>
                                     </Form.Item>
                                 </Col>
