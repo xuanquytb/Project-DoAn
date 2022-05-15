@@ -1,7 +1,7 @@
 import React from "react";
-import { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
-import ShowDrawerCreate from "./DrawerAntd/DrawerCreate";
+import { useContext, useState, useEffect } from "react";
+import { Table, Button, Popconfirm } from "antd";
+import ShowModalProduct from "./DrawerAntd/ModalCreate";
 import ShowDrawer from "./DrawerAntd/DrawerProductShow";
 import ShowDrawerProduct from "./DrawerAntd/ShowDrawerProduct";
 import { ProductContext } from "../../../../Store/Context/ProductContext";
@@ -220,10 +220,9 @@ const ProductContent = () => {
                     scroll={{ y: 350 }}
                 />
             </div>
-            <ShowDrawerCreate
+            <ShowModalProduct
                 visible={visibleCreate}
-                onClose={onClose}
-                // handleRegister={handleCreate}
+                onClose={() => setVisibleCreate(false)}
             />
             <ShowDrawer
                 input={product}

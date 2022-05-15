@@ -160,7 +160,7 @@ const DashBoard = () => {
                                 paddingLeft: 16,
                             }}
                         ></Header>
-                        <div className='head_search'>
+                        {/* <div className='head_search'>
                             <form>
                                 <div className='head_search_cont'>
                                     <Input
@@ -169,7 +169,7 @@ const DashBoard = () => {
                                     />
                                 </div>
                             </form>
-                        </div>
+                        </div> */}
                         <Content
                             style={{
                                 margin: "24px 16px",
