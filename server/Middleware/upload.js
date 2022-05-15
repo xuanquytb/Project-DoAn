@@ -76,5 +76,13 @@ Router.post("/image/brand/:id", upload.single("photo"), async (req, res) => {
         });
     }
 });
+Router.post("/image/product", upload.single("photo"), async (req, res) => {
+    console.log(req);
+    // res.status(200).json({
+    //     success: true,
+    //     message: "Đã thêm ảnh sản phẩm",
+    //     // fileName: req.file.filename,
+    // });
+});
 
 module.exports = Router;

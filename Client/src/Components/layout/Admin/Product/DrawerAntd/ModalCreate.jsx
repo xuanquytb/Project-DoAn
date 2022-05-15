@@ -16,11 +16,7 @@ import {
     Upload,
 } from "antd";
 
-import {
-    EyeInvisibleOutlined,
-    EyeTwoTone,
-    UploadOutlined,
-} from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
 
@@ -29,10 +25,17 @@ const { Option, OptGroup } = Select;
 const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
     const [state, setState] = useState({ value: "" });
     const [quantity, setQuantity] = useState(0);
-    const [quantityUnit, setQuantityUnit] = useState(0);
+    const [quantityUnit, setQuantityUnit] = useState(1);
     const [disable, setDisable] = useState(true);
+    const [fileList, setFileList] = useState([]);
+
     const handleChange = (value) => {
+        console.log(value);
         setState({ value });
+    };
+
+    const onChange = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
     };
 
     console.log(state.value);
@@ -67,16 +70,15 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
     };
 
     const handChangeQuantity = (e) => {
-        if (disable === true) {
-            setQuantity(e.target.value * quantityUnit);
-        }
-        if (disable === false) {
+        if (disable == true) {
             setQuantity(e.target.value * 1);
+        }
+        if (disable == false) {
+            setQuantity(e.target.value * quantityUnit);
         }
     };
 
     const onChangeUnit = (e) => {
-        console.log(typeof e);
         if (e === "1") {
             setDisable(true);
         }
@@ -103,6 +105,10 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                 ["warranty"]: "6 tháng",
                                 ["state"]: "Còn hàng",
                                 ["category"]: "Hàng tiêu dùng",
+                                ["brand"]: "Xiaomi",
+                                ["unitSL"]: "1",
+                                ["origin"]: "Việt Nam",
+                                ["quantityUniti"]: "1",
                             }}
                         >
                             <Row gutter={16}>
@@ -284,7 +290,7 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                     >
                                         <Input
                                             disabled={disable}
-                                            placeholder='00000000000000000000000000'
+                                            // placeholder='00000000000000000000000000'
                                             allowClear
                                             onChange={handChangeQuantityUniti}
                                         />
@@ -299,7 +305,7 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                             {
                                                 required: true,
                                                 message:
-                                                    "Số điện thoại không được để trống",
+                                                    "Số lượng / đơn vị không dược để trống",
                                             },
                                         ]}
                                     >
@@ -331,13 +337,13 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                         label='Hình ảnh sản phẩm'
                                     >
                                         <Upload
-                                            action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
+                                            action={`http://localhost:8080/api/upload/image/product`}
                                             listType='picture'
-                                            maxCount={1}
+                                            fileList={fileList}
+                                            onChange={onChange}
+                                            name='photo'
                                         >
-                                            <Button
-                                                icon={<UploadOutlined />}
-                                            ></Button>
+                                            {fileList.length < 1 && "+ Upload"}
                                         </Upload>
                                     </Form.Item>
                                 </Col>
