@@ -20,7 +20,6 @@ const ProductContextProvider = ({ children }) => {
     const getProduct = async () => {
         try {
             const response = await axios.get(`${apiUrl}/product/allProduct`);
-            console.log(response);
             if (response.data.success) {
                 dispatch({
                     type: PRODUCT_LOADED_SUCCESS,
@@ -47,21 +46,24 @@ const ProductContextProvider = ({ children }) => {
 
     const createProduct = async (Product) => {
         const product = {
-            username: Product.username,
-            password: Product.password,
-            fullname: Product.fullname,
-            nameRole: "Administrators",
-            email: Product.email,
-            phone: Product.phone,
-            address: Product.address,
-            sex: Product.sex,
-            dateOfBirth: Product.dateOfBirth,
-            nameAvata: "default.png",
+            nameProduct: Product.nameProduct,
+            description: Product.description,
+            warranty: Product.warranty,
+            quantity: Product.quantity,
+            promotional: Product.promotional,
+            status: Product.status,
+            image: Product.image,
+            idCategory: Product.idCategory,
+            idUnit: Product.idUnit,
+            idManufacturer: Product.idManufacturer,
+            idOrigin: Product.idOrigin,
+            price: Product.price,
         };
         const response = await axios.post(
             `${apiUrl}/product/addProduct`,
             product
         );
+        console.log(response);
         if (response.data.success) {
             return response.data;
         } else {

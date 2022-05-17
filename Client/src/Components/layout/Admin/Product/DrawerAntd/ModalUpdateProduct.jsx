@@ -16,14 +16,13 @@ import {
     Upload,
 } from "antd";
 
-import { UploadOutlined } from "@ant-design/icons";
-
 const { TabPane } = Tabs;
 
 const { Option, OptGroup } = Select;
 
-const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
-    const [state, setState] = useState({ value: "" });
+const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
+    console.log(input);
+    const [state, setState] = useState({ value: "Xin chào" });
 
     const [quantityUnit, setQuantityUnit] = useState(1);
     const [disable, setDisable] = useState(true);
@@ -48,7 +47,7 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
     };
 
     const onFinish = (values) => {
-        const productCreate = {
+        const productUpdate = {
             nameProduct: values.nameProduct,
             description: state.value,
             warranty: warranty,
@@ -62,19 +61,13 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
             idManufacturer: brand,
             idOrigin: origin,
         };
-        // console.log(productCreate);
-        handleRegister(productCreate);
+        console.log(productCreate);
+        // onUpdate(productUpdate);
     };
 
     // const onChange = ({ fileList: newFileList }) => {
     //     setFileList(newFileList);
     // };
-
-    const ModalProduct = ({ visible, onClose }) => {
-        function onChange(value) {
-            console.log(value);
-        }
-    };
 
     const handChangeQuantityUniti = (e) => {
         setQuantityUnit(e.target.value);
@@ -115,8 +108,17 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                             hideRequiredMark
                             onFinish={onFinish}
                             initialValues={{
-                                ["quantityUniti"]: "1",
-                                ["unitSL"]: "1",
+                                ["nameProduct"]: input.nameProduct,
+                                ["warranty"]: input.warranty,
+                                ["quantity"]: input.quantity,
+                                ["price"]: input.price,
+                                ["promotional"]: input.discount,
+                                ["status"]: input.state,
+                                ["image"]: input.image,
+                                ["idCategory"]: input.category,
+                                ["idUnit"]: input.unit,
+                                ["idManufacturer"]: input.brand,
+                                ["idOrigin"]: input.origin,
                             }}
                         >
                             <Row gutter={16}>
@@ -416,4 +418,4 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
     );
 };
 
-export default ShowModalProduct;
+export default ModalUpdateProduct;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+  /* Set dropdown font-families */
 .ql-container.ql-snow {
     min-height: 450px;
 }
@@ -6,8 +8,7 @@
     min-height: 450px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-  /* Set dropdown font-families */
+
   
   .app .ql-editor {
     font-family: "Ubuntu";

@@ -99,6 +99,7 @@ Router.get("/allProduct", verifyToken, async (req, res) => {
 Router.post("/addProduct", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
         const {
+            price,
             nameProduct,
             description,
             warranty,
@@ -113,17 +114,18 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
         } = req.body;
 
         if (
+            (!price,
             !nameProduct ||
-            !description ||
-            !warranty ||
-            !quantity ||
-            !promotional ||
-            !status ||
-            !image ||
-            !idCategory ||
-            !idUnit ||
-            !idManufacturer ||
-            !idOrigin
+                !description ||
+                !warranty ||
+                !quantity ||
+                !promotional ||
+                !status ||
+                !image ||
+                !idCategory ||
+                !idUnit ||
+                !idManufacturer ||
+                !idOrigin)
         ) {
             res.status(400).json({
                 success: true,
@@ -142,9 +144,18 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
             } else {
                 try {
                     const newProductItem = new Product({
+                        price,
                         nameProduct,
-                        image,
                         description,
+                        warranty,
+                        quantity,
+                        promotional,
+                        status,
+                        image,
+                        idCategory,
+                        idUnit,
+                        idManufacturer,
+                        idOrigin,
                     });
                     const newProductRe = await InsertProduct(newProductItem);
                     if (newProductRe) {

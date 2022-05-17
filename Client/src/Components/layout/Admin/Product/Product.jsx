@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { Table, Button, Popconfirm } from "antd";
 import ShowModalProduct from "./DrawerAntd/ModalCreate";
 import ShowDrawer from "./DrawerAntd/DrawerProductShow";
-import ShowDrawerProduct from "./DrawerAntd/ShowDrawerProduct";
+import ModalUpdateProduct from "./DrawerAntd/ModalUpdateProduct";
 import { ProductContext } from "../../../../Store/Context/ProductContext";
 
 const ProductContent = () => {
@@ -15,7 +15,7 @@ const ProductContent = () => {
         updateProduct,
     } = useContext(ProductContext);
     useEffect(() => getProduct(), []);
-    console.log(products);
+
     const [visibleShow, setVisibleShow] = useState(false);
     const [visibleCreate, setVisibleCreate] = useState(false);
     const [visibleUpdate, setVisibleUpdate] = useState(false);
@@ -50,19 +50,29 @@ const ProductContent = () => {
         setVisibleShow(true);
     };
 
-    const handleEdit = async (record) => {
-        // setUseruserEdit({
-        //     username: record.username,
-        //     fullname: record.fullname,
-        //     email: record.email,
-        //     phone: record.phone,
-        //     address: record.address,
-        //     sex: record.sex,
-        //     nameAvata: record.nameAvata,
-        //     ngaysinh: record.ngaysinh,
+    const handleCrate = async (product) => {
+        const result = await createProduct(product);
+        console.log(result);
+    };
+
+    const handleUpdate = async (record) => {
+        console.log(record);
+        setVisibleUpdate(true);
+        // setProductEdit({
+        //     nameProduct: record.nameProduct,
+        //     description: record.description,
+        //     warranty: record.warranty,
+        //     quantity: record.quantity,
+        //     promotional: record.promotional,
+        //     price: record.price,
+        //     status: record.status,
+        //     image: record.image,
+        //     idCategory: record.idCategory,
+        //     idUnit: record.idUnit,
+        //     idManufacturer: record.idManufacturer,
+        //     idOrigin: record.idOrigin,
         //     id: record.key,
         // });
-        setVisibleUpdate(true);
     };
 
     const dataSource = products.map((product) => {
@@ -89,13 +99,6 @@ const ProductContent = () => {
             width: 60,
             dataIndex: "nameProduct",
             key: "nameProduct",
-            fixed: "left",
-        },
-        {
-            title: "Mô tả",
-            width: 130,
-            dataIndex: "description",
-            key: "description",
             fixed: "left",
         },
         {
@@ -170,7 +173,7 @@ const ProductContent = () => {
                         </Popconfirm>
                         <Popconfirm
                             title='Bạn chắc chắn muốn sửa người dùng ?'
-                            onConfirm={() => handleEdit(record)}
+                            onConfirm={() => console.log(record)}
                         >
                             <Button
                                 style={{
@@ -223,13 +226,14 @@ const ProductContent = () => {
             <ShowModalProduct
                 visible={visibleCreate}
                 onClose={() => setVisibleCreate(false)}
+                handleRegister={handleCrate}
             />
             <ShowDrawer
                 input={product}
                 visible={visibleShow}
                 onClose={onClose}
             />
-            <ShowDrawerProduct
+            <ModalUpdateProduct
                 input={productEdit}
                 visible={visibleUpdate}
                 onClose={onClose}
