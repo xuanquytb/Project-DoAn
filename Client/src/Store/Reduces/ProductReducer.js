@@ -35,7 +35,7 @@ const productReducer = (state, action) => {
                 ),
             };
         case UPDATE_PRODUCT:
-            const newProducts = state.users.map((product) =>
+            const newProducts = state.products.map((product) =>
                 product.id === payload.id ? payload : product
             );
             return {

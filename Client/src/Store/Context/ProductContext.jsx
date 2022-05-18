@@ -75,13 +75,13 @@ const ProductContextProvider = ({ children }) => {
     const updateProduct = async (updatedProduct) => {
         try {
             const response = await axios.put(
-                `${apiUrl}/product//updateProduct/${updatedProduct.id}`,
+                `${apiUrl}/product/updateproduct/${updatedProduct.id}`,
                 updatedProduct
             );
             if (response.data.success) {
                 dispatch({
                     type: UPDATE_PRODUCT,
-                    payload: response.data.users,
+                    payload: response.data.products,
                 });
                 return response.data;
             }

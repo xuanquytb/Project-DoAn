@@ -5,6 +5,9 @@ import ShowModalProduct from "./DrawerAntd/ModalCreate";
 import ShowDrawer from "./DrawerAntd/DrawerProductShow";
 import ModalUpdateProduct from "./DrawerAntd/ModalUpdateProduct";
 import { ProductContext } from "../../../../Store/Context/ProductContext";
+import axios from "axios";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const ProductContent = () => {
     const {
@@ -56,23 +59,33 @@ const ProductContent = () => {
     };
 
     const handleUpdate = async (record) => {
-        console.log(record);
+        const result = await axios.get(
+            `http://localhost:8080/api/product/findproduct/${record.key}`
+        );
+        setProductEdit(result.data.products);
         setVisibleUpdate(true);
-        // setProductEdit({
-        //     nameProduct: record.nameProduct,
-        //     description: record.description,
-        //     warranty: record.warranty,
-        //     quantity: record.quantity,
-        //     promotional: record.promotional,
-        //     price: record.price,
-        //     status: record.status,
-        //     image: record.image,
-        //     idCategory: record.idCategory,
-        //     idUnit: record.idUnit,
-        //     idManufacturer: record.idManufacturer,
-        //     idOrigin: record.idOrigin,
-        //     id: record.key,
-        // });
+    };
+    const clickUpdate = async (record) => {
+        const result = await updateProduct(record);
+        if (result.success) {
+            getProduct();
+            notification.open({
+                className: "custom-class",
+                description: "Cập nhật thành công",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+        } else {
+            notification.open({
+                description: result.message,
+                message: "Cập nhật thất bại",
+                className: "custom-class",
+                style: {
+                    width: 350,
+                    backgroundColor: "#fff2f0",
+                },
+                type: "error",
+            });
+        }
     };
 
     const dataSource = products.map((product) => {
@@ -173,7 +186,7 @@ const ProductContent = () => {
                         </Popconfirm>
                         <Popconfirm
                             title='Bạn chắc chắn muốn sửa người dùng ?'
-                            onConfirm={() => console.log(record)}
+                            onConfirm={() => handleUpdate(record)}
                         >
                             <Button
                                 style={{
@@ -237,7 +250,7 @@ const ProductContent = () => {
                 input={productEdit}
                 visible={visibleUpdate}
                 onClose={onClose}
-                // onUpdate={handleUpdate}
+                onUpdate={clickUpdate}
             />
         </>
     );

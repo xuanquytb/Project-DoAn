@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { modules, formats } from "./Editor/EditorToolbar";
 import "react-quill/dist/quill.snow.css";
@@ -22,12 +22,9 @@ const { Option, OptGroup } = Select;
 
 const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
     console.log(input);
-    const [state, setState] = useState({ value: "Xin chào" });
-
+    const [state, setState] = useState({ value: input.description });
     const [quantityUnit, setQuantityUnit] = useState(1);
     const [disable, setDisable] = useState(true);
-    const [fileList, setFileList] = useState([]);
-
     //////////////////////////////////////////////////////////
     const [brand, setBrand] = useState("");
     const [quantity, setQuantity] = useState(0);
@@ -42,54 +39,21 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
         setState({ value });
     };
 
-    const onChange = ({ fileList: newFileList }) => {
-        setFileList(newFileList);
-    };
-
     const onFinish = (values) => {
         const productUpdate = {
+            id: input.id,
             nameProduct: values.nameProduct,
             description: state.value,
-            warranty: warranty,
-            quantity: quantity,
-            price: values.price,
+            warranty: values.warranty,
+            quantity: values.quantity,
             promotional: values.discount,
+            price: values.price,
             status: values.state,
-            image: values.nameImage.file.name,
-            idCategory: category,
-            idUnit: unit,
-            idManufacturer: brand,
-            idOrigin: origin,
+            nameCategory: values.category,
+            nameBrand: values.brand,
+            nameOrigin: values.origin,
         };
-        console.log(productCreate);
-        // onUpdate(productUpdate);
-    };
-
-    // const onChange = ({ fileList: newFileList }) => {
-    //     setFileList(newFileList);
-    // };
-
-    const handChangeQuantityUniti = (e) => {
-        setQuantityUnit(e.target.value);
-    };
-
-    const handChangeQuantity = (e) => {
-        if (disable == true) {
-            setQuantity(e.target.value * 1);
-        }
-        if (disable == false) {
-            setQuantity(e.target.value * quantityUnit);
-        }
-    };
-
-    const onChangeUnit = (e) => {
-        setUnit(e);
-        if (e === "1") {
-            setDisable(true);
-        }
-        if (e === "2") {
-            setDisable(false);
-        }
+        onUpdate(productUpdate);
     };
 
     return (
@@ -109,23 +73,17 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                             onFinish={onFinish}
                             initialValues={{
                                 ["nameProduct"]: input.nameProduct,
-                                ["warranty"]: input.warranty,
+                                ["warranty"]: input.warranty + " Tháng",
                                 ["quantity"]: input.quantity,
                                 ["price"]: input.price,
-                                ["promotional"]: input.discount,
-                                ["status"]: input.state,
-                                ["image"]: input.image,
-                                ["idCategory"]: input.category,
-                                ["idUnit"]: input.unit,
-                                ["idManufacturer"]: input.brand,
-                                ["idOrigin"]: input.origin,
+                                ["discount"]: input.promotional,
+                                ["state"]: input.status,
+                                ["category"]: input.nameCategory,
+                                ["uniti"]: input.nameUnit,
+                                ["brand"]: input.nameManufacturer,
+                                ["origin"]: input.nameOrigin,
                             }}
                         >
-                            <Row gutter={16}>
-                                <Col span={9}></Col>
-                                <Col span={9}></Col>
-                                <Col span={9}></Col>
-                            </Row>
                             <Row gutter={16}>
                                 <Col span={12}>
                                     <Form.Item
@@ -186,11 +144,11 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                             onChange={(e) => setCategory(e)}
                                         >
                                             <OptGroup label='Danh mục sản phẩm'>
-                                                <Option value='1'>
-                                                    Hàng tiêu dùng
+                                                <Option value='Thiết bị gia dụng'>
+                                                    Thiết bị gia dụng
                                                 </Option>
-                                                <Option value='2'>
-                                                    Gia dụng nhà bếp
+                                                <Option value='Nhà cửa đời sống'>
+                                                    Nhà cửa đời sống
                                                 </Option>
                                             </OptGroup>
                                         </Select>
@@ -239,8 +197,10 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                     >
                                         <Select onChange={(e) => setBrand(e)}>
                                             <OptGroup label='Thương hiệu sản phẩm'>
-                                                <Option value='1'>Sony</Option>
-                                                <Option value='2'>
+                                                <Option value='Sony'>
+                                                    Sony
+                                                </Option>
+                                                <Option value='Xiaomi'>
                                                     Xiaomi
                                                 </Option>
                                             </OptGroup>
@@ -261,10 +221,10 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                     >
                                         <Select onChange={(e) => setOrigin(e)}>
                                             <OptGroup label='Xuất xứ'>
-                                                <Option value='1'>
+                                                <Option value='Việt Nam'>
                                                     Việt Nam
                                                 </Option>
-                                                <Option value='2'>
+                                                <Option value='Trung Quốc'>
                                                     Trung Quốc
                                                 </Option>
                                             </OptGroup>
@@ -273,65 +233,7 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                 </Col>
                             </Row>
                             <Row gutter={16}>
-                                <Col span={7}>
-                                    <Form.Item
-                                        name='uniti'
-                                        label='Chọn đơn vị tính'
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    "Bạn chưa chọn đơn vị tính",
-                                            },
-                                        ]}
-                                    >
-                                        <Select
-                                            style={{ width: 250 }}
-                                            onChange={onChangeUnit}
-                                        >
-                                            <OptGroup label='Đơn vị tính'>
-                                                <Option value='1'>Chiếc</Option>
-                                                <Option value='2'>Thùng</Option>
-                                            </OptGroup>
-                                        </Select>
-                                    </Form.Item>
-                                </Col>
-
-                                <Col span={6}>
-                                    <Form.Item
-                                        name='quantityUniti'
-                                        label='Số lượng'
-                                    >
-                                        <Input
-                                            disabled={disable}
-                                            // placeholder='00000000000000000000000000'
-                                            allowClear
-                                            onChange={handChangeQuantityUniti}
-                                        />
-                                    </Form.Item>
-                                </Col>
-
-                                <Col span={5}>
-                                    <Form.Item
-                                        name='unitSL'
-                                        label='Số lượng / đơn vị'
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    "Số lượng / đơn vị không dược để trống",
-                                            },
-                                        ]}
-                                    >
-                                        <Input
-                                            placeholder='00000000000000'
-                                            allowClear
-                                            onChange={handChangeQuantity}
-                                        />
-                                    </Form.Item>
-                                </Col>
-
-                                <Col span={6}>
+                                <Col span={8}>
                                     <Form.Item
                                         name='quantity'
                                         label='Số lượng sản phẩm'
@@ -341,33 +243,12 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                             // onChange={(quantity) =>
                                             //     console.log(quantity)
                                             // }
-                                            disabled
+                                            // disabled
                                             allowClear
                                         />
                                     </Form.Item>
                                 </Col>
-                            </Row>
-                            <Row gutter={16}>
-                                <Col span={12}>
-                                    <Form.Item
-                                        name='nameImage'
-                                        label='Hình ảnh sản phẩm'
-                                    >
-                                        <Upload
-                                            action={`http://localhost:8080/api/upload/image/product`}
-                                            listType='picture'
-                                            fileList={fileList}
-                                            onChange={onChange}
-                                            name='photo'
-                                        >
-                                            {fileList.length < 1 &&
-                                                "+ Chọn ảnh"}
-                                        </Upload>
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                            <Row gutter={19}>
-                                <Col span={20}>
+                                <Col span={8}>
                                     <Form.Item
                                         name='state'
                                         label='Trạng thái'
@@ -391,9 +272,10 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                     </Form.Item>
                                 </Col>
                             </Row>
+
                             <Form.Item wrapperCol={{ offset: 20, span: 16 }}>
                                 <Button type='primary' htmlType='submit'>
-                                    Đăng ký
+                                    Cập nhật
                                 </Button>
                             </Form.Item>
                         </Form>

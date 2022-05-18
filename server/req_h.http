@@ -26,13 +26,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvb
 }
 
 ###########################
-PUT http://localhost:8080/api/product/updateproduct/3
+PUT http://localhost:8080/api/product/updateproduct/7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTI3NzQ5MDMsImV4cCI6MTY1Mjg2MTMwM30.3SC_GpMhN81HKtqDaQ7462iAcla4wCxkGo3o18bNzxw
 
 {
-    "nameproduct":"ô dù",
-    "phone":"1234",
-    "address":"TH",
-    "mail":"a@gmail.com"
+    "nameProduct" : "Máy sấy tóc",
+    "description" : "Đây là máy sấy",
+    "warranty" : "6",
+    "quantity" : "300",
+    "promotional" : "10",
+    "price" : "20000000",
+    "status" : "Còn hàng",
+    "nameCategory" : "Nhà cửa đời sống",
+    "nameUnit" : "Thùng",
+    "nameBrand" : "Sony",
+    "nameOrigin" : "Việt Nam"
 }

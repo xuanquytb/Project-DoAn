@@ -54,6 +54,20 @@ const find_by_Id = (id) => {
     });
 };
 
+const find_view_by_Id = (id) => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `SELECT * FROM productview where id = '${id}'`,
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements[0]);
+            }
+        );
+    });
+};
+
 const delete_By_Id = (id) => {
     return new Promise((resolve, reject) => {
         dbConn.query(
@@ -86,10 +100,21 @@ const InsertProduct = function (productNew) {
     });
 };
 
-const UpdateProduct = function (productUpdate, id) {
+const UpdateProduct = function (productUpdate) {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `Update product SET nameProduct = '${productUpdate.nameProduct}', description = '${productUpdate.description}', warranty = '${productUpdate.warranty}' , quantity = '${productUpdate.quantity}', promotional = '${productUpdate.promotional}', status = '${productUpdate.status}' , image = '${productUpdate.image}'  , idCategory = '${productUpdate.idCategory}', idUnit = '${productUpdate.idUnit}', idManufacturer = '${productUpdate.idManufacturer}' , idOrigin = '${productUpdate.idOrigin}' WHERE (id = '${id}')`,
+            `call updateProduct(
+                 ${productUpdate.id},
+                '${productUpdate.nameProduct}',
+                '${productUpdate.description}',
+                "${productUpdate.warranty}",
+                "${productUpdate.quantity}",
+                ${productUpdate.promotional},
+                ${productUpdate.price},
+                "${productUpdate.status}",
+                "${productUpdate.nameCategory}",
+                "${productUpdate.nameBrand}",
+                "${productUpdate.nameOrigin}");`,
             (err, element) => {
                 if (err) {
                     return reject(err);
@@ -108,5 +133,6 @@ module.exports = {
     delete_By_Id,
     InsertProduct,
     UpdateProduct,
+    find_view_by_Id,
     Product,
 };

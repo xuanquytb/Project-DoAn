@@ -13,6 +13,7 @@ const {
     delete_By_Id,
     InsertProduct,
     UpdateProduct,
+    find_view_by_Id,
     Product,
 } = require("../models/product");
 const { find_Emp_by_name_row } = require("../models/Employee");
@@ -71,6 +72,31 @@ Router.delete("/:id", verifyToken, async (req, res) => {
     }
 });
 
+Router.get("/findproduct/:id", verifyToken, async (req, res) => {
+    console.log(req.params.id);
+    const result = await find_Emp_by_name_row("id", req.userId);
+    if (result) {
+        try {
+            const products = await find_view_by_Id(req.params.id);
+            if (!products) {
+                return res
+                    .status(202)
+                    .json({ success: false, message: "Product not found" });
+            } else {
+                return res.status(200).json({ success: true, products });
+            }
+        } catch (error) {
+            return res
+                .status(500)
+                .json({ success: false, message: "Server Error" });
+        }
+    } else {
+        return res.status(405).json({
+            success: false,
+            message: "Tài khoản không tồn tại",
+        });
+    }
+});
 Router.get("/allProduct", verifyToken, async (req, res) => {
     const result = await find_Emp_by_name_row("id", req.userId);
     if (result) {
@@ -194,12 +220,11 @@ Router.put("/updateProduct/:id", verifyToken, async (req, res) => {
             warranty,
             quantity,
             promotional,
+            price,
             status,
-            image,
-            idCategory,
-            idUnit,
-            idManufacturer,
-            idOrigin,
+            nameCategory,
+            nameBrand,
+            nameOrigin,
         } = req.body;
         if (
             !nameProduct ||
@@ -207,63 +232,52 @@ Router.put("/updateProduct/:id", verifyToken, async (req, res) => {
             !warranty ||
             !quantity ||
             !promotional ||
+            !price ||
             !status ||
-            !image ||
-            !idCategory ||
-            !idUnit ||
-            !idManufacturer ||
-            !idOrigin
+            !nameCategory ||
+            !nameBrand ||
+            !nameOrigin
         ) {
             res.status(400).json({
                 success: true,
                 message: "Nhập thiếu thông tin",
             });
         } else {
-            const nameProductRe = await find_by_name_row_product(
-                "nameProduct",
-                nameProduct
-            );
-            if (nameProductRe.length > 0) {
-                res.status(400).json({
-                    success: false,
-                    message: "Tên Sản phẩm đã được sử dụng",
-                });
-            } else {
-                try {
-                    const newProductItem = new Product({
-                        nameProduct,
-                        image,
-                        description,
+            try {
+                const updateProductItem = {
+                    id: req.params.id,
+                    nameProduct,
+                    description,
+                    warranty: warranty.split(" ")[0],
+                    quantity,
+                    promotional,
+                    price,
+                    status,
+                    nameCategory,
+                    nameBrand,
+                    nameOrigin,
+                };
+                const updateProductRe = await UpdateProduct(updateProductItem);
+                const products = await find_all_Product();
+                if (updateProductRe.affectedRows > 0) {
+                    res.status(200).json({
+                        success: true,
+                        message: "Cập nhật thành công",
+                        products: products,
                     });
-                    const newProductRe = await UpdateProduct(
-                        newProductItem,
-                        req.params.id
-                    );
-                    if (newProductRe) {
-                        res.status(200).json({
-                            success: true,
-                            message: "Cập nhật thành công",
-                            nameProduct: nameProduct,
-                        });
-                    } else {
-                        res.status(400).json({
-                            success: false,
-                            message: "Cập nhật thất bại",
-                        });
-                    }
-                } catch (error) {
+                } else {
                     res.status(400).json({
                         success: false,
-                        message: "Xảy ra lỗi : " + error,
+                        message: "Cập nhật thất bại",
                     });
                 }
+            } catch (error) {
+                res.status(400).json({
+                    success: false,
+                    message: "Xảy ra lỗi : " + error,
+                });
             }
         }
-    } else {
-        return res.status(405).json({
-            success: false,
-            message: "Tài khoản không được cấp phép",
-        });
     }
 });
 
