@@ -2,10 +2,12 @@
   /* Set dropdown font-families */
 .ql-container.ql-snow {
     min-height: 450px;
+    min-width: 1039px
 }
 
 .ql-editor.ql-blank {
     min-height: 450px;
+    min-width: 1039px
 }
 
 
