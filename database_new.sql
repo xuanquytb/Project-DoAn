@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `webthaotran` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `webthaotran`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: webthaotran
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.29
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +55,7 @@ CREATE TABLE `category` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nameCategory` (`nameCategory`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +64,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Nhà cửa đời sống','default.png','Bao gồm các sản phẩm xung quanh đời sống'),(2,'Thiết bị gia dụng','default.png','default.jpg'),(3,'Thiết bị nhà bếp','default.png','default.jpg'),(4,'Balo & Túi ví','image-1652503330139.jpeg','default.jpg'),(5,'Test ngành hàng','image-1652522272332.png','456464');
+INSERT INTO `category` VALUES (1,'Nhà cửa đời sống','image-1652933564161.png','Bao gồm các sản phẩm xung quanh đời sống'),(17,'Ba lô & ví nam','image-1652933726254.png','Bao gồm các sản phẩm xung quanh ba lô, ví nam'),(18,'Bách hóa online','image-1652933820373.png','Bao gồm các sản phẩm xung quanh bách hóa online '),(19,'Chăm sóc thú cưng','image-1652933885022.png','Bao gồm các sản phẩm xung quanh chăm sóc thú cưng'),(20,'Điện thoại','image-1652934590551.png','Bao gồm các sản phẩm xung quanh điện thoại'),(21,'Đồ chơi','image-1652934604980.png','Bao gồm các sản phẩm xung quanh đồ chơi'),(22,'Đồng hồ','image-1652934618277.png','Bao gồm các sản phẩm xung quanh đồng hồ'),(23,'Giặt giũ & chăm sóc nhà cửa','image-1652934637867.png','Bao gồm các sản phẩm xung quanh giặt giũ & chăm sóc nhà cửa'),(24,'Giày dép nữ','image-1652934658999.png','Bao gồm các sản phẩm xung quanh giày dép nữ'),(25,'Giày nam','image-1652934675001.png','Bao gồm các sản phẩm xung quanh giày nam'),(26,'Máy ảnh','image-1652934693040.png','Bao gồm các sản phẩm xung quanh máy ảnh'),(27,'Máy tính','image-1652934708164.png','Bao gồm các sản phẩm xung quanh máy tính'),(28,'Mẹ và bé','image-1652934726386.png','Bao gồm các sản phẩm xung quanh mẹ và bé'),(29,'Nhà sách online','image-1652934746463.png','Bao gồm các sản phẩm xung quanh nhà sách online'),(30,'Ô tô & xe máy','image-1652934764777.png','Bao gồm các sản phẩm xung quanh ô tô xe máy'),(31,'Phụ kiện trang sức nữ','image-1652934787459.png','Bao gồm các sản phẩm xung quanh phụ kiện trang sức nữ'),(32,'Sắc đẹp','image-1652934802442.png','Bao gồm các sản phẩm xung quanh sắc đẹp'),(33,'Sức khỏe','image-1652934818523.png','Bao gồm các sản phẩm xung quanh sức khỏe'),(34,'Thể thao','image-1652934837544.png','Bao gồm các sản phẩm xung quanh thể thao'),(35,'Thiết bị điện tử','image-1652934853854.png','Bao gồm các sản phẩm xung quanh thiết bị điện tử'),(36,'Thiết bị gia dụng','image-1652934871168.png','Bao gồm các sản phẩm xung quanh thiết bị gia dụng'),(37,'Thời trang nam','image-1652934888840.png','Bao gồm các sản phẩm xung quanh thời trang nam'),(38,'Thời trang nữ','image-1652934903324.png','Bao gồm các sản phẩm xung quanh thời trang nữ'),(39,'Thời trang trẻ em','image-1652934917904.png','Bao gồm các sản phẩm xung quanh thời trang trẻ em'),(40,'Túi ví nữ','image-1652934931188.png','Bao gồm các sản phẩm xung quanh túi ví nữ');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,66 +399,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (4,'Xuân Quý','client1','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc','Nam','1999-03-23','vuxuanquynnn@gmail.com','08686038251','TAY SON KIEN XUONG THAI BINH',1,0,0,2,'2022-04-30 10:09:05','image-1651593261305.png'),(6,'Đặng Thị Hải Nhật','client2','$argon2i$v=19$m=4096,t=3,p=1$6nTvgfF4PQsnl3a3pCgGnQ$R6O/IL8ee/KyuNu970+wqvnyqPmkdWFOHKjCI41cmtA','Nữ','1999-02-27','dangthihainhat@gmail.com','0868603899','Lê lợi kiến xương thái bình',1,0,0,2,'2022-05-07 12:53:26','image-1651947644341.jpeg'),(7,'Vũ Xuân Quý','vuxuanquy','$argon2i$v=19$m=4096,t=3,p=1$KyroShpIMij5EAZ9C4F3Tg$CnnRcEIrkZYvRJft6+43igixk8t2K7i/PTP6zFI2atY','Nam','1999-03-23','xuanquy@gmail.com','08686038255','Tây Sơn Kiến Xương Thái Bình',1,0,0,1,'2022-05-08 00:32:21','image-1651947944713.jpeg'),(8,'Đặng Thị Hải Nhật','hainhat','$argon2i$v=19$m=4096,t=3,p=1$rhL1s0uoouHr6yvHC/9saw$57QJK6fxlrlvmhZQPFJkBIh8cXzghHONe2yAhboGOgI','Nữ','1999-02-27','hainhat@gmail.com','096952342444','Lê Lợi Kiến Xương Thái Bình',1,0,0,1,'2022-05-08 00:38:38','image-1651947369333.jpeg'),(9,'employee1','employee1','$argon2i$v=19$m=4096,t=3,p=1$MTVf/LtgbjAejN+/ynLdfg$P9DzEi4XdWHAO/zfSR7mwmwikm6Txschq3tgZZelYIg','Nam','2002-05-09','employee@gmail.com','05466546489','Tiền Hải Kiến Xương Thái Bình',1,0,0,3,'2022-05-08 00:43:15','image-1651948101276.jpeg'),(27,'Vũ Hồng Sơn','hongson','$argon2i$v=19$m=4096,t=3,p=1$ZO/bQZaiKoiBKZk7rzfMJQ$bqCrkBpoBGKzKbnO//mJ2YVT0yAWbzDA3Bix9COkTDs','Nam','2003-02-14','vuhongson@gmail.com','08686038256','TAY SON KIEN XUONG THAI BINH',1,0,0,1,'2022-05-08 10:58:28','image-1652597921339.png'),(43,'uuu','aaa','$argon2i$v=19$m=4096,t=3,p=1$KUsIPHufy8mJhq6Q3tXhJQ$rnskp7h6GaD08wwluXTHBkp+jvO/wSiB+i05Si+tIgM','Nam','2022-06-03','uuuuu','uuuuu','jjjjj',1,0,0,3,'2022-05-14 11:26:37','default.png');
+INSERT INTO `user` VALUES (4,'Xuân Quý','client1','$argon2i$v=19$m=4096,t=3,p=1$xYRpGl/tsSZH6i4ZCpRGAA$To6xuKEJQRT4c3z55PPlW5uXug7xNQHpBEf5Qg9qcRc','Nam','1999-03-23','vuxuanquynnn@gmail.com','08686038251','TAY SON KIEN XUONG THAI BINH',1,0,0,2,'2022-04-30 10:09:05','image-1651593261305.png'),(6,'Đặng Thị Hải Nhật','client2','$argon2i$v=19$m=4096,t=3,p=1$6nTvgfF4PQsnl3a3pCgGnQ$R6O/IL8ee/KyuNu970+wqvnyqPmkdWFOHKjCI41cmtA','Nữ','1999-02-27','dangthihainhat@gmail.com','0868603899','Lê lợi kiến xương thái bình',1,0,0,2,'2022-05-07 12:53:26','image-1651947644341.jpeg'),(7,'Vũ Xuân Quý','vuxuanquy','$argon2i$v=19$m=4096,t=3,p=1$KyroShpIMij5EAZ9C4F3Tg$CnnRcEIrkZYvRJft6+43igixk8t2K7i/PTP6zFI2atY','Nam','1999-03-23','xuanquy@gmail.com','08686038255','Tây Sơn Kiến Xương Thái Bình',1,0,0,1,'2022-05-08 00:32:21','image-1651947944713.jpeg'),(8,'Đặng Thị Hải Nhật','hainhat','$argon2i$v=19$m=4096,t=3,p=1$rhL1s0uoouHr6yvHC/9saw$57QJK6fxlrlvmhZQPFJkBIh8cXzghHONe2yAhboGOgI','Nữ','1999-02-27','hainhat@gmail.com','096952342444','Lê Lợi Kiến Xương Thái Bình',1,0,0,1,'2022-05-08 00:38:38','image-1651947369333.jpeg'),(9,'employee1','employee1','$argon2i$v=19$m=4096,t=3,p=1$MTVf/LtgbjAejN+/ynLdfg$P9DzEi4XdWHAO/zfSR7mwmwikm6Txschq3tgZZelYIg','Nam','2002-05-09','employee@gmail.com','05466546489','Tiền Hải Kiến Xương Thái Bình',1,0,0,3,'2022-05-08 00:43:15','image-1651948101276.jpeg'),(27,'Vũ Hồng Sơn','admin','$argon2i$v=19$m=4096,t=3,p=1$ZO/bQZaiKoiBKZk7rzfMJQ$bqCrkBpoBGKzKbnO//mJ2YVT0yAWbzDA3Bix9COkTDs','Nam','2003-02-14','vuhongson@gmail.com','08686038256','TAY SON KIEN XUONG THAI BINH',1,0,0,1,'2022-05-08 10:58:28','image-1652597921339.png'),(43,'admin','quochuy','$argon2i$v=19$m=4096,t=3,p=1$KUsIPHufy8mJhq6Q3tXhJQ$rnskp7h6GaD08wwluXTHBkp+jvO/wSiB+i05Si+tIgM','Nam','2022-06-03','admin@gmail.com','123','Hai phong',1,0,0,3,'2022-05-14 11:26:37','default.png');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'webthaotran'
---
-
---
--- Dumping routines for database 'webthaotran'
---
-/*!50003 DROP PROCEDURE IF EXISTS `updateProduct` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProduct`(
-IN fid INT,
-IN fnameProduct VARCHAR(200),
-IN fdescription TEXT,
-IN fwarranty INT,
-IN fquantity INT, 
-IN fpromotional DOUBLE, 
-IN fprice DOUBLE,
-IN fstatus TEXT,
-IN fidCategory nvarchar(200),
-IN fnameManufacturer nvarchar(200),
-IN forigin nvarchar(200)
-)
-BEGIN
-	declare idManu int;
-    declare idOri int;
-    declare idCategory int;
-    declare idUnit int;
-	select id INTO idManu from manufacturer where nameManufacturer like fnameManufacturer;
-    select id INTO idOri from origin where nameOrigin like forigin;
-    select id INTO idCategory from category where nameCategory like fidCategory;
-
-    Update product SET 
-    nameProduct = fnameProduct, 
-    description = fdescription, 
-    warranty = fwarranty , 
-    quantity = fquantity,
-    price = fprice,
-    promotional = fpromotional, 
-    status = fstatus , 
-    idCategory = idCategory, 
-    idManufacturer = idManu , 
-    idOrigin = idOri WHERE (id = fid);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Final view structure for view `productview`
@@ -489,4 +430,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-18  9:57:37
+-- Dump completed on 2022-05-19 11:43:20
