@@ -11,6 +11,7 @@ import ProductContextProvider from "./Store/Context/ProductContext";
 import CategoryContextProvider from "./Store/Context/CategoryContext";
 import BrandContextProvider from "./Store/Context/BrandContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";
+import Category from "./Components/layout/Page/Category";
 
 function App() {
     return (
@@ -102,6 +103,11 @@ function App() {
                                         exact
                                         path='/comment'
                                         component={Dashboard}
+                                    />
+                                    <ProtectedRoute
+                                        exact
+                                        path='/category-user'
+                                        component={Category}
                                     />
                                     <Route path='/notfound' />
                                 </Switch>
