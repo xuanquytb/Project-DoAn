@@ -7,7 +7,6 @@ import { Layout, Menu, Input, Button } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AuthDashboard from "../../view/AuthDashboard";
-import Category from "../Admin/Category/Category";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 import {

@@ -30,10 +30,6 @@ export const modules = {
         [{ script: "sub" }, { script: "super" }], // superscript/subscript
         [{ color: [] }, { background: [] }], // dropdown with defaults from theme
     ],
-    clipboard: {
-        // toggle to add extra line breaks when pasting HTML:
-        matchVisual: false,
-    },
 };
 
 // Formats objects for setting up the Quill editor

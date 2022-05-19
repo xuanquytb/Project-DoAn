@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { modules, formats } from "./Editor/EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./Editor/style.css";
+import { CategoryContext } from "../../../../../Store/Context/CategoryContext";
+import { BrandContext } from "../../../../../Store/Context/BrandContext";
 
 import {
     Modal,
@@ -23,6 +25,17 @@ const { TabPane } = Tabs;
 const { Option, OptGroup } = Select;
 
 const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
+    const {
+        categoryState: { categorys },
+        getCategory,
+    } = useContext(CategoryContext);
+    useEffect(() => getCategory(), []);
+    const {
+        brandState: { brands },
+        getBrand,
+    } = useContext(BrandContext);
+    useEffect(() => getBrand(), []);
+
     const [state, setState] = useState({ value: "" });
 
     const [quantityUnit, setQuantityUnit] = useState(1);
@@ -62,7 +75,6 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
             idManufacturer: brand,
             idOrigin: origin,
         };
-        // console.log(productCreate);
         handleRegister(productCreate);
     };
 
@@ -98,7 +110,6 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
             setDisable(false);
         }
     };
-
     return (
         <>
             <Modal
@@ -183,14 +194,16 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                         <Select
                                             onChange={(e) => setCategory(e)}
                                         >
-                                            <OptGroup label='Danh mục sản phẩm'>
-                                                <Option value='1'>
-                                                    Hàng tiêu dùng
-                                                </Option>
-                                                <Option value='2'>
-                                                    Gia dụng nhà bếp
-                                                </Option>
-                                            </OptGroup>
+                                            {categorys.map((item, index) => {
+                                                return (
+                                                    <Select.Option
+                                                        key={item.id}
+                                                        value={item.id}
+                                                    >
+                                                        {item.nameCategory}
+                                                    </Select.Option>
+                                                );
+                                            })}
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -236,12 +249,16 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                         ]}
                                     >
                                         <Select onChange={(e) => setBrand(e)}>
-                                            <OptGroup label='Thương hiệu sản phẩm'>
-                                                <Option value='1'>Sony</Option>
-                                                <Option value='2'>
-                                                    Xiaomi
-                                                </Option>
-                                            </OptGroup>
+                                            {brands.map((item, index) => {
+                                                return (
+                                                    <Select.Option
+                                                        key={item.id}
+                                                        value={item.id}
+                                                    >
+                                                        {item.nameManufacturer}
+                                                    </Select.Option>
+                                                );
+                                            })}
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -302,7 +319,6 @@ const ShowModalProduct = ({ visible, onClose, handleRegister }) => {
                                     >
                                         <Input
                                             disabled={disable}
-                                            // placeholder='00000000000000000000000000'
                                             allowClear
                                             onChange={handChangeQuantityUniti}
                                         />

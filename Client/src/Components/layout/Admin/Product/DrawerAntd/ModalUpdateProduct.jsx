@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ReactQuill from "react-quill";
 import { modules, formats } from "./Editor/EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./Editor/style.css";
+import { CategoryContext } from "../../../../../Store/Context/CategoryContext";
+import { BrandContext } from "../../../../../Store/Context/BrandContext";
 
 import {
     Modal,
@@ -22,6 +24,21 @@ const { Option, OptGroup } = Select;
 
 const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
     console.log(input);
+    const {
+        categoryState: { categorys },
+        getCategory,
+    } = useContext(CategoryContext);
+    useEffect(() => getCategory(), []);
+    const {
+        brandState: { brands },
+        getBrand,
+    } = useContext(BrandContext);
+    useEffect(() => getBrand(), []);
+
+    useEffect(() => {
+        setState({ value: input.description });
+    }, [input]);
+
     const [state, setState] = useState({ value: input.description });
     const [quantityUnit, setQuantityUnit] = useState(1);
     const [disable, setDisable] = useState(true);
@@ -143,14 +160,16 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                         <Select
                                             onChange={(e) => setCategory(e)}
                                         >
-                                            <OptGroup label='Danh mục sản phẩm'>
-                                                <Option value='Thiết bị gia dụng'>
-                                                    Thiết bị gia dụng
-                                                </Option>
-                                                <Option value='Nhà cửa đời sống'>
-                                                    Nhà cửa đời sống
-                                                </Option>
-                                            </OptGroup>
+                                            {categorys.map((item, index) => {
+                                                return (
+                                                    <Select.Option
+                                                        key={item.id}
+                                                        value={item.id}
+                                                    >
+                                                        {item.nameCategory}
+                                                    </Select.Option>
+                                                );
+                                            })}
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -196,14 +215,16 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                         ]}
                                     >
                                         <Select onChange={(e) => setBrand(e)}>
-                                            <OptGroup label='Thương hiệu sản phẩm'>
-                                                <Option value='Sony'>
-                                                    Sony
-                                                </Option>
-                                                <Option value='Xiaomi'>
-                                                    Xiaomi
-                                                </Option>
-                                            </OptGroup>
+                                            {brands.map((item, index) => {
+                                                return (
+                                                    <Select.Option
+                                                        key={item.id}
+                                                        value={item.id}
+                                                    >
+                                                        {item.nameManufacturer}
+                                                    </Select.Option>
+                                                );
+                                            })}
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -288,7 +309,9 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
                                 theme='snow'
                                 value={state.value}
                                 onChange={handleChange}
-                                placeholder={"Write something awesome..."}
+                                placeholder={
+                                    "Nhập nội dung sản phẩm tại đây..."
+                                }
                                 modules={modules}
                                 formats={formats}
                             />

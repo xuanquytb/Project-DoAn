@@ -20,7 +20,6 @@ const BrandContextProvider = ({ children }) => {
             const response = await axios.get(
                 `${apiUrl}/manufacturer/allManufacturer`
             );
-            console.log(response);
             if (response.data.success) {
                 dispatch({
                     type: BRAND_LOADED_SUCCESS,

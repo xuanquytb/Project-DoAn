@@ -18,7 +18,6 @@ const CategoryContextProvider = ({ children }) => {
     const getCategory = async () => {
         try {
             const response = await axios.get(`${apiUrl}/category/allCategory`);
-            console.log(response);
             if (response.data.success) {
                 dispatch({
                     type: CATEGORY_LOADED_SUCCESS,

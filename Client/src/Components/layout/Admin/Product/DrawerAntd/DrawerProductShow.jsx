@@ -4,7 +4,6 @@ import { Drawer, Descriptions, Badge, Image } from "antd";
 import HTMLReactParser from "html-react-parser";
 
 const ShowDrawer = ({ input, visible, onClose }) => {
-    console.log(input);
     return (
         <Drawer
             destroyOnClose

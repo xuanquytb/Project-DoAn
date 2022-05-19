@@ -73,7 +73,6 @@ Router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 Router.get("/findproduct/:id", verifyToken, async (req, res) => {
-    console.log(req.params.id);
     const result = await find_Emp_by_name_row("id", req.userId);
     if (result) {
         try {

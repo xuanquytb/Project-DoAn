@@ -53,7 +53,6 @@ const delete_By_Id = (id) => {
                 if (error) {
                     return reject(error);
                 } else {
-                    console.log(elements);
                     return resolve(elements.affectedRows);
                 }
             }

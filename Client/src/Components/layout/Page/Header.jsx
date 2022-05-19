@@ -47,7 +47,7 @@ const Header = () => {
                         <div>
                             {" "}
                             <img
-                                src='../../../../image/header/tiki__logo.png'
+                                src='../../../../image/header/TN__logo.png'
                                 alt=''
                                 className='mobile__logo-tiki'
                             />{" "}

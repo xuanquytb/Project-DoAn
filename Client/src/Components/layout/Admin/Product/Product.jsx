@@ -55,7 +55,24 @@ const ProductContent = () => {
 
     const handleCrate = async (product) => {
         const result = await createProduct(product);
-        console.log(result);
+        if (result) {
+            getProduct();
+            notification.open({
+                className: "custom-class",
+                description: "Thêm thành công",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+        } else {
+            notification.open({
+                description: "Thêm thất bại",
+                className: "custom-class",
+                style: {
+                    width: 350,
+                    backgroundColor: "#fff2f0",
+                },
+                type: "error",
+            });
+        }
     };
 
     const handleUpdate = async (record) => {

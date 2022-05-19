@@ -248,7 +248,6 @@ Router.post("/createAdmin", async (req, res) => {
         nameAvata,
         dateOfBirth,
     } = req.body;
-    console.log(req.body);
     if (
         !username ||
         !password ||
@@ -352,7 +351,6 @@ Router.post("/createEmloyee", async (req, res) => {
         dateOfBirth,
         nameAvata,
     } = req.body;
-    console.log(req.body);
     if (
         !username ||
         !password ||
