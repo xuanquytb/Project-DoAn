@@ -4,6 +4,9 @@ import { Modal, Button, InputNumber, Radio, Descriptions } from "antd";
 import { Layout } from "antd";
 const { Content } = Layout;
 import { Image } from "antd";
+import { Card } from "antd";
+
+const { Meta } = Card;
 import "../../Style/detailProduct.css";
 import ModalProduct from "./viewAntd/modalProduct";
 import { ProductContext } from "../../../Store/Context/ProductContext";
@@ -114,7 +117,12 @@ const Container = () => {
               <div className="row no-gutters content__active">
                 {products.map((item) => {
                   return (
-                    <div className="col l-2 c-6 m-4" onClick={showModal}>
+                    <Card
+                      style={{ padding: 0 }}
+                      className="col l-2 c-6 m-4"
+                      onClick={(e) => showModal(e)}
+                      type="text"
+                    >
                       <div className="content__body-item">
                         <img
                           src="../../../image/content/image1.png"
@@ -147,7 +155,7 @@ const Container = () => {
                           />
                         </div>
                       </div>
-                    </div>
+                    </Card>
                   );
                 })}
 

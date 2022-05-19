@@ -1354,3 +1354,7 @@ th, td {
   overflow: hidden;
   border-radius: 50%;
 }
+
+.ant-card-body {
+  padding: 0px;
+}
