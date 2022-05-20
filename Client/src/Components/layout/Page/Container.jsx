@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import { Modal, Button, InputNumber, Radio, Descriptions } from "antd";
 import { Layout } from "antd";
 const { Content } = Layout;
-import { Image } from "antd";
+
 import { Card } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 
 const { Meta } = Card;
 import "../../Style/detailProduct.css";
@@ -13,17 +18,21 @@ import { ProductContext } from "../../../Store/Context/ProductContext";
 
 const Container = () => {
   const [visible, setVisible] = useState(false);
-  const showModal = (e) => {
-    e.preventDefault();
-    console.log(e);
-    setVisible(true);
-  };
+  const [product, setProduct] = useState();
 
   const {
     productState: { products },
     getProduct,
   } = useContext(ProductContext);
   useEffect(() => getProduct(), []);
+  console.log(products);
+
+  const showModal = async (e, id) => {
+    e.preventDefault();
+
+    await setProduct(id);
+    setVisible(true);
+  };
   return (
     <>
       <div className="main">
@@ -120,12 +129,18 @@ const Container = () => {
                     <Card
                       style={{ padding: 0 }}
                       className="col l-2 c-6 m-4"
-                      onClick={(e) => showModal(e)}
                       type="text"
+                      key={item.id}
+                      onClick={(event) => showModal(event, item.id)}
+                      // actions={[
+                      //   <SettingOutlined key="setting" />,
+                      //   <EditOutlined key="edit" />,
+                      //   <EllipsisOutlined key="ellipsis" />,
+                      // ]}
                     >
                       <div className="content__body-item">
                         <img
-                          src="../../../image/content/image1.png"
+                          src={`http://localhost:8080/image/procuct/${item.image}`}
                           alt=""
                           className="content__body-img"
                         />
@@ -162,6 +177,7 @@ const Container = () => {
                 <ModalProduct
                   visible={visible}
                   onClose={() => setVisible(false)}
+                  product={product}
                 />
               </div>
               <div className="content__show">

@@ -869,6 +869,9 @@ span.user__name {
   cursor: pointer;
 }
 .content__body-img {
+  margin-top: 10px;
+  min-width: 190px;
+  min-height: 190px;
   width: 100%;
 }
 .info__name {
