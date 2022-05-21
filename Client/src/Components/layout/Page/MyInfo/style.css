@@ -1,0 +1,235 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --contain-radius: 24px;
+}
+
+#my-info {
+    padding-top: 50px;
+    position: relative;
+    z-index: 9;
+}
+
+/* Golbal */
+
+.contain {
+    border-radius: var(--contain-radius);
+    padding: 30px;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+}
+.contain-body {
+    border-radius: var(--contain-radius);
+    padding: 30px;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    min-height: 100vh;
+    margin-top: 15px;
+}
+
+/* HEADER */
+
+.body-myinfo{
+    background: linear-gradient(45deg, #6f86d6, #89f7fe);
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 100vh;
+}
+
+
+.header__left {
+    display: flex;
+    
+    flex-basis: 50%;
+}
+
+
+.header__left .avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: var(--contain-radius);
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+/* left */
+.header__left .left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 24px;
+    border-right: 1.5px solid #bcbcbc;
+}
+
+.header__left .left .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+.header__left .left .username {
+    font-size: 25px;
+}
+
+/* right */
+.header__left .right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 24px;
+}
+
+.header__left .right .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+.header__left .right .username {
+    font-size: 25px;
+}
+.header__left .right .email {
+    font-size: 25px;
+}
+.header__left .right .phone {
+    font-size: 25px;
+}
+.header__left .right .dateOfBirth {
+    font-size: 25px;
+}
+
+
+/*Animation*/
+.shape {
+    position: absolute;
+}
+
+.circle {
+    width: 120px;
+    height: 120px;
+    background-color: #61c3ff;
+    border-radius: 50%;
+    top: 5%;
+    right: 20%;
+    animation: circle 17s linear infinite;
+}
+
+.square {
+    width: 120px;
+    height: 120px;
+    background-color: #3cd849a6;
+    transform: rotate(45deg);
+    top: 70%;
+    right: 50%;
+    animation: shape 20s linear infinite;
+}
+
+.rectangular {
+    width: 80px;
+    height: 120px;
+    background-color: #58ffb9a1;
+    transform: rotate(30deg);
+    top: 40%;
+    left: 10%;
+    animation: shape 20s linear infinite;
+    display: none;
+}
+
+.star {
+    top: 20%;
+    right: 70%;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 80px solid transparent;
+    border-bottom: 80px solid transparent;
+    border-bottom-color: rgb(158, 147, 253);
+    transform: rotate(0deg) translateY(-50%);
+    animation: shape-star 20s linear infinite;
+    /* display: none; */
+}
+
+.star::before,
+.star::after {
+    content: '';
+    position: absolute;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-bottom-color: inherit;
+    transform: translateX(-63%) translateY(-3%) rotate(-36deg);
+}
+
+.star::after {
+    transform: translateX(-37%) translateY(-3%) rotate(36deg);
+}
+
+.heart {
+    top: 50%;
+    right: 40%;
+    background-color: #d38d9b;
+    width: 90px;
+    height: 90px;
+    transform: rotate(-45deg);
+    animation: heart 10s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    top: -55%;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background-color: inherit;
+}
+
+.heart::after {
+    top: 0;
+    transform: rotate(90deg);
+    left: 55%;
+    background-color: inherit;
+}
+
+@keyframes shape {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shape-star {
+    from {
+        transform: rotate(0deg) translateY(-50%);
+    }
+    to {
+        transform: rotate(-360deg) translateY(-50%);
+    }
+}
+
+@keyframes circle {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes heart {
+    0% {
+        transform: rotate(-67deg) translate(50%, -50%)
+    }
+    50% {
+        transform: rotate(-22deg) translate(50%, -50%)
+    }
+    100% {
+        transform: rotate(-67deg) translate(50%, -50%)
+    }
+}
