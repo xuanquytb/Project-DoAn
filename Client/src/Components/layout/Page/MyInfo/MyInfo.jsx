@@ -48,7 +48,7 @@ const MyInfo = () => {
                 <div className="email">Email: {authState.user[0].email}</div>
                 <div className="phone">Phone: {authState.user[0].phone}</div>
                 <div className="phone">
-                  Ngày sinh: {authState.user[0].dateOfBirth.split("T")[0]}
+                  Ngày sinh: {"" || authState.user[0].dateOfBirth.split("T")[0]}
                 </div>
               </div>
             </div>
