@@ -66,7 +66,6 @@ Router.delete("/cardDetail/:id", verifyToken, async (req, res) => {
   try {
     const result = await find_card_Detail_by_Id(req.params.id);
     if (result.userid === req.userId) {
-      console.log("-----");
       const result = await delete_Card_Detail_By_Id(req.params.id);
       if (result != 1) {
         return res
@@ -94,7 +93,7 @@ Router.get("/allCard", verifyToken, async (req, res) => {
     if (card.length <= 0) {
       return res
         .status(202)
-        .json({ success: false, message: "Giỏ hàng trống" });
+        .json({ success: true, message: "Giỏ hàng trống", card });
     } else {
       return res.status(200).json({ success: true, card });
     }
