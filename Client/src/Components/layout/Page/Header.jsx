@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { Button } from "antd";
@@ -9,19 +9,19 @@ import "../Page/style/Header.css";
 
 const Header = () => {
   const { authState, logout } = useContext(AuthContext);
-  const [countProduct, setCountProduct] = useState(0);
-  // const [card, setCard] = useState([]);
+  const [card, setCard] = useState([]);
 
   const {
     cardState: { cards },
     getCard,
   } = useContext(CardContext);
-  useEffect(() => {
-    getCard();
-    // setCountProduct(cards[0].length);
-  }, []);
 
-  console.log(cards);
+  useEffect(async () => {
+    await getCard();
+  }, []);
+  useEffect(async () => {
+    setCard(cards);
+  }, [cards]);
 
   const history = useHistory();
   const logoutHan = async (e) => {
@@ -102,7 +102,7 @@ const Header = () => {
                 <div className="header__category-icon">
                   <img src="../../../../image/header/category.png" alt="" />
                   <div className="category__quantily">
-                    <span>0</span>
+                    <span>{card.length}</span>
                   </div>
                 </div>
                 <div className="header__category-info"></div>
@@ -112,39 +112,45 @@ const Header = () => {
                 >
                   <div className="Header-cart-show">Sản phẩm mới thêm</div>
                   <div className="Body-cart-show">
-                    {countProduct !== 0 ? (
-                      <ul class="header__cart-list-item">
-                        <li class="header__cart-item">
-                          <img
-                            src="https://img.abaha.vn/photos/resized/320x/73-1574413855-myohui.png"
-                            alt=""
-                            class="header__cart-img"
-                          />
-                          <div class="header__cart-item-info">
-                            <div class="header__cart-item-head">
-                              <h5 class="header__cart-item-name">
-                                Bộ kem đặc trị vùng mắt Bộ kem đặc trị vùng mắt
-                                Bộ kem đặc trị vùng mắt Bộ kem đặc trị vùng mắt
-                                Bộ kem đặc trị vùng mắt
-                              </h5>
-                              <div class="header__cart-item-price-wrap">
-                                <span class="header__cart-item-price">
-                                  2.000.000đ
-                                </span>
-                                <span class="header__cart-item-multiply">
-                                  x
-                                </span>
-                                <span class="header__cart-item-qnt">2</span>
+                    {card.length > 0 ? (
+                      <ul className="header__cart-list-item">
+                        {card.map((item, index) => {
+                          return (
+                            <li className="header__cart-item" key={index}>
+                              <img
+                                src="https://img.abaha.vn/photos/resized/320x/73-1574413855-myohui.png"
+                                alt=""
+                                className="header__cart-img"
+                              />
+                              <div className="header__cart-item-info">
+                                <div className="header__cart-item-head">
+                                  <h5 className="header__cart-item-name">
+                                    {item.nameProduct}
+                                  </h5>
+                                  <div className="header__cart-item-price-wrap">
+                                    <span className="header__cart-item-price">
+                                      {item.price} đ
+                                    </span>
+                                    <span className="header__cart-item-multiply">
+                                      x
+                                    </span>
+                                    <span className="header__cart-item-qnt">
+                                      {item.quantity}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="header__cart-item-body">
+                                  <span className="header__cart-item-description">
+                                    Phân loại hàng: Bạc
+                                  </span>
+                                  <span className="header__cart-item-remove">
+                                    Xóa
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                            <div class="header__cart-item-body">
-                              <span class="header__cart-item-description">
-                                Phân loại hàng: Bạc
-                              </span>
-                              <span class="header__cart-item-remove">Xóa</span>
-                            </div>
-                          </div>
-                        </li>
+                            </li>
+                          );
+                        })}
                       </ul>
                     ) : (
                       <span>

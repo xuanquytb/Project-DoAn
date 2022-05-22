@@ -12,6 +12,7 @@ const CardContextProvider = ({ children }) => {
   const getCard = async () => {
     try {
       const response = await axios.get(`${apiUrl}/card/allCard`);
+      console.log(response.data);
       if (response.data.success) {
         dispatch({
           type: ADD_PRODUCT_CARD,

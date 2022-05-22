@@ -25,7 +25,7 @@ const find_card_by_userid = function (id) {
       if (err) {
         return reject(err);
       } else {
-        return resolve(element);
+        return resolve(element[0]);
       }
     });
   });
