@@ -173,20 +173,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvb
 
 
 ###
-POST http://localhost:8080/api/admin/login
-Content-Type: application/json
-
-{
-    "username":"quochuy",
-    "password":"admin"
-   
-}
-###
 POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"client6",
+    "username":"client3",
     "password":"admin"
    
 }
@@ -234,3 +225,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb
 GET http://localhost:8080/api/card/allCard
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb2xlIjp7ImlkIjoyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiZGVzY3JpcHRpb24iOiJRdXnhu4FuIGTDoG5oIGNobyBraMOhY2ggaMOgbmcifSwiaWRDYXJkIjo5LCJpYXQiOjE2NTMxOTM4ODAsImV4cCI6MTY1MzI4MDI4MH0.UiLJajtMlXizACT7NdocKyiFLWNV3ACgC_b55HRfg2U
+
+########
+PUT http://localhost:8080/api/card/updateCardDetail
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpZENhcmQiOjEsImlhdCI6MTY1MzIzMjE0MiwiZXhwIjoxNjUzMzE4NTQyfQ.XcWqzepB_aKarBJOYUvlI5msdf8QTv8K623TFHprHs0
+
+{
+    "quantity" : "1",
+    "id" : "5"
+}
+########
+DELETE http://localhost:8080/api/card/cardDetail/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpZENhcmQiOjEsImlhdCI6MTY1MzIzOTkzNywiZXhwIjoxNjUzMzI2MzM3fQ.XCkvRbZnz4BtZYaHVtX2g8WH0rnQkDil4WPFEzAM0yI

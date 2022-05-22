@@ -3,7 +3,7 @@ const express = require("express");
 
 const Router = express.Router();
 const {
-  find_all_Card,
+  UpdateCardDetail,
   InsertCard,
   UpdateCard,
   find_by_name_row_card,
@@ -11,6 +11,8 @@ const {
   find_by_idCard_and_IdCus,
   InsertCardDetail,
   find_card_by_userid,
+  delete_Card_Detail_By_Id,
+  find_card_Detail_by_Id,
   Card,
 } = require("../models/card");
 
@@ -53,6 +55,32 @@ Router.delete("/:id", verifyToken, async (req, res) => {
       return res.status(405).json({
         success: false,
         message: "Lỗi cơ sở dữ liệu",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+Router.delete("/cardDetail/:id", verifyToken, async (req, res) => {
+  try {
+    const result = await find_card_Detail_by_Id(req.params.id);
+    if (result.userid === req.userId) {
+      console.log("-----");
+      const result = await delete_Card_Detail_By_Id(req.params.id);
+      if (result != 1) {
+        return res
+          .status(202)
+          .json({ success: false, message: "Xóa thất bại" });
+      } else {
+        return res
+          .status(200)
+          .json({ success: true, message: "Xóa thành công" });
+      }
+    } else {
+      return res.status(405).json({
+        success: false,
+        message: "Tài khoản không được cấp phép",
       });
     }
   } catch (error) {
@@ -150,6 +178,44 @@ Router.put("/update", verifyToken, async (req, res) => {
             success: true,
             message: "Cập nhật thành công",
             card: cardUpdate,
+          });
+        } else {
+          res.status(400).json({
+            success: false,
+            message: "Cập nhật thất bại",
+          });
+        }
+      } catch (error) {
+        res.status(400).json({
+          success: false,
+          message: "Xảy ra lỗi : " + error,
+        });
+      }
+    }
+  }
+});
+
+Router.put("/updateCardDetail", verifyToken, async (req, res) => {
+  const { quantity, id } = req.body;
+  if (!quantity || !id) {
+    res.status(400).json({
+      success: true,
+      message: "Thiếu thông tin",
+    });
+  } else {
+    const user = await find_by_name_row("id", req.userId);
+    if (user.length <= 0) {
+      res.status(400).json({
+        success: false,
+        message: "Tài khoản không tồn tại",
+      });
+    } else {
+      try {
+        const result = await UpdateCardDetail(quantity, id);
+        if (result) {
+          res.status(200).json({
+            success: true,
+            message: "Cập nhật thành công",
           });
         } else {
           res.status(400).json({

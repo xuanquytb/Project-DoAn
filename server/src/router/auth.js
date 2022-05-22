@@ -409,6 +409,7 @@ Router.post("/createEmloyee", async (req, res) => {
     }
   }
 });
+
 Router.put("/update/:id", verifyToken, async (req, res) => {
   const { fullname, sex, dateOfBirth, email, phone, address } = req.body;
   if (!fullname || !sex || !dateOfBirth || !email || !phone || !address) {
@@ -473,26 +474,47 @@ Router.post("/login", async (req, res) => {
           message: "Tài khoản/Mật khẩu không chính xác",
         });
       } else {
-        const nameRole = await find_by_id_role(user.idRole);
-        const card = await find_all_Card(user.id);
+        const Role = await find_by_id_role(user.idRole);
         const validPassword = await argon2.verify(user.passwordEn, password);
-        if (validPassword) {
-          const accessToken = GenerateToken({
-            userId: user.id,
-            role: nameRole,
-            idCard: card[0].id,
-          });
-          res.status(200).json({
-            success: true,
-            message: "Đăng nhập thành công",
-            token: accessToken,
-            user: user,
-          });
+
+        if (Role.nameRole === "Customer") {
+          const card = await find_all_Card(user.id);
+          if (validPassword) {
+            const accessToken = GenerateToken({
+              userId: user.id,
+              role: Role,
+              idCard: card[0].id,
+            });
+            res.status(200).json({
+              success: true,
+              message: "Đăng nhập thành công",
+              token: accessToken,
+              user: user,
+            });
+          } else {
+            res.status(200).json({
+              success: false,
+              message: "Tài khoản/Mật khẩu không chính xác",
+            });
+          }
         } else {
-          res.status(200).json({
-            success: false,
-            message: "Tài khoản/Mật khẩu không chính xác",
-          });
+          if (validPassword) {
+            const accessToken = GenerateToken({
+              userId: user.id,
+              role: Role,
+            });
+            res.status(200).json({
+              success: true,
+              message: "Đăng nhập thành công",
+              token: accessToken,
+              user: user,
+            });
+          } else {
+            res.status(200).json({
+              success: false,
+              message: "Tài khoản/Mật khẩu không chính xác",
+            });
+          }
         }
       }
     } catch (error) {

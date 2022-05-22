@@ -57,10 +57,39 @@ const find_by_Id = (id) => {
   });
 };
 
+const find_card_Detail_by_Id = (id) => {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT * FROM carddetail join card on carddetail.idCard = card.id  where carddetail.id = '${id}'`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements[0]);
+      }
+    );
+  });
+};
+
 const delete_By_Id = (id) => {
   return new Promise((resolve, reject) => {
     dbConn.query(
       `DELETE FROM card WHERE (id = '${id}');`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        } else {
+          return resolve(elements.affectedRows);
+        }
+      }
+    );
+  });
+};
+
+const delete_Card_Detail_By_Id = (id) => {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `DELETE FROM carddetail WHERE (id = '${id}')`,
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -125,6 +154,21 @@ const UpdateCard = function (cardUpdate, idUser) {
   });
 };
 
+const UpdateCardDetail = function (quantity, id) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `Update carddetail SET quantity = '${quantity}' WHERE (id = '${id}');`,
+      (err, element) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve({ id: element.affectedRows, ...element });
+        }
+      }
+    );
+  });
+};
+
 module.exports = {
   find_all_Card,
   find_by_Id,
@@ -136,5 +180,8 @@ module.exports = {
   find_card_by_userid,
   //////////////////////////////
   InsertCardDetail,
+  UpdateCardDetail,
+  delete_Card_Detail_By_Id,
+  find_card_Detail_by_Id,
   Card,
 };

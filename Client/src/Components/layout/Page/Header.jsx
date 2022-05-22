@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
-import { Button } from "antd";
+import { Button, InputNumber, Space } from "antd";
 import { AuthContext } from "../../../Store/Context/AuthContext";
 import { CardContext } from "../../../Store/Context/CardContext";
 
 import "../Page/style/Header.css";
+import axios from "axios";
 
 const Header = () => {
   const { authState, logout } = useContext(AuthContext);
   const [card, setCard] = useState([]);
-
+  const [quantityNum, setQuantityNum] = useState();
   const {
     cardState: { cards },
     getCard,
@@ -19,6 +20,7 @@ const Header = () => {
   useEffect(async () => {
     await getCard();
   }, []);
+
   useEffect(async () => {
     setCard(cards);
   }, [cards]);
@@ -44,6 +46,27 @@ const Header = () => {
   };
   const handClickReturnHome = (e) => {
     history.push("/");
+  };
+  const handNum = async (e, item) => {
+    console.log(item);
+    setQuantityNum(e);
+    const data = {
+      id: item.id,
+      quantity: e,
+    };
+    const result = await axios.put(
+      `http://localhost:8080/api/card/updateCardDetail`,
+      data
+    );
+    getCard();
+  };
+  const handDelete = async (id) => {
+    console.log(id);
+
+    const result = await axios.delete(
+      `http://localhost:8080/api/card/cardDetail/${id}`
+    );
+    getCard();
   };
 
   return (
@@ -108,7 +131,7 @@ const Header = () => {
                 <div className="header__category-info"></div>
                 <div
                   className="header__category-detail-show"
-                  onClick={handClickCheckOut}
+                  // onClick={handClickCheckOut}
                 >
                   <div className="Header-cart-show">Sản phẩm mới thêm</div>
                   <div className="Body-cart-show">
@@ -118,7 +141,7 @@ const Header = () => {
                           return (
                             <li className="header__cart-item" key={index}>
                               <img
-                                src="https://img.abaha.vn/photos/resized/320x/73-1574413855-myohui.png"
+                                src={`http://localhost:8080/image/procuct/${item.image}`}
                                 alt=""
                                 className="header__cart-img"
                               />
@@ -128,23 +151,39 @@ const Header = () => {
                                     {item.nameProduct}
                                   </h5>
                                   <div className="header__cart-item-price-wrap">
-                                    <span className="header__cart-item-price">
-                                      {item.price} đ
-                                    </span>
-                                    <span className="header__cart-item-multiply">
-                                      x
-                                    </span>
-                                    <span className="header__cart-item-qnt">
-                                      {item.quantity}
-                                    </span>
+                                    x <Space />
+                                    <InputNumber
+                                      min={1}
+                                      max={10}
+                                      defaultValue={item.quantity}
+                                      style={{ width: 50, border: "none" }}
+                                      onChange={(event) => handNum(event, item)}
+                                    />
                                   </div>
+                                  <span
+                                    className="header__cart-item-remove"
+                                    onClick={(e) => {
+                                      handDelete(item.id);
+                                    }}
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 24 24"
+                                      width="20"
+                                      height="20"
+                                      style={{ marginLeft: 10 }}
+                                    >
+                                      <path fill="none" d="M0 0h24v24H0z" />
+                                      <path
+                                        d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                                        fill="rgba(149,164,166,1)"
+                                      />
+                                    </svg>
+                                  </span>
                                 </div>
                                 <div className="header__cart-item-body">
                                   <span className="header__cart-item-description">
-                                    Phân loại hàng: Bạc
-                                  </span>
-                                  <span className="header__cart-item-remove">
-                                    Xóa
+                                    Đơn giá: {item.quantity * item.price}
                                   </span>
                                 </div>
                               </div>
