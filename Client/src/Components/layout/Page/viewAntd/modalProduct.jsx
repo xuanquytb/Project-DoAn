@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Modal, Button, InputNumber, Descriptions } from "antd";
 import { Layout } from "antd";
 const { Content } = Layout;
 import axios from "axios";
 import { Image } from "antd";
 import HTMLReactParser from "html-react-parser";
+import { AuthContext } from "../../../../Store/Context/AuthContext";
+import { CardContext } from "../../../../Store/Context/CardContext";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const ModalProduct = ({ visible, onClose, product }) => {
   const [products, setProducts] = useState();
+  const [quantityNum, setQuantityNum] = useState(1);
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+
+  const {
+    cardState: { cards },
+    createCard,
+    getCard,
+  } = useContext(CardContext);
+
   function onChange(value) {
-    console.log(value);
+    setQuantityNum(value);
   }
+
   useEffect(async () => {
     const result = await axios.get(
       `http://localhost:8080/api/product/findproduct/${product}`
@@ -18,7 +34,36 @@ const ModalProduct = ({ visible, onClose, product }) => {
     setProducts(result.data.products);
   }, [product]);
 
-  console.log(products);
+  const addToCarthandler = async () => {
+    const item = {
+      idCard: user[0].idCard,
+      idProduct: products.id,
+      idCoupon: "",
+      dongia: products.price,
+      quantity: quantityNum,
+      sumMoney: "",
+    };
+
+    const result = await createCard(item);
+    if (result) {
+      getCard();
+      notification.open({
+        className: "custom-class",
+        description: "Thêm vào giỏ thành công",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
+    } else {
+      notification.open({
+        description: "Thêm vào giỏ thất bại",
+        className: "custom-class",
+        style: {
+          width: 350,
+          backgroundColor: "#fff2f0",
+        },
+        type: "error",
+      });
+    }
+  };
   return (
     <>
       <Modal
@@ -66,7 +111,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
                 <InputNumber
                   min={1}
                   max={10}
-                  defaultValue={3}
+                  defaultValue={1}
                   onChange={onChange}
                 />
                 <span className="avaliable-product">
@@ -85,9 +130,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
                   size="large"
                   shape="round"
                   type="danger"
-                  // onClick={
-                  //     addToCarthandler
-                  // }
+                  onClick={addToCarthandler}
                 >
                   Thêm vào giỏ hàng
                 </Button>

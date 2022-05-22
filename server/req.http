@@ -64,12 +64,12 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-    "username":"xuanquy",
+    "username":"client6",
     "password":"admin",
-    "fullname":"Đặng thị hải nhật",
+    "fullname":"Hồng Sơn2s",
     "nameRole":"Customer",
-    "email":"hxuanquy@gmail.com",
-    "phone":"54654664",
+    "email":"hongsocn2@gmail.com",
+    "phone":"546546644c3523",
     "address":"Tây Sơn Kiến Xương Thái Bình"
 }
 ################################
@@ -186,7 +186,7 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"xuanquy1",
+    "username":"client6",
     "password":"admin"
    
 }
@@ -217,3 +217,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwM
     "price": "200000đ",
     "status":"1"
 }
+########
+POST http://localhost:8080/api/card/addCardItem
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb2xlIjp7ImlkIjoyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiZGVzY3JpcHRpb24iOiJRdXnhu4FuIGTDoG5oIGNobyBraMOhY2ggaMOgbmcifSwiaWRDYXJkIjo5LCJpYXQiOjE2NTMxOTEzNTcsImV4cCI6MTY1MzI3Nzc1N30.HgFi96Nk4RpEiGPIXSNZqO4bbgbyUICksdoiMMwDIEg
+
+{
+    "idCard" : "1",
+    "idProduct" : "8",
+    "idCoupon" : "",
+    "dongia" : "20000",
+    "quantity" : "2",
+    "sumMone" : "40000"
+}
+########
+GET http://localhost:8080/api/card/allCard
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb2xlIjp7ImlkIjoyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiZGVzY3JpcHRpb24iOiJRdXnhu4FuIGTDoG5oIGNobyBraMOhY2ggaMOgbmcifSwiaWRDYXJkIjo5LCJpYXQiOjE2NTMxOTM4ODAsImV4cCI6MTY1MzI4MDI4MH0.UiLJajtMlXizACT7NdocKyiFLWNV3ACgC_b55HRfg2U

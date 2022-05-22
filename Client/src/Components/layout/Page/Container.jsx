@@ -25,7 +25,6 @@ const Container = () => {
     getProduct,
   } = useContext(ProductContext);
   useEffect(() => getProduct(), []);
-  console.log(products);
 
   const showModal = async (e, id) => {
     e.preventDefault();

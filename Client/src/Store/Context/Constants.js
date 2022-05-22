@@ -1,7 +1,7 @@
 export const apiUrl =
-    process.env.NODE_ENV !== "production"
-        ? "http://localhost:8080/api"
-        : "somedeployUrl";
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:8080/api"
+    : "somedeployUrl";
 
 export const LOCAL_STORAGE_TOKEN_NAME = "token_doan";
 
@@ -39,3 +39,8 @@ export const ADD_BRAND = "ADD_BRAND";
 export const DELETE_BRAND = "DELETE_BRAND";
 export const UPDATE_BRAND = "UPDATE_BRAND";
 export const FIND_BRAND = "FIND_BRAND";
+/////////////////////////////////////////////////////////
+// Card/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";
+export const DELETE_PRODUCT_CARD = "DELETE_PRODUCT_CARD";
