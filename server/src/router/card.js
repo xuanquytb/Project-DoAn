@@ -13,6 +13,7 @@ const {
   find_card_by_userid,
   delete_Card_Detail_By_Id,
   find_card_Detail_by_Id,
+  check_card_Detail_by_Id,
   Card,
 } = require("../models/card");
 
@@ -234,11 +235,19 @@ Router.put("/updateCardDetail", verifyToken, async (req, res) => {
 
 Router.post("/addCardItem", verifyToken, async (req, res) => {
   const { idCard, idProduct, idCoupon, dongia, quantity } = req.body;
-  if (!idCard || !idProduct || !dongia || !quantity) {
-    res.status(400).json({
-      success: true,
-      message: "Thiếu thông tin",
-    });
+  const check = await check_card_Detail_by_Id(idCard, idProduct);
+  if (check) {
+    let quantityIncre = check.quantity + 1;
+    const resultUpdate = await UpdateCardDetail(quantityIncre, check.id);
+    if (resultUpdate) {
+      res
+        .status(200)
+        .json({ success: true, message: "Cập nhật số lượng thành công" });
+    } else {
+      res
+        .status(200)
+        .json({ success: true, message: "Cập nhật số lượng thất bại" });
+    }
   } else {
     const card = await find_by_name_row_card("id", idCard);
     if (card.length <= 0) {

@@ -51,6 +51,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
         className: "custom-class",
         description: "Thêm vào giỏ thành công",
         icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+        duration: 1,
       });
     } else {
       notification.open({

@@ -219,7 +219,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb
     "idCoupon" : "",
     "dongia" : "20000",
     "quantity" : "2",
-    "sumMone" : "40000"
 }
 ########
 GET http://localhost:8080/api/card/allCard
@@ -234,6 +233,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvb
 {
     "quantity" : "1",
     "id" : "5"
+}
+########
+POST  http://localhost:8080/api/card/addCardItem
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb2xlIjp7ImlkIjoyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiZGVzY3JpcHRpb24iOiJRdXnhu4FuIGTDoG5oIGNobyBraMOhY2ggaMOgbmcifSwiaWRDYXJkIjo5LCJpYXQiOjE2NTMyNDM4MTUsImV4cCI6MTY1MzMzMDIxNX0.QvN_sQb5bcfiQCrs_mjRWz1GsERR2KIf8W6gOu89esg
+
+{
+    "idCard" : "9",
+    "idProduct" : "11",
+    "idCoupon" : "",
+    "dongia" : "20000",
+    "quantity" : "1"
 }
 ########
 DELETE http://localhost:8080/api/card/cardDetail/5

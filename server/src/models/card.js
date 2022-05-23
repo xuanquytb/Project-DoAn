@@ -19,6 +19,7 @@ const find_by_name_row_card = function (nameRow, value) {
     );
   });
 };
+
 const find_card_by_userid = function (id) {
   return new Promise((resolve, reject) => {
     dbConn.query(`call procedureViewCard(${id})`, (err, element) => {
@@ -61,6 +62,20 @@ const find_card_Detail_by_Id = (id) => {
   return new Promise((resolve, reject) => {
     dbConn.query(
       `SELECT * FROM carddetail join card on carddetail.idCard = card.id  where carddetail.id = '${id}'`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements[0]);
+      }
+    );
+  });
+};
+
+const check_card_Detail_by_Id = (idCard, idProduct) => {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `select * from carddetail where idCard = ${idCard} and idProduct = ${idProduct}`,
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -183,5 +198,6 @@ module.exports = {
   UpdateCardDetail,
   delete_Card_Detail_By_Id,
   find_card_Detail_by_Id,
+  check_card_Detail_by_Id,
   Card,
 };
