@@ -47,7 +47,11 @@ function App() {
                       )}
                     />
 
-                    <Route exact path="/checkout" component={Checkout} />
+                    <ProtectedRouteUser
+                      exact
+                      path="/checkout"
+                      component={Checkout}
+                    />
                     <ProtectedRoute
                       exact
                       path="/dashboard"
