@@ -4,92 +4,130 @@ import Header from "../Header";
 import { InputNumber, Button } from "antd";
 // import { AuthContext } from "../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
+import axios from "axios";
 
 const Cart = () => {
-  const [state, setState] = useState("process");
-
-  const onChange = (value) => {
-    console.log("changed", value);
-  };
   const {
-    cardState: { cards },
+    cardState: { cards, sumMoney },
     getCard,
-    deleteCard,
+    getSumMoneyCard,
   } = useContext(CardContext);
 
-  // useEffect(() => {
-  //   getCard();
-  // }, []);
-
-  const handDelete = (id) => {
-    console.log(id);
+  const handDelete = async (id) => {
+    const result = await axios.delete(
+      `http://localhost:8080/api/card/cardDetail/${id}`
+    );
+    getCard();
+    await getSumMoneyCard();
   };
 
-  console.log(cards);
+  useEffect(async () => {
+    getSumMoneyCard();
+  }, []);
+
+  console.log(sumMoney);
+  const handNum = async (e, item) => {
+    const data = {
+      id: item.id,
+      dongia: e * item.price,
+      quantity: e,
+    };
+    console.log(data);
+    const result = await axios.put(
+      `http://localhost:8080/api/card/updateCardDetail`,
+      data
+    );
+    await getCard();
+    await getSumMoneyCard();
+  };
+
   return (
     <>
       <Header />
       <div className="main-checkout">
         <div className="body-checkout">
           <div className="body-checkout-Content">
-            <h1 className="Title-checkout">Sản phẩm trong giỏ hàng</h1>
-            {cards.map((item, index) => {
-              return (
-                <div className="cartItem" key={index}>
-                  <img
-                    className="img-product"
-                    src="https://hinhgaixinh.com/wp-content/uploads/2021/12/bo-anh-girl-xinh-cap-2.jpg"
-                    alt=""
-                  />
-                  <div className="infoProduct">
-                    <p className="text-info name-Product">{item.nameProduct}</p>
-                    <p className="text-info price-Product">{item.price} đ</p>
-                    <p className="text-info warehouseCount-Product">Kho: 27</p>
-                  </div>
-                  <div className="btn-action">
-                    <div className="btn-action-block">
-                      <InputNumber
-                        min={1}
-                        max={10}
-                        defaultValue={item.quantity}
-                        onChange={onChange}
-                        style={{
-                          width: 50,
-                          height: 36,
-                          justifyContent: "center",
-                          alignContent: "center",
-                        }}
+            {cards.length > 0 ? (
+              <>
+                <h1 className="Title-checkout">Sản phẩm trong giỏ hàng</h1>
+                {cards.map((item, index) => {
+                  return (
+                    <div className="cartItem" key={index}>
+                      <img
+                        className="img-product"
+                        src={`http://localhost:8080/image/procuct/${item.image}`}
+                        alt=""
                       />
+                      <div className="infoProduct">
+                        <p className="text-info name-Product">
+                          {item.nameProduct}
+                        </p>
+                        <p className="text-info price-Product">
+                          <strong style={{ fontSize: 15 }}>Giá bán</strong>:{" "}
+                          {item.price} đ
+                        </p>
+                        <p className="text-info warehouseCount-Product">
+                          Đơn giá: {item.quantity * item.price}
+                        </p>
+                      </div>
+                      <div className="btn-action">
+                        <div className="btn-action-block">
+                          <InputNumber
+                            min={1}
+                            max={10}
+                            defaultValue={item.quantity}
+                            onChange={(event) => handNum(event, item)}
+                            style={{
+                              width: 50,
+                              height: 36,
+                              justifyContent: "center",
+                              alignContent: "center",
+                              borderRadius: 10,
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="btn-bin"
+                          onClick={(e) => handDelete(item.id)}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="35"
+                            height="35"
+                            style={{ marginLeft: 10, paddingTop: 5 }}
+                          >
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                              d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                              fill="rgba(256,6,6,0.5)"
+                            />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
-                    <div
-                      className="btn-bin"
-                      onClick={(e) => handDelete(item.id)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="35"
-                        height="35"
-                        style={{ marginLeft: 10, paddingTop: 5 }}
-                      >
-                        <path fill="none" d="M0 0h24v24H0z" />
-                        <path
-                          d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
-                          fill="rgba(149,164,166,1)"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </>
+            ) : (
+              <span>
+                <img
+                  className="image-cart-empty"
+                  style={{ height: "456px", margin: " 60px 245px" }}
+                  src="../../../../image/header/cart_4.png"
+                  alt=""
+                />
+              </span>
+            )}
           </div>
         </div>
         <div className="btn-checkout">
           <div className="sumMoney">
             <h2>
               <strong>Tạm tính : </strong>
-              <span style={{ color: "red" }}>5000000đ</span>
+              <span style={{ color: "red" }}>
+                {sumMoney !== null ? sumMoney : "0"}đ
+              </span>
             </h2>
           </div>
           <div className="btn-action-block">

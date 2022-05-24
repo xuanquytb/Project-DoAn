@@ -141,6 +141,7 @@ const find_all_Card = function (idUser) {
     );
   });
 };
+
 const InsertCardDetail = function (carditem) {
   return new Promise((resolve, reject) => {
     // INSERT INTO `carddetail` (`idCard`, `idProduct`, `idCoupon`, `dongia`, `quantity`, `sumMoney`)
@@ -169,15 +170,45 @@ const UpdateCard = function (cardUpdate, idUser) {
   });
 };
 
-const UpdateCardDetail = function (quantity, id) {
+const GetCard_byUserId = function (idUser) {
   return new Promise((resolve, reject) => {
     dbConn.query(
-      `Update carddetail SET quantity = '${quantity}' WHERE (id = '${id}');`,
+      `SELECT * FROM webthaotran.card where userid = ${idUser}`,
+      (err, element) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(element[0]);
+        }
+      }
+    );
+  });
+};
+
+const UpdateCardDetail = function (quantity, dongia, id) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `Update carddetail SET quantity = '${quantity}',sumMoney = '${dongia}' WHERE (id = '${id}');`,
       (err, element) => {
         if (err) {
           return reject(err);
         } else {
           return resolve({ id: element.affectedRows, ...element });
+        }
+      }
+    );
+  });
+};
+
+const cal_sum_order_by_id_card = function (idCard) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT sum(carddetail.sumMoney) as 'tongthanhtoan' FROM webthaotran.carddetail where idCard = ${idCard};`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        } else {
+          return resolve(elements[0]);
         }
       }
     );
@@ -199,5 +230,7 @@ module.exports = {
   delete_Card_Detail_By_Id,
   find_card_Detail_by_Id,
   check_card_Detail_by_Id,
+  cal_sum_order_by_id_card,
+  GetCard_byUserId,
   Card,
 };

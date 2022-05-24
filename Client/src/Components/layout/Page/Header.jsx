@@ -48,10 +48,10 @@ const Header = () => {
     history.push("/");
   };
   const handNum = async (e, item) => {
-    console.log(item);
     setQuantityNum(e);
     const data = {
       id: item.id,
+      dongia: e * item.price,
       quantity: e,
     };
     const result = await axios.put(

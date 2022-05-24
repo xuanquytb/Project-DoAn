@@ -1,7 +1,12 @@
-import { ADD_PRODUCT_CARD, DELETE_PRODUCT_CARD } from "../Context/Constants";
+import {
+  ADD_PRODUCT_CARD,
+  DELETE_PRODUCT_CARD,
+  SET_SUMMONEY_CARD,
+} from "../Context/Constants";
 
 const InitCard = {
   cards: [],
+  sumMoney: 0,
 };
 
 const cardReducer = (state, action) => {
@@ -11,6 +16,11 @@ const cardReducer = (state, action) => {
       return {
         ...state,
         cards: payload,
+      };
+    case SET_SUMMONEY_CARD:
+      return {
+        ...state,
+        sumMoney: payload,
       };
     case DELETE_PRODUCT_CARD:
       let newcart = state.cards;

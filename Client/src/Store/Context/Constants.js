@@ -44,3 +44,4 @@ export const FIND_BRAND = "FIND_BRAND";
 /////////////////////////////////////////////////////////
 export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";
 export const DELETE_PRODUCT_CARD = "DELETE_PRODUCT_CARD";
+export const SET_SUMMONEY_CARD = "SET_SUMMONEY_CARD";

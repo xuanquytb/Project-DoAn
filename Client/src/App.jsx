@@ -6,6 +6,7 @@ import Auth from "./Components/view/Auth";
 import Dashboard from "./Components/layout/Admin/DashBoard";
 import MyInfo from "./Components/layout/Page/MyInfo/MyInfo";
 import Checkout from "./Components/layout/Page/Checkout/Cart";
+import Payment from "./Components/layout/Page/Checkout/Payment";
 import AuthContextProvider from "./Store/Context/AuthContext";
 import UserContextProvider from "./Store/Context/UserContext";
 import ProductContextProvider from "./Store/Context/ProductContext";
@@ -51,6 +52,11 @@ function App() {
                       exact
                       path="/checkout"
                       component={Checkout}
+                    />
+                    <ProtectedRouteUser
+                      exact
+                      path="/payment"
+                      component={Payment}
                     />
                     <ProtectedRoute
                       exact

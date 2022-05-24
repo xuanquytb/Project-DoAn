@@ -14,6 +14,8 @@ const {
   delete_Card_Detail_By_Id,
   find_card_Detail_by_Id,
   check_card_Detail_by_Id,
+  cal_sum_order_by_id_card,
+  GetCard_byUserId,
   Card,
 } = require("../models/card");
 
@@ -97,6 +99,22 @@ Router.get("/allCard", verifyToken, async (req, res) => {
         .json({ success: true, message: "Giỏ hàng trống", card });
     } else {
       return res.status(200).json({ success: true, card });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+Router.get("/sumMoneycard", verifyToken, async (req, res) => {
+  try {
+    const card = await GetCard_byUserId(req.userId);
+    if (card) {
+      const reslut = await cal_sum_order_by_id_card(card.id);
+
+      return res.status(200).json({ success: true, sum: reslut.tongthanhtoan });
+    } else {
+      return res
+        .status(200)
+        .json({ success: true, message: "Giỏ hàng không tồn tại" });
     }
   } catch (error) {
     return res.status(500).json({ success: false, message: "Server Error" });
@@ -196,7 +214,7 @@ Router.put("/update", verifyToken, async (req, res) => {
 });
 
 Router.put("/updateCardDetail", verifyToken, async (req, res) => {
-  const { quantity, id } = req.body;
+  const { quantity, dongia, id } = req.body;
   if (!quantity || !id) {
     res.status(400).json({
       success: true,
@@ -211,7 +229,7 @@ Router.put("/updateCardDetail", verifyToken, async (req, res) => {
       });
     } else {
       try {
-        const result = await UpdateCardDetail(quantity, id);
+        const result = await UpdateCardDetail(quantity, dongia, id);
         if (result) {
           res.status(200).json({
             success: true,
