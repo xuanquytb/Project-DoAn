@@ -1,6 +1,11 @@
 import { createContext, useReducer, useState } from "react";
 import cardReducer, { InitCard } from "../Reduces/CardReducer";
-import { apiUrl, DELETE_PRODUCT_CARD, ADD_PRODUCT_CARD } from "./Constants";
+import {
+  apiUrl,
+  DELETE_PRODUCT_CARD,
+  ADD_PRODUCT_CARD,
+  SET_SUMMONEY_CARD,
+} from "./Constants";
 import axios from "axios";
 
 export const CardContext = createContext();
@@ -12,11 +17,23 @@ const CardContextProvider = ({ children }) => {
   const getCard = async () => {
     try {
       const response = await axios.get(`${apiUrl}/card/allCard`);
-      console.log(response.data);
       if (response.data.success) {
         dispatch({
           type: ADD_PRODUCT_CARD,
           payload: response.data.card,
+        });
+      }
+    } catch (error) {}
+  };
+
+  const getSumMoneyCard = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/card/sumMoneycard`);
+      console.log(response.data);
+      if (response.data.success) {
+        dispatch({
+          type: SET_SUMMONEY_CARD,
+          payload: response.data.sum,
         });
       }
     } catch (error) {}
@@ -85,6 +102,7 @@ const CardContextProvider = ({ children }) => {
     // deleteCard,
     createCard,
     // updateCard,
+    getSumMoneyCard,
   };
 
   return (
