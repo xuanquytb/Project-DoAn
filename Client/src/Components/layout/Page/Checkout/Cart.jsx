@@ -5,8 +5,10 @@ import { InputNumber, Button } from "antd";
 // import { AuthContext } from "../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Cart = () => {
+  const history = useHistory();
   const {
     cardState: { cards, sumMoney },
     getCard,
@@ -131,7 +133,11 @@ const Cart = () => {
             </h2>
           </div>
           <div className="btn-action-block">
-            <Button type="primary" className="btn-pay">
+            <Button
+              type="primary"
+              className="btn-pay"
+              onClick={(e) => history.push("/payment")}
+            >
               Thanh toán
             </Button>
           </div>
