@@ -256,7 +256,11 @@ Router.post("/addCardItem", verifyToken, async (req, res) => {
   const check = await check_card_Detail_by_Id(idCard, idProduct);
   if (check) {
     let quantityIncre = check.quantity + 1;
-    const resultUpdate = await UpdateCardDetail(quantityIncre, check.id);
+    const resultUpdate = await UpdateCardDetail(
+      quantityIncre,
+      dongia,
+      check.id
+    );
     if (resultUpdate) {
       res
         .status(200)
