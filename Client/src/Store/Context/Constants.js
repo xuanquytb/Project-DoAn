@@ -40,6 +40,15 @@ export const DELETE_BRAND = "DELETE_BRAND";
 export const UPDATE_BRAND = "UPDATE_BRAND";
 export const FIND_BRAND = "FIND_BRAND";
 /////////////////////////////////////////////////////////
+// Payment/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const PAYMENT_LOADED_SUCCESS = "PAYMENT_LOADED_SUCCESS";
+export const PAYMENT_LOADED_FAIL = "PAYMENT_LOADED_FAIL";
+export const ADD_PAYMENT = "ADD_PAYMENT";
+export const DELETE_PAYMENT = "DELETE_PAYMENT";
+export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
+export const FIND_PAYMENT = "FIND_PAYMENT";
+/////////////////////////////////////////////////////////
 // Card/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";

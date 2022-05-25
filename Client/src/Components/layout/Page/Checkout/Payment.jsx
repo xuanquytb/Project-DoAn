@@ -1,27 +1,34 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../../../Style/payment.css";
 import Header from "../Header";
-// import { AuthContext } from "../../../Store/Context/AuthContext";
+import { AuthContext } from "../../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
+import { PaymentContext } from "../../../../Store/Context/PaymentContext";
 import axios from "axios";
 import { Form, Button, Row, Input, Select, Radio, Space } from "antd";
 import { useHistory } from "react-router-dom";
 
-const { Option, OptGroup } = Select;
-
 const Payment = () => {
   const history = useHistory();
+  const [payment, setPayment] = useState();
   const {
     cardState: { cards, sumMoney },
     getCard,
     getSumMoneyCard,
   } = useContext(CardContext);
 
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const {
+    paymentState: { payments },
+    getPayment,
+  } = useContext(PaymentContext);
+
   const [value, setValue] = useState(1);
 
   const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+    setPayment(e.target.value);
   };
 
   const handDelete = async (id) => {
@@ -35,23 +42,22 @@ const Payment = () => {
   useEffect(async () => {
     getSumMoneyCard();
   }, []);
+  useEffect(async () => {
+    getPayment();
+  }, []);
 
-  const onFinish = (values) => {
-    // const productCreate = {
-    //     nameProduct: values.nameProduct,
-    //     description: state.value,
-    //     warranty: warranty,
-    //     quantity: quantity,
-    //     price: values.price,
-    //     promotional: values.discount,
-    //     status: values.state,
-    //     image: values.nameImage.file.name,
-    //     idCategory: category,
-    //     idUnit: unit,
-    //     idManufacturer: brand,
-    //     idOrigin: origin,
-    // };
+  const onFinish = (fullname, phone, email, address) => {
+    const infoPayment = {
+      fullname: fullname,
+      phone: phone,
+      email: email,
+      address: address,
+      sumPayment: sumMoney,
+      idPayment: payment,
+    };
+    console.log(infoPayment);
     // handleRegister(productCreate);
+    history.push("/success");
   };
 
   return (
@@ -71,10 +77,12 @@ const Payment = () => {
               layout="vertical"
               hideRequiredMark
               onFinish={onFinish}
-              // initialValues={{
-              //   ["quantityUniti"]: "1",
-              //   ["unitSL"]: "1",
-              // }}
+              initialValues={{
+                ["fullname"]: user[0].fullname,
+                ["phone"]: user[0].phone,
+                ["email"]: user[0].email,
+                ["address"]: user[0].address,
+              }}
             >
               <Row gutter={16}>
                 <Form.Item
@@ -91,7 +99,7 @@ const Payment = () => {
                     size="large"
                     style={{ width: 505 }}
                     placeholder="Họ và tên"
-                    allowClear
+                    // placeholder={user[0].fullname}
                   />
                 </Form.Item>
               </Row>
@@ -110,7 +118,6 @@ const Payment = () => {
                     size="large"
                     style={{ width: 505 }}
                     placeholder="Số điện thoại"
-                    allowClear
                   />
                 </Form.Item>
               </Row>
@@ -129,7 +136,6 @@ const Payment = () => {
                     size="large"
                     style={{ width: 505 }}
                     placeholder="Email"
-                    allowClear
                   />
                 </Form.Item>
               </Row>
@@ -148,7 +154,6 @@ const Payment = () => {
                     size="large"
                     style={{ width: 505 }}
                     placeholder="Địa chỉ"
-                    allowClear
                   />
                 </Form.Item>
               </Row>
@@ -186,12 +191,7 @@ const Payment = () => {
                     stroke="currentColor"
                     style={{ color: "green" }}
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
                 <strong style={{ marginLeft: 20, marginRight: 72 }}>
@@ -204,64 +204,27 @@ const Payment = () => {
             </div>
             <h2 className="title">Phương thức thanh toán</h2>
             <div className="choice-payment">
-              <Radio.Group onChange={onChange} value={value}>
+              <Radio.Group onChange={onChange} value={payment}>
                 <Space direction="vertical">
-                  <Radio
-                    style={{
-                      height: 58,
-                      width: 388,
-                      border: "1px solid gray",
-                      borderRadius: 15,
-                      display: "flex",
-                      paddingLeft: 20,
-                      alignItems: "center",
-                    }}
-                    value={1}
-                  >
-                    Thanh toán khi nhân hàng
-                  </Radio>
-                  <Radio
-                    style={{
-                      height: 58,
-                      width: 388,
-                      border: "1px solid gray",
-                      borderRadius: 15,
-                      display: "flex",
-                      paddingLeft: 20,
-                      alignItems: "center",
-                    }}
-                    value={2}
-                  >
-                    Chuyển khoản
-                  </Radio>
-                  <Radio
-                    style={{
-                      height: 58,
-                      width: 388,
-                      border: "1px solid gray",
-                      borderRadius: 15,
-                      display: "flex",
-                      paddingLeft: 20,
-                      alignItems: "center",
-                    }}
-                    value={3}
-                  >
-                    Thanh toán qua Momo
-                  </Radio>
-                  <Radio
-                    style={{
-                      height: 58,
-                      width: 388,
-                      border: "1px solid gray",
-                      borderRadius: 15,
-                      display: "flex",
-                      paddingLeft: 20,
-                      alignItems: "center",
-                    }}
-                    value={4}
-                  >
-                    PayPal
-                  </Radio>
+                  {payments.map((item, index) => {
+                    return (
+                      <Radio
+                        style={{
+                          height: 58,
+                          width: 388,
+                          border: "1px solid gray",
+                          borderRadius: 15,
+                          display: "flex",
+                          paddingLeft: 20,
+                          alignItems: "center",
+                        }}
+                        value={item.id}
+                        key={index}
+                      >
+                        {item.tenphuongthuc}
+                      </Radio>
+                    );
+                  })}
                 </Space>
               </Radio.Group>
             </div>
@@ -309,7 +272,6 @@ const Payment = () => {
                 size="large"
                 style={{ marginLeft: 20, marginTop: 5, width: 235 }}
                 placeholder="Nhập mã giảm giá"
-                allowClear
               />
             </div>
             <div>
@@ -385,7 +347,14 @@ const Payment = () => {
                 style={{ marginBottom: 20 }}
                 type="primary"
                 className="btn-buy"
-                onClick={(e) => history.push("/success")}
+                onClick={(e) =>
+                  onFinish(
+                    user[0].fullname,
+                    user[0].phone,
+                    user[0].email,
+                    user[0].address
+                  )
+                }
               >
                 Đặt hàng
               </Button>

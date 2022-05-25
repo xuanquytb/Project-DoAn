@@ -12,6 +12,7 @@ const RouterImageProduct = require("./router/ImageProduct");
 const RouterManufacturer = require("./router/manufacturer");
 const RouterProduct = require("./router/Product");
 const RouterNewsCategory = require("./router/newsCategory");
+const RouterPayment = require("./router/payment");
 const RouterUpload = require("../Middleware/upload");
 
 const app = express();
@@ -29,16 +30,15 @@ app.use("/api/product", RouterProduct);
 app.use("/api/upload", RouterUpload);
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);
+app.use("/api/payment", RouterPayment);
 
 app.get("/image/:id", (req, res) => {
-    res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));
+  res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));
 });
 app.get("/image/procuct/:id", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, `/public/upload/product/${req.params.id}`)
-    );
+  res.sendFile(path.join(__dirname, `/public/upload/product/${req.params.id}`));
 });
 
 app.listen(process.env.PORT, () =>
-    console.log("Máy chủ đã chạy tại công 8080")
+  console.log("Máy chủ đã chạy tại công 8080")
 );
