@@ -9,12 +9,21 @@ import { CategoryContext } from "../../../Store/Context/CategoryContext";
 import { ProductContext } from "../../../Store/Context/ProductContext";
 import Header from "../../../Components/layout/Page/Header";
 import { Card } from "antd";
+import ModalProduct from "../Page/viewAntd/modalProduct";
 
 const Category_User = () => {
   const search = window.location.search;
   const params = new URLSearchParams(search);
   const id = params.get("id");
   const [product, setProduct] = useState();
+  const [visible, setVisible] = useState(false);
+
+  const showModal = async (e, id) => {
+    e.preventDefault();
+
+    await setProduct(id);
+    setVisible(true);
+  };
 
   const {
     categoryState: { categorys },
@@ -130,11 +139,11 @@ const Category_User = () => {
               })}
             </div>
 
-            {/* <ModalProduct
+            <ModalProduct
               visible={visible}
               onClose={() => setVisible(false)}
               product={product}
-            /> */}
+            />
           </div>
         </div>
       </div>
