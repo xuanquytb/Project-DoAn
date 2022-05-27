@@ -74,7 +74,7 @@ const DashBoard = () => {
       key: 7,
       title: "Quản lý bài đăng",
       icon: "<EditOutlined />",
-      link: "/new",
+      link: "/news",
     },
     {
       key: 8,
@@ -216,6 +216,12 @@ const DashBoard = () => {
                 path="/order"
                 render={(props) => (
                   <AuthDashboard {...props} authRoute="order" />
+                )}
+              />
+              <Route
+                path="/news"
+                render={(props) => (
+                  <AuthDashboard {...props} authRoute="news" />
                 )}
               />
             </Content>

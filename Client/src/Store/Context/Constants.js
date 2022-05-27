@@ -58,6 +58,15 @@ export const DELETE_ORDER = "DELETE_ORDER";
 export const UPDATE_ORDER = "UPDATE_ORDER";
 export const FIND_ORDER = "FIND_ORDER";
 /////////////////////////////////////////////////////////
+// News/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const NEWS_LOADED_SUCCESS = "NEWS_LOADED_SUCCESS";
+export const NEWS_LOADED_FAIL = "NEWS_LOADED_FAIL";
+export const ADD_NEWS = "ADD_NEWS";
+export const DELETE_NEWS = "DELETE_NEWS";
+export const UPDATE_NEWS = "UPDATE_NEWS";
+export const FIND_NEWS = "FIND_NEWS";
+/////////////////////////////////////////////////////////
 // Card/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";

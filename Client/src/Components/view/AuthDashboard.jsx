@@ -6,6 +6,7 @@ import EmployeeContent from "../../Components/layout/Admin/User/EmployeeContent"
 import ProductContent from "../../Components/layout/Admin/Product/Product";
 import BrandContent from "../../Components/layout/Admin/Brand/Brand";
 import OrderContent from "../../Components/layout/Admin/Order/OrderContent";
+import NewsContent from "../../Components/layout/Admin/News/News";
 
 const AuthDashboard = ({ authRoute }) => {
   const body = (
@@ -17,6 +18,7 @@ const AuthDashboard = ({ authRoute }) => {
       {authRoute === "product" && <ProductContent />}
       {authRoute === "brand" && <BrandContent />}
       {authRoute === "order" && <OrderContent />}
+      {authRoute === "news" && <NewsContent />}
     </>
   );
 
