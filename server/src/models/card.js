@@ -61,7 +61,7 @@ const find_by_Id = (id) => {
 const find_card_Detail_by_Id = (id) => {
   return new Promise((resolve, reject) => {
     dbConn.query(
-      `SELECT * FROM carddetail join card on carddetail.idCard = card.id  where carddetail.id = '${id}'`,
+      `SELECT * FROM carddetail join card on carddetail.idCard = card.id  where carddetail.id = '${id}' and stateCard = 0`,
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -199,16 +199,61 @@ const UpdateCardDetail = function (quantity, dongia, id) {
     );
   });
 };
+const UpdateIdOrder = function (idcard, idOrder) {
+  console.log(idOrder);
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `Update carddetail SET idPayOrder = '${idOrder}' WHERE (idCard = '${idcard}' and detailstate = '0')`,
+      (err, element) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve({ id: element.affectedRows, ...element });
+        }
+      }
+    );
+  });
+};
+const Updatedetailstate = function (idcard) {
+  console.log(idcard);
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `Update carddetail SET detailstate = '1' WHERE (idCard = '${idcard}')`,
+      (err, element) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve({ id: element.affectedRows, ...element });
+        }
+      }
+    );
+  });
+};
 
 const cal_sum_order_by_id_card = function (idCard) {
   return new Promise((resolve, reject) => {
     dbConn.query(
-      `SELECT sum(carddetail.sumMoney) as 'tongthanhtoan' FROM webthaotran.carddetail where idCard = ${idCard};`,
+      `SELECT sum(carddetail.sumMoney) as 'tongthanhtoan' FROM webthaotran.carddetail where idCard = ${idCard} and carddetail.detailstate = 0;`,
       (error, elements) => {
         if (error) {
           return reject(error);
         } else {
           return resolve(elements[0]);
+        }
+      }
+    );
+  });
+};
+
+const find_cardDetail_showOrder = function (idCard, idPayOrder) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT product.image, product.nameProduct,product.price, carddetail.quantity FROM carddetail join product on carddetail.idProduct = product.id where idCard = ${idCard} and detailstate = 1 and idPayOrder = ${idPayOrder};`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        } else {
+          return resolve(elements);
         }
       }
     );
@@ -224,7 +269,7 @@ module.exports = {
   delete_By_Id,
   find_by_idCard_and_IdCus,
   find_card_by_userid,
-  //////////////////////////////
+  //////////////////////
   InsertCardDetail,
   UpdateCardDetail,
   delete_Card_Detail_By_Id,
@@ -232,5 +277,8 @@ module.exports = {
   check_card_Detail_by_Id,
   cal_sum_order_by_id_card,
   GetCard_byUserId,
+  UpdateIdOrder,
+  Updatedetailstate,
+  find_cardDetail_showOrder,
   Card,
 };

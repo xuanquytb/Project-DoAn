@@ -5,20 +5,22 @@ import CategoryContent from "../../Components/layout/Admin/Category/Category";
 import EmployeeContent from "../../Components/layout/Admin/User/EmployeeContent";
 import ProductContent from "../../Components/layout/Admin/Product/Product";
 import BrandContent from "../../Components/layout/Admin/Brand/Brand";
+import OrderContent from "../../Components/layout/Admin/Order/OrderContent";
 
 const AuthDashboard = ({ authRoute }) => {
-    const body = (
-        <>
-            {authRoute === "customer" && <UserContent />}
-            {authRoute === "employee" && <EmployeeContent />}
-            {authRoute === "admin" && <AdminContent />}
-            {authRoute === "category" && <CategoryContent />}
-            {authRoute === "product" && <ProductContent />}
-            {authRoute === "brand" && <BrandContent />}
-        </>
-    );
+  const body = (
+    <>
+      {authRoute === "customer" && <UserContent />}
+      {authRoute === "employee" && <EmployeeContent />}
+      {authRoute === "admin" && <AdminContent />}
+      {authRoute === "category" && <CategoryContent />}
+      {authRoute === "product" && <ProductContent />}
+      {authRoute === "brand" && <BrandContent />}
+      {authRoute === "order" && <OrderContent />}
+    </>
+  );
 
-    return <>{body}</>;
+  return <>{body}</>;
 };
 
 export default AuthDashboard;

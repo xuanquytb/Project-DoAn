@@ -16,6 +16,7 @@ const {
   check_card_Detail_by_Id,
   cal_sum_order_by_id_card,
   GetCard_byUserId,
+  find_cardDetail_showOrder,
   Card,
 } = require("../models/card");
 
@@ -39,6 +40,22 @@ Router.get("/", verifyToken, async (req, res) => {
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 });
+
+Router.get("/get", verifyToken, async (req, res) => {
+  try {
+    const user = await find_cardDetail_showOrder("id", req.userId);
+    if (!user) {
+      return res
+        .status(202)
+        .json({ success: false, message: "User not found" });
+    } else {
+      return res.status(200).json({ success: true, user, role: req.role });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
 Router.delete("/:id", verifyToken, async (req, res) => {
   const result = await find_by_idCard_and_IdCus(req.userId, req.params.id);
 
@@ -99,6 +116,21 @@ Router.get("/allCard", verifyToken, async (req, res) => {
         .json({ success: true, message: "Giỏ hàng trống", card });
     } else {
       return res.status(200).json({ success: true, card });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+Router.post("/allItemCardOrder", verifyToken, async (req, res) => {
+  const { idCard, idPayOrder } = req.body;
+  try {
+    const orderPayment = await find_cardDetail_showOrder(idCard, idPayOrder);
+    if (orderPayment.length <= 0) {
+      return res
+        .status(202)
+        .json({ success: true, message: "Giỏ hàng trống", orderPayment });
+    } else {
+      return res.status(200).json({ success: true, orderPayment });
     }
   } catch (error) {
     return res.status(500).json({ success: false, message: "Server Error" });

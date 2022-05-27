@@ -3,8 +3,11 @@ import "../../../Style/orderSuccess.css";
 import Header from "../Header";
 // import { AuthContext } from "../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
+import { useLocation } from "react-router-dom";
 
-const orderSuccess = () => {
+const orderSuccess = (props) => {
+  const location = useLocation();
+
   return (
     <>
       <Header />
@@ -39,8 +42,8 @@ const orderSuccess = () => {
                 Xin cảm ơn đã tin tưởng và mua hàng tại Website
               </p>
               <p className="style-font" style={{ color: "green" }}>
-                Bạn vui lòng hãy chuẩn bị số tiền {10000000} đ để thanh toán đơn
-                hàng
+                Bạn vui lòng hãy chuẩn bị số tiền{" "}
+                {location.state.info.sumPayment} đ để thanh toán đơn hàng
               </p>
             </div>
           </div>

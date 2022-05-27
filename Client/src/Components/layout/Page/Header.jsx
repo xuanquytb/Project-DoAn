@@ -245,7 +245,11 @@ const Header = () => {
                 <div className="Header__mode-list">
                   <ul>
                     <li href="" className="Header__mode-item-link">
-                      <Button type="text" block>
+                      <Button
+                        type="text"
+                        block
+                        onClick={() => history.push("/myorder")}
+                      >
                         Đơn hàng của tôi
                       </Button>
                     </li>

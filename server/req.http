@@ -258,3 +258,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvb
 ########
 GET http://localhost:8080/api/payment/allPayment
 Content-Type: application/json
+########
+GET http://localhost:8080/api/Order/allOrderCustomer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpZENhcmQiOjEsImlhdCI6MTY1MzUzNzk0MCwiZXhwIjoxNjUzNjI0MzQwfQ.e7ceYiqQgDpTl6AiOZJM_gYErgXwduNiA1o-5l8VWPc
+
+########
+POST http://localhost:8080/api/card/allItemCardOrder
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ1LCJyb2xlIjp7ImlkIjoyLCJuYW1lUm9sZSI6IkN1c3RvbWVyIiwiZGVzY3JpcHRpb24iOiJRdXnhu4FuIGTDoG5oIGNobyBraMOhY2ggaMOgbmcifSwiaWRDYXJkIjo5LCJpYXQiOjE2NTM1OTA4MDEsImV4cCI6MTY1MzY3NzIwMX0.Jc5SXAy0IZM7exnabMPPYbW8WvyzgkRBwWy4g5RfGLQ
+
+{
+    "idCard" : 9,
+    "idPayOrder" : 5
+}
+

@@ -4,6 +4,7 @@ import Header from "../Header";
 import { AuthContext } from "../../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
 import { PaymentContext } from "../../../../Store/Context/PaymentContext";
+import { OrderContext } from "../../../../Store/Context/OrderContext";
 import axios from "axios";
 import { Form, Button, Row, Input, Select, Radio, Space } from "antd";
 import { useHistory } from "react-router-dom";
@@ -11,19 +12,27 @@ import { useHistory } from "react-router-dom";
 const Payment = () => {
   const history = useHistory();
   const [payment, setPayment] = useState();
+  const [coupon, setCoupon] = useState();
+  const [discount, setDiscount] = useState();
   const {
     cardState: { cards, sumMoney },
     getCard,
     getSumMoneyCard,
   } = useContext(CardContext);
-
+  console.log(cards);
   const {
     authState: { user },
   } = useContext(AuthContext);
+  console.log(user[0]);
   const {
     paymentState: { payments },
     getPayment,
   } = useContext(PaymentContext);
+
+  const {
+    orderState: { orders },
+    createOrder,
+  } = useContext(OrderContext);
 
   const [value, setValue] = useState(1);
 
@@ -46,18 +55,18 @@ const Payment = () => {
     getPayment();
   }, []);
 
-  const onFinish = (fullname, phone, email, address) => {
+  const onFinish = async (address) => {
     const infoPayment = {
-      fullname: fullname,
-      phone: phone,
-      email: email,
+      idCard: user[0].idCard,
+      idCustomer: user[0].id,
+      discount: discount,
       address: address,
       sumPayment: sumMoney,
       idPayment: payment,
     };
     console.log(infoPayment);
-    // handleRegister(productCreate);
-    history.push("/success");
+    await createOrder(infoPayment);
+    history.push({ pathname: "/success", state: { info: infoPayment } });
   };
 
   return (
@@ -205,7 +214,7 @@ const Payment = () => {
             <h2 className="title">Phương thức thanh toán</h2>
             <div className="choice-payment">
               <Radio.Group onChange={onChange} value={payment}>
-                <Space direction="vertical">
+                <Space direction="vertical" key={"1"}>
                   {payments.map((item, index) => {
                     return (
                       <Radio
@@ -272,12 +281,14 @@ const Payment = () => {
                 size="large"
                 style={{ marginLeft: 20, marginTop: 5, width: 235 }}
                 placeholder="Nhập mã giảm giá"
+                onChange={(e) => setCoupon(e.target.value)}
               />
             </div>
             <div>
               <Button
                 type="primary"
                 style={{ margin: 5, height: 35, width: 100 }}
+                onClick={(e) => setDiscount(coupon)}
               >
                 Áp dụng
               </Button>

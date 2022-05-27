@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "antd/dist/antd.css";
 import "../../Style/style.css";
 import "../../Style/base.css";
@@ -7,6 +7,7 @@ import { Layout, Menu, Input, Button } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AuthDashboard from "../../view/AuthDashboard";
+import { OrderContext } from "../../../Store/Context/OrderContext";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 import {
@@ -18,6 +19,8 @@ import {
 } from "@ant-design/icons";
 const DashBoard = () => {
   const history = useHistory();
+  const { getOrder } = useContext(OrderContext);
+  useEffect(() => getOrder(), []);
 
   const menuitem = [
     {
@@ -207,6 +210,12 @@ const DashBoard = () => {
                 path="/brand"
                 render={(props) => (
                   <AuthDashboard {...props} authRoute="brand" />
+                )}
+              />
+              <Route
+                path="/order"
+                render={(props) => (
+                  <AuthDashboard {...props} authRoute="order" />
                 )}
               />
             </Content>

@@ -6,6 +6,7 @@ const RouterRole = require("./router/role");
 const RouterAuth = require("./router/auth");
 const RouterCard = require("./router/card");
 const RouterCategory = require("./router/category");
+const RouterOrder = require("./router/InsertOrderDetail.route");
 const RouterUnit = require("./router/unit");
 const RouterOrigin = require("./router/origin");
 const RouterImageProduct = require("./router/ImageProduct");
@@ -31,6 +32,7 @@ app.use("/api/upload", RouterUpload);
 app.use("/api/newsCategory", RouterNewsCategory);
 app.use("/api/card", RouterCard);
 app.use("/api/payment", RouterPayment);
+app.use("/api/Order", RouterOrder);
 
 app.get("/image/:id", (req, res) => {
   res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));

@@ -49,6 +49,15 @@ export const DELETE_PAYMENT = "DELETE_PAYMENT";
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
 export const FIND_PAYMENT = "FIND_PAYMENT";
 /////////////////////////////////////////////////////////
+// Order/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const ORDER_LOADED_SUCCESS = "ORDER_LOADED_SUCCESS";
+export const ORDER_LOADED_FAIL = "ORDER_LOADED_FAIL";
+export const ADD_ORDER = "ADD_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+export const FIND_ORDER = "FIND_ORDER";
+/////////////////////////////////////////////////////////
 // Card/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";
