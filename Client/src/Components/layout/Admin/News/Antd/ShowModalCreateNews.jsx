@@ -4,6 +4,7 @@ import { modules, formats } from "./Editor/EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./Editor/style.css";
 import { CategoryContext } from "../../../../../Store/Context/CategoryContext";
+import { CategoryNewsContext } from "../../../../../Store/Context/CategoryNewsContext";
 import { AuthContext } from "../../../../../Store/Context/AuthContext";
 
 import {
@@ -32,25 +33,14 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
   } = useContext(AuthContext);
 
   const {
-    categoryState: { categorys },
-    getCategory,
-  } = useContext(CategoryContext);
-  useEffect(() => getCategory(), []);
+    newsCategoryState: { categoryNews },
+    getNewsCategory,
+  } = useContext(CategoryNewsContext);
+  useEffect(() => getNewsCategory(), []);
 
   const [state, setState] = useState({ value: "" });
-
-  const [quantityUnit, setQuantityUnit] = useState(1);
-  const [disable, setDisable] = useState(true);
+  const [categoryNew, setCategoryNew] = useState();
   const [fileList, setFileList] = useState([]);
-
-  //////////////////////////////////////////////////////////
-  const [brand, setBrand] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [category, setCategory] = useState("");
-  const [warranty, setWarranty] = useState("");
-  const [origin, setOrigin] = useState("");
-  const [unit, setUnit] = useState("");
-  //////////////////////////////////////////////////////////
 
   const handleChange = (value) => {
     setState({ value });
@@ -68,7 +58,7 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
       nameImage: "default.png",
       author: user[0].fullname,
       state: values.state,
-      idNewsCategory: "1",
+      idNewsCategory: categoryNew.split("/")[1],
       idUser: user[0].id,
     };
     handleCreate(newsCreate);
@@ -78,34 +68,6 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
   //     setFileList(newFileList);
   // };
 
-  const ModalProduct = ({ visible, onClose }) => {
-    function onChange(value) {
-      console.log(value);
-    }
-  };
-
-  const handChangeQuantityUniti = (e) => {
-    setQuantityUnit(e.target.value);
-  };
-
-  const handChangeQuantity = (e) => {
-    if (disable == true) {
-      setQuantity(e.target.value * 1);
-    }
-    if (disable == false) {
-      setQuantity(e.target.value * quantityUnit);
-    }
-  };
-
-  const onChangeUnit = (e) => {
-    setUnit(e);
-    if (e === "1") {
-      setDisable(true);
-    }
-    if (e === "2") {
-      setDisable(false);
-    }
-  };
   return (
     <>
       <Modal
@@ -117,15 +79,7 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
       >
         <Tabs type="card">
           <TabPane tab="Thông tin chính" key="1">
-            <Form
-              layout="vertical"
-              hideRequiredMark
-              onFinish={onFinish}
-              initialValues={{
-                ["quantityUniti"]: "1",
-                ["unitSL"]: "1",
-              }}
-            >
+            <Form layout="vertical" hideRequiredMark onFinish={onFinish}>
               <Row gutter={16}>
                 <Col span={9}></Col>
                 <Col span={9}></Col>
@@ -159,11 +113,14 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
                       },
                     ]}
                   >
-                    <Select onChange={(e) => setCategory(e)}>
-                      {categorys.map((item, index) => {
+                    <Select onChange={(e) => setCategoryNew(e)}>
+                      {categoryNews.map((item, index) => {
                         return (
-                          <Select.Option key={item.id} value={item.id}>
-                            {item.nameCategory}
+                          <Select.Option
+                            key={item.id}
+                            value={item.title + "/" + item.id}
+                          >
+                            {item.title}
                           </Select.Option>
                         );
                       })}

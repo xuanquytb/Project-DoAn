@@ -278,5 +278,5 @@ GET http://localhost:8080/api/news/allNews
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpZENhcmQiOjEsImlhdCI6MTY1MzUzNzk0MCwiZXhwIjoxNjUzNjI0MzQwfQ.e7ceYiqQgDpTl6AiOZJM_gYErgXwduNiA1o-5l8VWPc
 #########
-GET http://localhost:8080/api/news/findNews/1
+GET http://localhost:8080/api/newsCategory/allNewsCategory
 Content-Type: application/json

@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import { modules, formats } from "./Editor/EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "./Editor/style.css";
-// import { CategoryContext } from "../../../../../Store/Context/CategoryContext";
+import { CategoryNewsContext } from "../../../../../Store/Context/CategoryNewsContext";
 import axios from "axios";
 
 import { Drawer, Tabs, Form, Col, Row, Input, Select, Button } from "antd";
@@ -14,6 +14,11 @@ const { Option, OptGroup } = Select;
 
 const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
   console.log(input);
+  const {
+    newsCategoryState: { categoryNews },
+    getNewsCategory,
+  } = useContext(CategoryNewsContext);
+  useEffect(() => getNewsCategory(), []);
   const [state, setState] = useState({ value: input.content });
   const handleChange = (value) => {
     setState({ value });
@@ -32,16 +37,11 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
   const onFinish = (values) => {
     const productUpdate = {
       id: input.id,
-      nameProduct: values.nameProduct,
-      description: state.value,
-      warranty: values.warranty,
-      quantity: values.quantity,
-      promotional: values.discount,
-      price: values.price,
-      status: values.state,
-      nameCategory: values.category,
-      nameBrand: values.brand,
-      nameOrigin: values.origin,
+      nameNews: values.nameNews,
+      brief: values.brief,
+      state: values.state,
+      title: values.title,
+      content: state.value,
     };
     onUpdate(productUpdate);
   };
@@ -51,7 +51,7 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
         destroyOnClose
         title={input.fullname}
         visible={visible}
-        width={1100}
+        width={800}
         onClose={onClose}
       >
         <Form
@@ -62,6 +62,7 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
             ["nameNews"]: input.nameNews,
             ["brief"]: input.brief,
             ["state"]: input.state,
+            ["title"]: input.title,
           }}
         >
           <Row gutter={16}>
@@ -88,7 +89,7 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
           <Row gutter={16}>
             <Col span={6}>
               <Form.Item
-                name="categoryNews"
+                name="title"
                 label="Chọn danh mục tin tức"
                 rules={[
                   {
@@ -97,15 +98,15 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
                   },
                 ]}
               >
-                {/* <Select onChange={(e) => setCategory(e)}>
-                  {categorys.map((item, index) => {
+                <Select onChange={(e) => setCategory(e)}>
+                  {categoryNews.map((item, index) => {
                     return (
                       <Select.Option key={item.id} value={item.id}>
-                        {item.nameCategory}
+                        {item.title}
                       </Select.Option>
                     );
                   })}
-                </Select> */}
+                </Select>
               </Form.Item>
             </Col>
           </Row>
@@ -152,7 +153,11 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
             >
               <div className="addNew__container">
                 <ReactQuill
-                  style={{ minHeight: 500 }}
+                  style={{
+                    minHeight: 500,
+                    maxWidth: 770,
+                    borderRight: "0.5px solid gray",
+                  }}
                   theme="snow"
                   value={state.value}
                   onChange={handleChange}
@@ -164,7 +169,7 @@ const ModalUpdateNews = ({ input, visible, onClose, onUpdate }) => {
             </Form.Item>
           </Row>
 
-          <Form.Item wrapperCol={{ offset: 20, span: 16 }}>
+          <Form.Item wrapperCol={{ offset: 21, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Cập nhật
             </Button>

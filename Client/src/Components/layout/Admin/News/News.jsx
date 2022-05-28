@@ -15,6 +15,7 @@ const NewsContent = () => {
     getNews,
     createNews,
     deleteNews,
+    updateNews,
   } = useContext(NewsContext);
   useEffect(() => getNews(), []);
 
@@ -76,7 +77,8 @@ const NewsContent = () => {
     setVisibleUpdate(true);
   };
   const clickUpdate = async (record) => {
-    const result = await updateProduct(record);
+    console.log(record);
+    const result = await updateNews(record);
     if (result.success) {
       getNews();
       notification.open({

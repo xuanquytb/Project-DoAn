@@ -182,8 +182,8 @@ Router.post("/addNews", verifyToken, async (req, res) => {
 
 Router.put("/updateNews/:id", verifyToken, async (req, res) => {
   if (req.role.id === 1 || req.role.id === 3) {
-    const { nameNews, brief, content, nameImage, author, state } = req.body;
-    if (!nameNews || !brief || !content || !nameImage || !author || !state) {
+    const { brief, content, id, nameNews, state, title } = req.body;
+    if (!brief || !content || !id || !nameNews || !state || !title) {
       res.status(400).json({
         success: true,
         message: "Nhập thiếu thông tin",
@@ -197,14 +197,14 @@ Router.put("/updateNews/:id", verifyToken, async (req, res) => {
         });
       } else {
         try {
-          const newNewsItem = new News({
-            nameNews,
+          const newNewsItem = {
             brief,
             content,
-            nameImage,
-            author,
+            id,
+            nameNews,
             state,
-          });
+            title,
+          };
           const newNewsRe = await UpdateNews(newNewsItem, req.params.id);
           if (newNewsRe) {
             res.status(200).json({

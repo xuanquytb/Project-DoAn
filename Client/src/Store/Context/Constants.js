@@ -67,6 +67,15 @@ export const DELETE_NEWS = "DELETE_NEWS";
 export const UPDATE_NEWS = "UPDATE_NEWS";
 export const FIND_NEWS = "FIND_NEWS";
 /////////////////////////////////////////////////////////
+// CategoryNews/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+export const CATEGORYNEWS_LOADED_SUCCESS = "CATEGORYNEWS_LOADED_SUCCESS";
+export const CATEGORYNEWS_LOADED_FAIL = "CATEGORYNEWS_LOADED_FAIL";
+export const ADD_CATEGORYNEWS = "ADD_CATEGORYNEWS";
+export const DELETE_CATEGORYNEWS = "DELETE_CATEGORYNEWS";
+export const UPDATE_CATEGORYNEWS = "UPDATE_CATEGORYNEWS";
+export const FIND_CATEGORYNEWS = "FIND_CATEGORYNEWS";
+/////////////////////////////////////////////////////////
 // Card/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const ADD_PRODUCT_CARD = "ADD_PRODUCT_CARD";

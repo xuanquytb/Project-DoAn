@@ -61,10 +61,10 @@ const NewsContextProvider = ({ children }) => {
   };
 
   // // Update user
-  const updateCategory = async (updatedCategory) => {
+  const updateNews = async (updatedCategory) => {
     try {
       const response = await axios.put(
-        `${apiUrl}/category/updateCategory/${updatedCategory.id}`,
+        `${apiUrl}/news/updateNews/${updatedCategory.id}`,
         updatedCategory
       );
       if (response.data.success) {
@@ -87,6 +87,7 @@ const NewsContextProvider = ({ children }) => {
     getNews,
     createNews,
     deleteNews,
+    updateNews,
   };
 
   return (
