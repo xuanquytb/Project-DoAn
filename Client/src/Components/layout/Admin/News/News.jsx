@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { Table, Button, Popconfirm } from "antd";
-// import ShowModalNews from "./DrawerAntd/ModalCreate";
+import ShowModalCreateNews from "./Antd/ShowModalCreateNews";
 import ShowDrawer from "./Antd/DrawerNewsShow";
-// import ModalUpdateProduct from "./DrawerAntd/ModalUpdateProduct";
+import ModalUpdateNews from "./Antd/ModalUpdateNews";
 import { NewsContext } from "../../../../Store/Context/NewsContext";
 import axios from "axios";
 import { notification } from "antd";
@@ -13,16 +13,16 @@ const NewsContent = () => {
   const {
     newsState: { news },
     getNews,
+    createNews,
     deleteNews,
   } = useContext(NewsContext);
   useEffect(() => getNews(), []);
-  console.log(news);
 
   const [visibleShow, setVisibleShow] = useState(false);
   const [visibleCreate, setVisibleCreate] = useState(false);
   const [visibleUpdate, setVisibleUpdate] = useState(false);
   const [newsDetail, setNewsDetail] = useState({});
-  // const [productEdit, setProductEdit] = useState({});
+  const [newsEdit, setNewsEdit] = useState({});
 
   const handleDelete = async (id) => {
     const result = await deleteNews(id.key);
@@ -45,58 +45,58 @@ const NewsContent = () => {
     setVisibleShow(true);
   };
 
-  // const handleCrate = async (product) => {
-  //   const result = await createProduct(product);
-  //   if (result) {
-  //     getProduct();
-  //     notification.open({
-  //       className: "custom-class",
-  //       description: "Thêm thành công",
-  //       icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-  //     });
-  //   } else {
-  //     notification.open({
-  //       description: "Thêm thất bại",
-  //       className: "custom-class",
-  //       style: {
-  //         width: 350,
-  //         backgroundColor: "#fff2f0",
-  //       },
-  //       type: "error",
-  //     });
-  //   }
-  // };
+  const handleCrate = async (news) => {
+    const result = await createNews(news);
+    if (result) {
+      getNews();
+      notification.open({
+        className: "custom-class",
+        description: "Thêm thành công",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
+    } else {
+      notification.open({
+        description: "Thêm thất bại",
+        className: "custom-class",
+        style: {
+          width: 350,
+          backgroundColor: "#fff2f0",
+        },
+        type: "error",
+      });
+    }
+  };
 
-  // const handleUpdate = async (record) => {
-  //   const result = await axios.get(
-  //     `http://localhost:8080/api/product/findproduct/${record.key}`
-  //   );
+  const handleUpdate = async (record) => {
+    const result = await axios.get(
+      `http://localhost:8080/api/news/findNews/${record.key}`
+    );
 
-  //   setProductEdit(result.data.products);
-  //   setVisibleUpdate(true);
-  // };
-  // const clickUpdate = async (record) => {
-  //   const result = await updateProduct(record);
-  //   if (result.success) {
-  //     getProduct();
-  //     notification.open({
-  //       className: "custom-class",
-  //       description: "Cập nhật thành công",
-  //       icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-  //     });
-  //   } else {
-  //     notification.open({
-  //       description: result.message,
-  //       message: "Cập nhật thất bại",
-  //       className: "custom-class",
-  //       style: {
-  //         width: 350,
-  //         backgroundColor: "#fff2f0",
-  //       },
-  //       type: "error",
-  //     });
-  //   }
-  // };
+    setNewsEdit(result.data.news);
+    setVisibleUpdate(true);
+  };
+  const clickUpdate = async (record) => {
+    const result = await updateProduct(record);
+    if (result.success) {
+      getNews();
+      notification.open({
+        className: "custom-class",
+        description: "Cập nhật thành công",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
+    } else {
+      notification.open({
+        description: result.message,
+        message: "Cập nhật thất bại",
+        className: "custom-class",
+        style: {
+          width: 350,
+          backgroundColor: "#fff2f0",
+        },
+        type: "error",
+      });
+    }
+  };
 
   const dataSource = news.map((item) => {
     return {
@@ -240,19 +240,18 @@ const NewsContent = () => {
         />
       </div>
       <ShowDrawer input={newsDetail} visible={visibleShow} onClose={onClose} />
-      {/* <ShowModalNews
+      <ShowModalCreateNews
         visible={visibleCreate}
         onClose={() => setVisibleCreate(false)}
-        handleRegister={handleCrate}
-      /> */}
-      {/* 
-      
-      <ModalUpdateProduct
-        input={productEdit}
+        handleCreate={handleCrate}
+      />
+
+      <ModalUpdateNews
+        input={newsEdit}
         visible={visibleUpdate}
         onClose={onClose}
         onUpdate={clickUpdate}
-      /> */}
+      />
     </>
   );
 };

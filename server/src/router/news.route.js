@@ -89,11 +89,44 @@ Router.get("/allNews", async (req, res) => {
   }
 });
 
+Router.get("/findNews/:id", async (req, res) => {
+  try {
+    const news = await find_by_Id(req.params.id);
+    if (!news) {
+      return res
+        .status(202)
+        .json({ success: false, message: "News not found" });
+    } else {
+      return res.status(200).json({ success: true, news });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
 Router.post("/addNews", verifyToken, async (req, res) => {
   if (req.role.id === 1 || req.role.id === 3) {
-    const { nameNews, brief, content, nameImage, author, state } = req.body;
+    const {
+      nameNews,
+      brief,
+      content,
+      nameImage,
+      author,
+      state,
+      idNewsCategory,
+      idUser,
+    } = req.body;
 
-    if (!nameNews || !brief || !content || !nameImage || !author || !state) {
+    if (
+      !nameNews ||
+      !brief ||
+      !content ||
+      !nameImage ||
+      !author ||
+      !state ||
+      !idNewsCategory ||
+      !idUser
+    ) {
       res.status(400).json({
         success: true,
         message: "Nhập thiếu thông tin",
@@ -108,14 +141,16 @@ Router.post("/addNews", verifyToken, async (req, res) => {
         });
       } else {
         try {
-          const newNewsItem = new News({
+          const newNewsItem = {
             nameNews,
             brief,
             content,
             nameImage,
             author,
             state,
-          });
+            idNewsCategory,
+            idUser,
+          };
           const newNewsRe = await InsertNews(newNewsItem);
           if (newNewsRe) {
             res.status(200).json({

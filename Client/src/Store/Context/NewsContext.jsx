@@ -40,16 +40,18 @@ const NewsContextProvider = ({ children }) => {
     }
   };
 
-  const createCategory = async (CategoryNew) => {
-    const category = {
-      nameCategory: CategoryNew.nameCategory,
-      image: "default.png",
-      description: CategoryNew.description,
+  const createNews = async (news) => {
+    const reqNews = {
+      nameNews: news.nameNews,
+      brief: news.brief,
+      content: news.content,
+      nameImage: news.nameImage,
+      author: news.author,
+      state: news.state,
+      idNewsCategory: news.idNewsCategory,
+      idUser: news.idUser,
     };
-    const response = await axios.post(
-      `${apiUrl}/category/addCategory`,
-      category
-    );
+    const response = await axios.post(`${apiUrl}/news/addNews`, reqNews);
     console.log(response);
     if (response.data.success) {
       return response.data;
@@ -83,6 +85,7 @@ const NewsContextProvider = ({ children }) => {
   const categoryContextData = {
     newsState,
     getNews,
+    createNews,
     deleteNews,
   };
 
