@@ -55,7 +55,7 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
       nameNews: values.nameNews,
       brief: values.brief,
       content: state.value,
-      nameImage: "default.png",
+      nameImage: values.nameImage.file.name,
       author: user[0].fullname,
       state: values.state,
       idNewsCategory: categoryNew.split("/")[1],
@@ -63,10 +63,6 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
     };
     handleCreate(newsCreate);
   };
-
-  // const onChange = ({ fileList: newFileList }) => {
-  //     setFileList(newFileList);
-  // };
 
   return (
     <>
@@ -142,6 +138,22 @@ const ShowModalCreateNews = ({ visible, onClose, handleCreate }) => {
                     ]}
                   >
                     <TextArea rows={6} />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item name="nameImage" label="Hình ảnh sản phẩm">
+                    <Upload
+                      action={`http://localhost:8080/api/upload/image/news`}
+                      listType="picture"
+                      fileList={fileList}
+                      onChange={onChange}
+                      name="photo"
+                    >
+                      {fileList.length < 1 && "+ Chọn ảnh"}
+                    </Upload>
                   </Form.Item>
                 </Col>
               </Row>

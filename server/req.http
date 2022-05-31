@@ -278,5 +278,19 @@ GET http://localhost:8080/api/news/allNews
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOnsiaWQiOjIsIm5hbWVSb2xlIjoiQ3VzdG9tZXIiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gZMOgbmggY2hvIGtow6FjaCBow6BuZyJ9LCJpZENhcmQiOjEsImlhdCI6MTY1MzUzNzk0MCwiZXhwIjoxNjUzNjI0MzQwfQ.e7ceYiqQgDpTl6AiOZJM_gYErgXwduNiA1o-5l8VWPc
 #########
+#########
+GET http://localhost:8080/api/Order/allSummoney
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTM4MDY1MTQsImV4cCI6MTY1Mzg5MjkxNH0.OZHiuXSrLaktIPrFHCKJVV0KK59DNtLVOeWlTkkB5iU
+#########
+#########
+POST http://localhost:8080/api/Order/allSummoney/day
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTM5MDE1MzMsImV4cCI6MTY1Mzk4NzkzM30.TC69MEZBEDN2ISXvUjWLpOh8tkLdVMVkF6uowBePq3c
+
+{
+    "day" : "2022-05-30"
+}
+#########
 GET http://localhost:8080/api/newsCategory/allNewsCategory
 Content-Type: application/json

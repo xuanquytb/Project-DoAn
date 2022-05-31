@@ -25,6 +25,8 @@ const MyInfo = () => {
     onUpdate(userUpdate);
   };
 
+  console.log(authState.user[0].dateOfBirth);
+
   return (
     <>
       <Header />
@@ -47,9 +49,6 @@ const MyInfo = () => {
               <div className="right">
                 <div className="email">Email: {authState.user[0].email}</div>
                 <div className="phone">Phone: {authState.user[0].phone}</div>
-                <div className="phone">
-                  Ngày sinh: {"" || authState.user[0].dateOfBirth.split("T")[0]}
-                </div>
               </div>
             </div>
           </div>
@@ -60,10 +59,38 @@ const MyInfo = () => {
             >
               <ul id="nav" className="contain">
                 <Link to={"/info"} class="nav-item">
-                  <div className="title">Thông tin cá nhân</div>
+                  <div className="content-info-title">
+                    <div className="img-info-user" style={{ marginBottom: 8 }}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="28"
+                        height="28"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12.414 5H21a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h7.414l2 2zM4 5v14h16V7h-8.414l-2-2H4zm4 13a4 4 0 1 1 8 0H8zm4-5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                      </svg>
+                    </div>
+                    <div className="text-infoo">Cá nhân</div>
+                  </div>
                 </Link>
                 <Link to="/info/order" className="nav-item">
-                  <div className="title">Đơn hàng</div>
+                  <div className="content-info-title">
+                    <div className="img-info-user">
+                      <div className="img-info-user">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="28"
+                          height="28"
+                        >
+                          <path fill="none" d="M0 0h24v24H0z" />
+                          <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zM5 10v10h14V10H5zm6 4h2v2h-2v-2zm-4 0h2v2H7v-2zm8 0h2v2h-2v-2zm1-6V7a4 4 0 1 0-8 0v1h8z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div>Đổi mật khẩu</div>
+                  </div>
                 </Link>
               </ul>
               <Layout
@@ -72,7 +99,7 @@ const MyInfo = () => {
                   borderRadius: 24,
                   marginLeft: 15,
                   minHeight: 280,
-                  background: "transparent",
+                  backgroundColor: "transparent",
                 }}
               >
                 <Content
@@ -81,6 +108,8 @@ const MyInfo = () => {
                     background: "#b6ccee",
                     minHeight: 280,
                     borderRadius: 24,
+                    background:
+                      "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
                   }}
                 >
                   <Route

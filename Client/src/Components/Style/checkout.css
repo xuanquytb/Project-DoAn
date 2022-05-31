@@ -44,7 +44,7 @@
 
 .cartItem{
   width: 1066px;
-  height: 200px;
+  height: 175px;
   display: flex;
   margin: 10px 0;
   margin-left: 35px;
@@ -53,7 +53,7 @@
 
 .img-product{
   width: 213px;
-  height: 200px;
+  height: 150px;
   border-radius: 20px;
 }
 
@@ -67,6 +67,7 @@
   width: 213px;
   height: 200px;
   margin-left: 20px;
+  padding-left: 146px;
 }
 
 .text-info{

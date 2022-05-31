@@ -22,6 +22,8 @@ import CategoryNewsContextProvider from "./Store/Context/CategoryNewsContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";
 import ProtectedRouteUser from "./Store/Routing/ProtectedRouteUser";
 import Category_User from "./Components/layout/Page/Category_User";
+import News from "./Components/layout/Page/news/News";
+import "../public/assets/styles/main.css";
 
 function App() {
   return (
@@ -130,7 +132,11 @@ function App() {
                               path="/news"
                               component={Dashboard}
                             />
-                            {/* <ProtectedRouteUser exact path="/myuser" component={MyInfo} /> */}
+                            <ProtectedRoute
+                              exact
+                              path="/dashboardAdmin"
+                              component={Dashboard}
+                            />
                             <ProtectedRouteUser
                               exact
                               path="/info"
@@ -146,11 +152,17 @@ function App() {
                               path="/myorder"
                               component={MyOrder}
                             />
+                            <ProtectedRouteUser
+                              exact
+                              path="/pagenew"
+                              component={News}
+                            />
                             <Route
                               exact
                               path="/category-user"
                               component={Category_User}
                             />
+
                             <Route path="/notfound" />
                           </Switch>
                         </Router>

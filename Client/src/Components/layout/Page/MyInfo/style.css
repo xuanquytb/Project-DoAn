@@ -41,9 +41,8 @@
 .col {
     padding: 0px 4px;
     flex-grow: 0;
-    /* Cháº·n dÃ£n kÃ­ch thÆ°á»›c */
+
     flex-shrink: 0;
-    /* Cháº·n co kÃ­ch thÆ°á»›c */
 }
 
 
@@ -53,7 +52,7 @@
     padding: 16px;
     width: fit-content;
     transition: all .5s .2s, border-radius 0s;
-    min-width: 199px;
+    min-width: 119px;
 }
 
 #nav.fixed {
@@ -105,11 +104,34 @@
     text-align: center;
 }
 
-#nav .nav-item .title {
+#nav .nav-item .content-info-title {
     text-transform: uppercase;
     font-weight: bold;
     padding-top: 8px;
     color: rgb(95, 95, 95);
+}
+
+.content-info-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    border-radius: 2rem;
+    height: 9rem;
+    width: 100px;
+}
+
+.content-info-title .text-infoo {
+    font-size: 15px;
+}
+
+.content-info-title:hover {
+    background-image: linear-gradient(142.17deg,#79aef8 6.66%,#de30fd 91.48%);
+
+}
+
+.input-Form-info{
+    border-radius: --contain-radius;
 }
 
 @keyframes nav-fixed {

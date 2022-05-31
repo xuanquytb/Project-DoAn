@@ -6,7 +6,6 @@ import {
 } from "../Context/Constants";
 
 const InitNews = {
-  news: null,
   news: [],
   newsLoading: true,
 };

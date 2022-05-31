@@ -126,6 +126,20 @@ const UpdateUser = function (userUpdate, userId) {
     );
   });
 };
+const UpdateUserIdCard = function (userId, cardId) {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `Update user SET idCard = ${cardId} WHERE (id = '${userId}')`,
+      (err, element) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve({ id: element.affectedRows, ...element });
+        }
+      }
+    );
+  });
+};
 const UpdateUserAvata = function (nameAvata, userId) {
   return new Promise((resolve, reject) => {
     dbConn.query(
@@ -152,5 +166,6 @@ module.exports = {
   find_by_name_row,
   delete_By_Id,
   UpdateUserAvata,
+  UpdateUserIdCard,
   Users,
 };

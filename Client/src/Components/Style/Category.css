@@ -503,3 +503,12 @@ i.home-product-item__like-icon-fill {
     margin: 48px 0 32px 0;
     padding-left: 0;
 }
+
+.category-item  :hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.category-item__link{
+    padding-left: 30px;
+}

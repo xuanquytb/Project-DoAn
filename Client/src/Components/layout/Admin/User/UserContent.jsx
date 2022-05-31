@@ -211,7 +211,7 @@ const UserContent = () => {
           rowClassName={() => "editable-row"}
           dataSource={dataSource}
           columns={columns}
-          scroll={{ y: 350 }}
+          scroll={{ y: 500 }}
           style={{ marginTop: 50 }}
         />
       </div>

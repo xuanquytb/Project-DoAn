@@ -42,6 +42,9 @@ app.get("/image/:id", (req, res) => {
 app.get("/image/procuct/:id", (req, res) => {
   res.sendFile(path.join(__dirname, `/public/upload/product/${req.params.id}`));
 });
+app.get("/image/news/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, `/public/upload/news/${req.params.id}`));
+});
 
 app.listen(process.env.PORT, () =>
   console.log("Máy chủ đã chạy tại công 8080")

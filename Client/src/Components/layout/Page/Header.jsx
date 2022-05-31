@@ -33,6 +33,7 @@ const Header = () => {
       const logoutData = await logout(authState.isAuthenticated);
       if (logoutData === true) {
         history.push("/login");
+        window.location.reload();
       } else {
         alert("Login failed");
       }
@@ -51,7 +52,7 @@ const Header = () => {
     setQuantityNum(e);
     const data = {
       id: item.id,
-      dongia: e * item.price,
+      dongia: e * item.dongia,
       quantity: e,
     };
     const result = await axios.put(
@@ -183,7 +184,7 @@ const Header = () => {
                                 </div>
                                 <div className="header__cart-item-body">
                                   <span className="header__cart-item-description">
-                                    Đơn giá: {item.quantity * item.price}
+                                    Đơn giá: {item.quantity * item.dongia}
                                   </span>
                                 </div>
                               </div>
@@ -213,7 +214,12 @@ const Header = () => {
                   </div>
                   <div className="Footer-cart-show">
                     <div className="btn-checkOut">
-                      <Button onClick={handClickCheckOut}>Xem giỏ hàng</Button>
+                      <Button
+                        onClick={handClickCheckOut}
+                        style={{ bottom: 15, borderRadius: 24 }}
+                      >
+                        Xem giỏ hàng
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -260,11 +266,6 @@ const Header = () => {
                         onClick={() => history.push("/info")}
                       >
                         Tài khoản của tôi
-                      </Button>
-                    </li>
-                    <li href="" className="Header__mode-item-link">
-                      <Button type="text" block>
-                        Thông báo
                       </Button>
                     </li>
                     <li href="" className="Header__mode-item-link">

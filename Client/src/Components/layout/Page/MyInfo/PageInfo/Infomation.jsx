@@ -2,13 +2,20 @@ import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../../Store/Context/AuthContext";
 import moment from "moment";
 import { Form, Button, Col, Row, Input, Select, DatePicker } from "antd";
-
+import { UserContext } from "../../../../../Store/Context/UserContext";
+import "./style.css";
 const { Option, OptGroup } = Select;
 
 const Infomation = () => {
   const { authState } = useContext(AuthContext);
+
+  const {
+    userState: { users },
+    updateUser,
+  } = useContext(UserContext);
+
   const onFinish = (values) => {
-    const userUpdate = {
+    const data = {
       id: values.id,
       fullname: values.fullname,
       email: values.email,
@@ -17,7 +24,7 @@ const Infomation = () => {
       sex: values.sex,
       dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
     };
-    onUpdate(userUpdate);
+    updateUser(data);
   };
 
   return (
@@ -33,7 +40,7 @@ const Infomation = () => {
           ["email"]: authState.user[0].email,
           ["phone"]: authState.user[0].phone,
           ["address"]: authState.user[0].address,
-          ["ngaysinh"]: moment(authState.user[0].ngaysinh),
+          ["ngaysinh"]: moment(authState.user[0].dateOfBirth),
         }}
       >
         <Row gutter={16}>
@@ -44,7 +51,15 @@ const Infomation = () => {
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item label="Tên đăng nhập">
-              <Input disabled placeholder={authState.user[0].username} />
+              <Input
+                style={{
+                  borderRadius: 24,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+                disabled
+                placeholder={authState.user[0].username}
+              />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -58,7 +73,13 @@ const Infomation = () => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                style={{
+                  borderRadius: 24,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -74,20 +95,35 @@ const Infomation = () => {
                 },
               ]}
             >
-              <Select style={{ width: 200 }}>
-                <OptGroup label="Giới tính">
+              <Select
+                style={{
+                  width: 168,
+                  borderRadius: "24px !important",
+                }}
+              >
+                <OptGroup
+                  label="Giới tính"
+                  style={{
+                    borderRadius: "24px !important",
+                  }}
+                >
                   <Option value="Nam">Nam</Option>
                   <Option value="Nữ">Nữ</Option>
-                </OptGroup>
-                <OptGroup label="Khác">
-                  <Option value="Khác">Khác</Option>
                 </OptGroup>
               </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item name="ngaysinh" label="Ngày sinh">
-              <DatePicker format="DD-MM-YYYY" placeholder="DD-MM-YYYY" />
+              <DatePicker
+                style={{
+                  borderRadius: 24,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+                format="DD-MM-YYYY"
+                placeholder="DD-MM-YYYY"
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -103,7 +139,13 @@ const Infomation = () => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                style={{
+                  borderRadius: 24,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+              />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -117,14 +159,27 @@ const Infomation = () => {
                 },
               ]}
             >
-              <Input />
+              <Input
+                style={{
+                  borderRadius: 24,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+              />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={19}>
           <Col span={20}>
-            <Form.Item name="address" label="Địa chỉ nhận hàng" width={600}>
-              <Input />
+            <Form.Item name="address" label="Địa chỉ nhận hàng" width={435}>
+              <Input
+                style={{
+                  borderRadius: 24,
+                  width: 435,
+                  background:
+                    "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+                }}
+              />
             </Form.Item>
           </Col>
         </Row>

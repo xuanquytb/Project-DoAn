@@ -12,7 +12,9 @@ const {
   UpdateOrderDetail_State,
   find_all_OrderDetail_by_idCustomer,
   find_max_id,
-
+  find_sum_monney,
+  find_sum_monney_by_day,
+  find_sum_countUser,
   orderDetail,
 } = require("../models/orderDetail");
 const { UpdateIdOrder, Updatedetailstate } = require("../models/card");
@@ -76,6 +78,75 @@ Router.get("/allOrderAdmin", verifyToken, async (req, res) => {
           .json({ success: false, message: "User not found" });
       } else {
         return res.status(200).json({ success: true, orders });
+      }
+    } else {
+      return res.status(405).json({
+        success: false,
+        message: "Tài khoản không được cấp phép",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+Router.get("/allSummoney", verifyToken, async (req, res) => {
+  try {
+    if (req.role.nameRole === "Administrators") {
+      const monney = await find_sum_monney();
+
+      if (!monney) {
+        return res
+          .status(202)
+          .json({ success: false, message: "Không tìm thấy dữ liệu yêu cầu" });
+      } else {
+        return res.status(200).json({ success: true, monney });
+      }
+    } else {
+      return res.status(405).json({
+        success: false,
+        message: "Tài khoản không được cấp phép",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+Router.post("/allSummoney/day", verifyToken, async (req, res) => {
+  const { day } = req.body;
+  try {
+    if (req.role.nameRole === "Administrators") {
+      const monney = await find_sum_monney_by_day(day);
+
+      if (!monney) {
+        return res
+          .status(202)
+          .json({ success: false, message: "Không tìm thấy dữ liệu yêu cầu" });
+      } else {
+        return res.status(200).json({ success: true, monney });
+      }
+    } else {
+      return res.status(405).json({
+        success: false,
+        message: "Tài khoản không được cấp phép",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+Router.get("/countUser", verifyToken, async (req, res) => {
+  try {
+    if (req.role.nameRole === "Administrators") {
+      const countUser = await find_sum_countUser();
+
+      if (!countUser) {
+        return res
+          .status(202)
+          .json({ success: false, message: "Không tìm thấy dữ liệu yêu cầu" });
+      } else {
+        return res.status(200).json({ success: true, countUser });
       }
     } else {
       return res.status(405).json({

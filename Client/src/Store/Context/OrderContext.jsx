@@ -6,6 +6,7 @@ import {
   ORDER_LOADED_SUCCESS,
   DELETE_ORDER,
   UPDATE_ORDER,
+  ORDER_LOADEDMONEY_SUCCESS,
 } from "./Constants";
 import axios from "axios";
 
@@ -18,11 +19,22 @@ const OrderContextProvider = ({ children }) => {
   const getOrder = async () => {
     try {
       const response = await axios.get(`${apiUrl}/Order/allOrderAdmin`);
+      const responseMoney = await axios.get(`${apiUrl}/Order/allSummoney`);
+      const responseUser = await axios.get(`${apiUrl}/Order/countUser`);
+      const responseMoneyDay = await axios.post(
+        `${apiUrl}/Order/allSummoney/day`,
+        {
+          day: "2022-05-30",
+        }
+      );
       if (response.data.success) {
         dispatch({
           type: ORDER_LOADED_SUCCESS,
           payload: {
             orders: response.data.orders,
+            monney: responseMoney.data.monney.summoney,
+            monneyDay: responseMoneyDay.data.monney.summoney,
+            countUser: responseUser.data.countUser.countUser,
           },
         });
       }
@@ -33,6 +45,7 @@ const OrderContextProvider = ({ children }) => {
   const getOrderCustomer = async () => {
     try {
       const response = await axios.get(`${apiUrl}/Order/allOrderCustomer`);
+
       if (response.data.success) {
         dispatch({
           type: ORDER_LOADED_SUCCESS,

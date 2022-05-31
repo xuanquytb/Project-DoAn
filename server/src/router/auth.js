@@ -16,6 +16,7 @@ const {
   delete_By_Id,
   find_all_Administrators,
   find_all_Employee,
+  UpdateUserIdCard,
 } = require("../models/user");
 const { Card, InsertCard, find_all_Card } = require("../models/card");
 
@@ -185,6 +186,8 @@ Router.post("/register", async (req, res) => {
             };
 
             const card = await InsertCard(cardNew);
+            const resultUpdate = await UpdateUserIdCard(result.id, card.id);
+
             if (result) {
               const token = GenerateToken({
                 userId: result.id,

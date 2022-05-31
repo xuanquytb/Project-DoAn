@@ -7,7 +7,17 @@ import { CategoryContext } from "../../../../../Store/Context/CategoryContext";
 import { BrandContext } from "../../../../../Store/Context/BrandContext";
 import axios from "axios";
 
-import { Drawer, Tabs, Form, Col, Row, Input, Select, Button } from "antd";
+import {
+  Drawer,
+  Tabs,
+  Form,
+  Col,
+  Row,
+  Input,
+  Select,
+  Button,
+  InputNumber,
+} from "antd";
 
 const { TabPane } = Tabs;
 
@@ -112,8 +122,8 @@ const ModalUpdateProduct = ({ input, visible, onClose, onUpdate }) => {
               </Form.Item>
             </Col>
             <Col span={6}>
-              <Form.Item name="discount" label="Giảm giá">
-                <Input placeholder="0%" allowClear />
+              <Form.Item name="discount" label="Giảm giá (%)">
+                <InputNumber min={1} max={100} style={{ height: 39 }} />
               </Form.Item>
             </Col>
           </Row>

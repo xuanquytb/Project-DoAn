@@ -864,25 +864,29 @@ span.user__name {
 }
 .content__body-item {
   background-color: var(--white-color);
-  padding: 0 10px 20px 10px;
   transition: all linear 0.1s;
   cursor: pointer;
+  min-width: 238px;
+  min-height: 373px;
+  padding: 6px;
 }
 .content__body-img {
   margin-top: 10px;
   min-width: 190px;
-  min-height: 190px;
+  max-height: 237px;
+  min-height: 237px;
   width: 100%;
 }
 .info__name {
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--text-color);
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-height: 20px;
+  word-wrap: unset;
 }
 .info__vote {
   display: flex;
@@ -910,7 +914,7 @@ span.user__name {
   width: 240px;
   position: relative;
   bottom: 15px;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   cursor: pointer;
 }
@@ -1359,5 +1363,14 @@ th, td {
 }
 
 .ant-card-body {
-  padding: 0px;
+  padding: 0px !important;
+  min-height: 389px !important;
+}
+
+.ant-card.ant-card-bordered.ant-card-type-text.col.l-2.c-6.m-4 {
+  height: 393px;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  height: 30px;
 }

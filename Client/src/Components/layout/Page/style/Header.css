@@ -165,3 +165,7 @@ display: block;
     color: var(--primary-color-rgb);
     cursor: pointer;
 }
+
+.Header__mode-item-link .ant-btn{
+    box-shadow: none !important;
+}

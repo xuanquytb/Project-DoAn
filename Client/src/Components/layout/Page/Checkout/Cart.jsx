@@ -27,11 +27,10 @@ const Cart = () => {
     getSumMoneyCard();
   }, []);
 
-  console.log(sumMoney);
   const handNum = async (e, item) => {
     const data = {
       id: item.id,
-      dongia: e * item.price,
+      dongia: e * item.dongia,
       quantity: e,
     };
     console.log(data);
@@ -66,10 +65,10 @@ const Cart = () => {
                         </p>
                         <p className="text-info price-Product">
                           <strong style={{ fontSize: 15 }}>Giá bán</strong>:{" "}
-                          {item.price} đ
+                          {item.dongia} đ
                         </p>
                         <p className="text-info warehouseCount-Product">
-                          Đơn giá: {item.quantity * item.price}
+                          Đơn giá: {item.quantity * item.dongia}
                         </p>
                       </div>
                       <div className="btn-action">

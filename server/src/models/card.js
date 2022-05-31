@@ -75,7 +75,7 @@ const find_card_Detail_by_Id = (id) => {
 const check_card_Detail_by_Id = (idCard, idProduct) => {
   return new Promise((resolve, reject) => {
     dbConn.query(
-      `select * from carddetail where idCard = ${idCard} and idProduct = ${idProduct}`,
+      `select * from carddetail where idCard = ${idCard} and idProduct = ${idProduct} and detailstate = 0`,
       (error, elements) => {
         if (error) {
           return reject(error);

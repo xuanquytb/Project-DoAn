@@ -65,10 +65,13 @@ const Category_User = () => {
               <ul className="category-list">
                 {categorys.map((item) => {
                   return (
-                    <li className="category-item category-item--active">
-                      <a href="#" className="category-item__link">
+                    <li
+                      className="category-item category-item--active"
+                      onClick={(e) => handleOnclick()}
+                    >
+                      <span className="category-item__link">
                         {item.nameCategory}
-                      </a>
+                      </span>
                     </li>
                   );
                 })}

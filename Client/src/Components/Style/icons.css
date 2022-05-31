@@ -40,7 +40,6 @@
   [class*=" icon-brand-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'Brand-Icons' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -1524,7 +1523,6 @@
   [class*=" icon-feather-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'Feather-Icons' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -1682,7 +1680,6 @@
 
   .icon-feather-bookmark:before {
     content: "\e924";
-    color:;
   }
 
   .icon-feather-box:before {
@@ -2621,7 +2618,6 @@
   [class*=" icon-material-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'Material-Icons' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -3073,10 +3069,6 @@
     content: "\e968";
   }
 
-  .icon-material-outline-message-(1):before {
-    content: "\e969";
-  }
-
   .icon-material-outline-monetization-on:before {
     content: "\e96a";
   }
@@ -3273,7 +3265,6 @@
   [class*=" icon-line-awesome-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'Line-Awesome' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -5988,7 +5979,6 @@
     font-family: "unicons";
     font-style: normal;
     font-weight: normal;
-    speak: none;
     display: inline-block;
     text-decoration: inherit;
     text-align: center;

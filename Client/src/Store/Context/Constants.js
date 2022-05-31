@@ -52,6 +52,7 @@ export const FIND_PAYMENT = "FIND_PAYMENT";
 // Order/////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const ORDER_LOADED_SUCCESS = "ORDER_LOADED_SUCCESS";
+export const ORDER_LOADEDMONEY_SUCCESS = "ORDER_LOADEDMONEY_SUCCESS";
 export const ORDER_LOADED_FAIL = "ORDER_LOADED_FAIL";
 export const ADD_ORDER = "ADD_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";

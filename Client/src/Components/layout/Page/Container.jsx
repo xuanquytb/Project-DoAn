@@ -1,37 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Modal, Button, InputNumber, Radio, Descriptions } from "antd";
-import { Layout } from "antd";
-const { Content } = Layout;
+import { Pagination } from "antd";
+import ListProduct from "./ListProduct";
 
-import { Card } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-
-const { Meta } = Card;
 import "../../Style/detailProduct.css";
-import ModalProduct from "./viewAntd/modalProduct";
 import { ProductContext } from "../../../Store/Context/ProductContext";
+import axios from "axios";
 
 const Container = () => {
-  const [visible, setVisible] = useState(false);
-  const [product, setProduct] = useState();
-
   const {
     productState: { products },
-    getProduct,
   } = useContext(ProductContext);
-  useEffect(() => getProduct(), []);
-
-  const showModal = async (e, id) => {
-    e.preventDefault();
-
-    await setProduct(id);
-    setVisible(true);
+  const [show, setShow] = useState(products.slice(0, 20));
+  const handChangePage = (page, pageSize) => {
+    var start = (page - 1) * pageSize;
+    var end = page * pageSize;
+    setShow(products.slice(start, end));
   };
+
   return (
     <>
       <div className="main">
@@ -122,67 +107,17 @@ const Container = () => {
           </div>
           <div className="content__body">
             <div className="grid wide">
-              <div className="row no-gutters content__active">
-                {products.map((item) => {
-                  return (
-                    <Card
-                      style={{ padding: 0 }}
-                      className="col l-2 c-6 m-4"
-                      type="text"
-                      key={item.id}
-                      onClick={(event) => showModal(event, item.id)}
-                      // actions={[
-                      //   <SettingOutlined key="setting" />,
-                      //   <EditOutlined key="edit" />,
-                      //   <EllipsisOutlined key="ellipsis" />,
-                      // ]}
-                    >
-                      <div className="content__body-item">
-                        <img
-                          src={`http://localhost:8080/image/procuct/${item.image}`}
-                          alt=""
-                          className="content__body-img"
-                        />
-                        <div className="content__body-info">
-                          <span className="info__name">{item.nameProduct}</span>
-                          <div className="info__vote">
-                            <div className="info__vote-icon">
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                              <i className="fas fa-star"></i>
-                            </div>
-                            <span className="info__vote-quantily">
-                              124 đã bán
-                            </span>
-                          </div>
-                          <div className="slider__content-price">
-                            <span className="item__price">{item.price} đ</span>
-                            <span className="item__discount">-35%</span>
-                          </div>
-                          <img
-                            src="https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png"
-                            alt=""
-                            width="124px"
-                            height="18px"
-                          />
-                        </div>
-                      </div>
-                    </Card>
-                  );
-                })}
-
-                <ModalProduct
-                  visible={visible}
-                  onClose={() => setVisible(false)}
-                  product={product}
-                />
-              </div>
+              <ListProduct data={show} />
               <div className="content__show">
-                <a className="content__show-link" id="btn__showMore">
-                  Xem Thêm
-                </a>
+                <Pagination
+                  showSizeChanger={true}
+                  defaultPageSize={20}
+                  pageSizeOptions={[20, 30, 40]}
+                  defaultCurrent={1}
+                  total={products.length}
+                  style={{ width: 800, marginTop: 60 }}
+                  onChange={handChangePage}
+                />
               </div>
             </div>
           </div>

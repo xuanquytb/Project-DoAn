@@ -81,7 +81,7 @@ const InsertNews = function (news) {
 const UpdateNews = function (newsUpdate, id) {
   return new Promise((resolve, reject) => {
     dbConn.query(
-      `Update news SET nameNews = '${newsUpdate.nameNews}', brief = '${newsUpdate.brief}', content = '${newsUpdate.content}', nameImage = '${newsUpdate.image}', author = '${newsUpdate.author}', state = '${newsUpdate.state}' WHERE (id = '${id}')`,
+      `Update news SET nameNews = '${newsUpdate.nameNews}', brief = '${newsUpdate.brief}', content = '${newsUpdate.content}', author = '${newsUpdate.author}', state = '${newsUpdate.state}' WHERE (id = '${id}')`,
       (err, element) => {
         if (err) {
           return reject(err);

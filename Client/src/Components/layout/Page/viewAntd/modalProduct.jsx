@@ -39,7 +39,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
       idCard: user[0].idCard,
       idProduct: products.id,
       idCoupon: "",
-      dongia: products.price,
+      dongia: products.price - (products.price * products.promotional) / 100,
       quantity: quantityNum,
       sumMoney: "",
     };
@@ -96,15 +96,25 @@ const ModalProduct = ({ visible, onClose, product }) => {
               </h2>
               <div className="reviewProduct">
                 <div className="review-Damua">Đã bán:500</div>
-                <div className="review-Danhgia">450 Đánh giá</div>
+                {/* <div className="review-Danhgia">450 Đánh giá</div> */}
               </div>
 
               <div className="price-product">
                 <div className="origin-price">
                   ₫ {products !== undefined ? `${products.price}` : ""}
                 </div>
-                <div className="price-buy">₫232.000</div>
-                <div className="discount">35% GIẢM</div>
+                <div className="price-buy">
+                  ₫
+                  {products !== undefined
+                    ? `${
+                        products.price -
+                        (products.price * products.promotional) / 100
+                      }`
+                    : ""}
+                </div>
+                <div className="discount">
+                  {products !== undefined ? products.promotional : ""}% GIẢM
+                </div>
               </div>
 
               <div className="qualiti-product">

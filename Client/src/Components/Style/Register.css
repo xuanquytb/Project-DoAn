@@ -20,7 +20,7 @@
 }
 
 .Form-Register input::placeholder{
-    font-size: 30px;
+    font-size: 25px;
     padding: 5px 15px;
     color: #fff;
     
@@ -65,8 +65,8 @@
 .Container-Register{
     display: flex;
     position: relative;
-    width: 1215px;
-    height: 670px;
+    width: 1318px;
+    height: 667px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     align-items: center;
@@ -96,31 +96,31 @@
 }
 
 .box .box-squade:nth-child(1){
-    width: 150px;
-    height:150px;
-    top: -58px;
-    right:-173px;
+    width: 100px;
+    height:100px;
+    top: 10px;
+    right:-28px;
 }
 
 .box .box-squade:nth-child(2){
-    width: 120px;
-    height:120px;
+    width: 80px;
+    height: 80px;
     bottom: 51px;
-    right:-290px;
+    right: 751px;
 }
 
 .box .box-squade:nth-child(3){
-    width: 100px;
-    height:100px;
-    bottom: 268px;
-    left:-290px;
+    width: 50px;
+    height: 50px;
+    bottom: 269px;
+    left: -75px;
 }
 
 .box .box-squade:nth-child(4){
     width: 80px;
     height:80px;
-    top: 0px;
-    left:-124px;
+    top: 121px;
+    left:-58px;
 }
 
 .form-Register{
@@ -130,7 +130,7 @@
 .form-left{
     position: relative;
     background:rgba(255, 255,255,0.1);
-    height: 663px;
+    height: 670px;
     width: 606px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -138,8 +138,9 @@
 .form-right{
     position: relative;
     background:rgba(255, 255,255,0.3);
-    height: 663px;
-    width: 606px;
+    height: 667px;
+    width: 710px;
+    margin-top: 2px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -188,11 +189,11 @@
 }
 
 .input-text-Value{
-    width: 566px;
+    width: 584px;
 }
 
 .from-input{
-    margin-left: 20px;
+    margin-left: 76px;
 }
 
 .btn-form{
@@ -228,7 +229,26 @@
 }
 
 .title-Form{
-    margin: 15px 235px;
-    margin-top: 5px;
+    margin: 0px 235px;
+    margin-top: 12px;
     padding: 0;
+    font-weight: bold;
+    color: gray;
+}
+
+.input-name-left span{
+    font-size: 25px;
+}
+.input-name-right span{
+    font-size: 25px;
+}
+.input-Value span{
+    font-size: 25px;
+}
+
+.image-signup{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    max-width: 99%;
+    margin: 3px 2px;
 }

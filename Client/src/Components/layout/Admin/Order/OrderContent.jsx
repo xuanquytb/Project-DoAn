@@ -16,8 +16,6 @@ const OrderContent = () => {
   } = useContext(OrderContext);
   useEffect(() => getOrder(), []);
 
-  console.log(orders);
-
   const [visibleShow, setVisibleShow] = useState(false);
   const [visibleCreate, setVisibleCreate] = useState(false);
   const [visibleUpdate, setVisibleUpdate] = useState(false);
@@ -187,7 +185,7 @@ const OrderContent = () => {
           bordered
           dataSource={dataSource}
           columns={columns}
-          scroll={{ y: 350 }}
+          scroll={{ y: 490 }}
         />
       </div>
       <DrawerUpdate

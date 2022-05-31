@@ -60,6 +60,7 @@ const MyOrder = () => {
     updateOrderState,
   } = useContext(OrderContext);
   useEffect(() => getOrderCustomer(), []);
+  console.log(orders);
   return (
     <>
       <Header />

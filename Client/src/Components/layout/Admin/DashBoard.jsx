@@ -20,13 +20,15 @@ import {
 const DashBoard = () => {
   const history = useHistory();
   const { getOrder } = useContext(OrderContext);
-  useEffect(() => getOrder(), []);
+  useEffect(() => {
+    getOrder();
+  }, []);
 
   const menuitem = [
     {
       key: 0,
       title: "Bảng điều khiển",
-      link: "/dashboard",
+      link: "/dashboardAdmin",
     },
     {
       key: 1,
@@ -75,12 +77,6 @@ const DashBoard = () => {
       title: "Quản lý bài đăng",
       icon: "<EditOutlined />",
       link: "/news",
-    },
-    {
-      key: 8,
-      title: "Quản lý bình luận",
-      icon: "<MessageOutlined />",
-      link: "/comment",
     },
   ];
 
@@ -176,6 +172,12 @@ const DashBoard = () => {
                 minHeight: 280,
               }}
             >
+              <Route
+                path="/dashboardAdmin"
+                render={(props) => (
+                  <AuthDashboard {...props} authRoute="dashboardAdmin" />
+                )}
+              />
               <Route
                 path="/user"
                 render={(props) => (
