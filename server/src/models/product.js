@@ -29,6 +29,20 @@ const find_by_name_row_product = function (nameRow, value) {
   });
 };
 
+const find_all_Product_with_idCategory = (idCategory) => {
+  return new Promise((resolve, reject) => {
+    dbConn.query(
+      `SELECT * FROM webthaotran.product where idCategory = ${idCategory}`,
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+};
+
 const find_all_Product = () => {
   return new Promise((resolve, reject) => {
     dbConn.query(`SELECT * FROM product `, (error, elements) => {
@@ -129,5 +143,6 @@ module.exports = {
   InsertProduct,
   UpdateProduct,
   find_view_by_Id,
+  find_all_Product_with_idCategory,
   Product,
 };

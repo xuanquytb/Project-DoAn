@@ -37,11 +37,15 @@ const Category_User = () => {
   const {
     productState: { products },
     getProduct,
+    getProductCategory,
   } = useContext(ProductContext);
-  useEffect(() => getProduct(), []);
 
-  const wheel = (e) => {
-    console.log(e);
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  const handleOnclick = (item) => {
+    getProductCategory(item.id);
   };
   return (
     <>
@@ -67,7 +71,7 @@ const Category_User = () => {
                   return (
                     <li
                       className="category-item category-item--active"
-                      onClick={(e) => handleOnclick()}
+                      onClick={(e) => handleOnclick(item)}
                     >
                       <span className="category-item__link">
                         {item.nameCategory}

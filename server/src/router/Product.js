@@ -2,14 +2,10 @@ const express = require("express");
 
 const Router = express.Router();
 
-const jwt = require("jsonwebtoken");
-
-const argon2 = require("argon2");
-
 const {
   find_by_name_row_product,
   find_all_Product,
-  find_by_Id,
+  find_all_Product_with_idCategory,
   delete_By_Id,
   InsertProduct,
   UpdateProduct,
@@ -29,6 +25,20 @@ Router.get("/", verifyToken, async (req, res) => {
         .json({ success: false, message: "User not found" });
     } else {
       return res.status(200).json({ success: true, user, role: req.role });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+Router.get("/Product/idCategory/:id", async (req, res) => {
+  try {
+    const products = await find_all_Product_with_idCategory(req.params.id);
+    if (!products) {
+      return res
+        .status(202)
+        .json({ success: false, message: "Products not found" });
+    } else {
+      return res.status(200).json({ success: true, products });
     }
   } catch (error) {
     return res.status(500).json({ success: false, message: "Server Error" });

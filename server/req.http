@@ -294,3 +294,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvb
 #########
 GET http://localhost:8080/api/newsCategory/allNewsCategory
 Content-Type: application/json
+#########
+GET http://localhost:8080/api/product/Product/idCategory/2
+Content-Type: application/json

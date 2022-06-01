@@ -16,6 +16,7 @@ export const FIND_USER = "FIND_USER";
 // Product///////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 export const PRODUCT_LOADED_SUCCESS = "PRODUCT_LOADED_SUCCESS";
+export const PRODUCT_LOADED_SUCCESSCT = "PRODUCT_LOADED_SUCCESSCT";
 export const PRODUCT_LOADED_FAIL = "PRODUCT_LOADED_FAIL";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
