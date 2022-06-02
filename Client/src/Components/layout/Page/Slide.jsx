@@ -1,9 +1,13 @@
-import React from "react";
+import { useContext, useState, useEffect } from "react";
 
 import SlideSeller from "../../layout/Page/SlideStick/SlideSeller";
-import SlideTop from "../../layout/Page/SlideStick/SlideTop";
+// import SlideTop from "../../layout/Page/SlideStick/SlideTop";
+import { CategoryContext } from "../../../Store/Context/CategoryContext";
 
 const Slide = () => {
+  const {
+    categoryState: { categorys },
+  } = useContext(CategoryContext);
   return (
     <>
       <div className="slider slider__noTop">
@@ -23,94 +27,27 @@ const Slide = () => {
         </div>
       </div>
       <div className="slider slider__noTop">
-        <div className="slider__section3">
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon1.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Săn sale 12.12</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon2.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Đi chợ online</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon3.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Mã giảm giá</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon4.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Bảo hiểm tiki 360</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon5.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Dịch vụ & tiện ích</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon6.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Gói hội viên</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon7.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Giảm đến 50%</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon8.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Hoàn tiền 15%</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon9.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Ưu đãi thanh toán</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon10.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">Hẹn giao & lắp đặt</span>
-          </div>
-          <div className="slider__section3-item">
-            <img
-              src="../../../image/slider__body/icon11.png"
-              alt=""
-              className="slider__section3-icon"
-            />
-            <span className="slider__section3-info">The Next Face</span>
+        <div class="featured__container">
+          <div class="featured__header">Danh Mục Nổi Bật</div>
+          <div class="featured__body">
+            {categorys !== undefined ? (
+              categorys.slice(0, 20).map((item, index) => {
+                return (
+                  <>
+                    <a href="#" class="featured__body-item" key={index}>
+                      <img
+                        class="featured__img"
+                        src={`http://localhost:8080/image/${item.image}`}
+                        alt=""
+                      />
+                      <span>{item.nameCategory}</span>
+                    </a>
+                  </>
+                );
+              })
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

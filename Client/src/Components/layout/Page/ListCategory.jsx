@@ -2,6 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { CategoryContext } from "../../../Store/Context/CategoryContext";
 import { useHistory, Link } from "react-router-dom";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+
 const ListCategory = () => {
   const history = useHistory();
   const {
@@ -13,6 +18,24 @@ const ListCategory = () => {
     getCategory();
   }, []);
 
+  const renderSlides = () =>
+    categorys !== undefined ? (
+      categorys.map((item, index) => {
+        return (
+          <Link
+            to={`/category-user?id=${item.id}`}
+            key={index}
+            className="list__category-link"
+            style={{ width: "195px", paddingright: 30 }}
+          >
+            {item.nameCategory}
+          </Link>
+        );
+      })
+    ) : (
+      <></>
+    );
+
   return (
     <>
       <div className="list__category">
@@ -21,17 +44,16 @@ const ListCategory = () => {
           id="slider__category"
           style={{ transform: "translateX(0)" }}
         >
-          {categorys.map((item) => {
-            return (
-              <Link
-                to={`/category-user?id=${item.id}`}
-                key={item.id}
-                className="list__category-link"
-              >
-                {item.nameCategory}
-              </Link>
-            );
-          })}
+          <Slider
+            dots={false}
+            slidesToShow={8}
+            slidesToScroll={3}
+            autoplay={false}
+            autoplaySpeed={2000}
+            style={{ width: 1350, paddingLeft: 42, paddingright: 20 }}
+          >
+            {renderSlides()}
+          </Slider>
         </div>
       </div>
     </>

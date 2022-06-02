@@ -5,30 +5,27 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
 
-export default function slideTop() {
-  const data = [
-    "image-1-1.png",
-    "image-1-2.png",
-    "image-1-3.png",
-    "image-1-4.png",
-    "image-1-5.png",
-    "image-1-6.png",
-    "image-1-7.png",
-    "image-1-8.png",
-    "image-1-9.png",
-    "image-1-10.png",
-    "image-1-11.png",
-    "image-1-12.png",
-  ];
+export default function slideTop(data) {
   const renderSlides = () =>
-    data.map((item, index) => (
-      <div key={index}>
-        <img
-          style={{ width: "100%", maxHeight: "150px" }}
-          src={`../../../../../public/image/slider__body/slide-Top/${item}`}
-        />
-      </div>
-    ));
+    data !== undefined ? (
+      data.map((item, index) => (
+        <div class="featured__container">
+          <div class="featured__header">Danh Mục Nổi Bật</div>
+          <div class="featured__body">
+            <a href="#" class="featured__body-item">
+              <img
+                class="featured__img"
+                src="http://localhost:8080/image/image-1652503330139.jpeg"
+                alt=""
+              />
+              <span>Thực Phẩm Tươi Sống</span>
+            </a>
+          </div>
+        </div>
+      ))
+    ) : (
+      <></>
+    );
 
   return (
     <div>

@@ -7,12 +7,15 @@ import Slide from "../layout/Page/Slide";
 
 import ProtectedRouteUser from "../../Store/Routing/ProtectedRouteUser";
 import { ProductContext } from "../../Store/Context/ProductContext";
+import { CategoryContext } from "../../Store/Context/CategoryContext";
 
 const Landing = () => {
   const { getProduct } = useContext(ProductContext);
+  const { getCategory } = useContext(CategoryContext);
 
   useEffect(() => {
     getProduct();
+    getCategory();
   }, []);
   return (
     <>

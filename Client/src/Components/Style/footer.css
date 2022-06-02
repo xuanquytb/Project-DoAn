@@ -1,81 +1,68 @@
-.footer__container {
-    background-image: linear-gradient(to bottom, #000, #232323);
-    padding: 40px 0 100px;
-    margin-top:10px;
-}
 
-.footer-info {
-    color: var(--white-color);
-    font-size: 1.6rem;
-    line-height: 3.8rem;
-    transition: color 0.3s;
+#footer{
+    margin-top: 16px;
+    background-color: #fff;
 }
-
-.footer-info:hover {
-    color: var(--main-color);
-    transition: color 0.3s;
+.footer__container{
+    padding: 16px 0;
+    border-bottom: 1px solid rgb(235, 235, 240);
 }
-
-.footer__social {
+.footer__items{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
-
-.footer__social-link {
-    color: var(--white-color);
-    font-size: 1.8rem;
-    transition: color 0.3s;
+.footer__title{
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
 }
-
-.footer__social-link:hover {
-    color: var(--main-color);
-    transition: color 0.3s;
+.hot-line a{
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
 }
-
-.footer__item-ad {
+.hot-line a:hover{
+    text-decoration: underline;
+}
+.footer__links,
+.footer__links-title,
+.hot-line{
+    text-decoration: none;
+    color: rgb(128, 128, 137);
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 16px;
+}
+.footer__links:hover{
+    text-decoration: underline;
+}
+.certification-img{
+    height: 32px;
+}
+.sub-title{
+    margin-top: 22px;
+}
+.pay{
     width: 100%;
-    color: var(--white-color);
+    cursor: pointer;
+}
+.tiki-now{
+    width: 50%;
+}
+.download{
     display: flex;
-    justify-content: space-between;
-    padding: 12px 20px;
-    border: 2px solid var(--main-color);
-    border-radius: 4px;
-    margin: 10px 0;
-    background-color: var(--black-color);
-    box-shadow: 0 4px 12px -4px rgb(0 212 159 / 50%);
 }
-
-.footer__item-ad-link {
-    color: var(--white-color);
-    font-size: 1.6rem;
+.download__qr{
+    height: 100px;
 }
-
-.footer__item-ad-icon {
-    font-size: 1.6rem;
-    transition: transform 0.2s;
+.download__link{
+    margin-left: 8px;
 }
-
-.footer__item-ad:hover .footer__item-ad-icon {
-    transform: translateX(6px);
-    transition: transform 0.2s;
+.app{
+    height: 48px;
+    margin-bottom: 6px;
 }
-
-.copyright {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
-}
-
-.footer__logo-img {
-    width: 187px;
-    height: 24px;
-    display: block;
-}
-
-.aa-copyright {
-    color: #777;
-    font-size: 1.2rem;
-    font-family: HKGrotesk-Med;
-    cursor: default;
-    user-select: none;
+.footer__address{
+    margin-top: 16px;
 }

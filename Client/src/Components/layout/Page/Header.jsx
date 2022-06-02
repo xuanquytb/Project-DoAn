@@ -7,6 +7,7 @@ import { CardContext } from "../../../Store/Context/CardContext";
 
 import "../Page/style/Header.css";
 import axios from "axios";
+import Search from "./Search/Search";
 
 const Header = () => {
   const { authState, logout } = useContext(AuthContext);
@@ -62,8 +63,6 @@ const Header = () => {
     getCard();
   };
   const handDelete = async (id) => {
-    console.log(id);
-
     const result = await axios.delete(
       `http://localhost:8080/api/card/cardDetail/${id}`
     );
