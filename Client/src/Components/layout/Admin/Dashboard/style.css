@@ -6,3 +6,7 @@
     min-height: 85px !important;
     padding: 16px !important;
 }
+
+.criclebox .ant-table-tbody > tr > td, .ant-table-thead > tr > th {
+    white-space: break-spaces;
+}

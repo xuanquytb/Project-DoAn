@@ -129,7 +129,7 @@ const CategoryContent = () => {
         },
         {
             title: "Thao Tác",
-            width: "7%",
+            width: "8%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>

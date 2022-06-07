@@ -30,16 +30,7 @@
   line-height: 16px;
   margin-right: 16px;
 }
-.form__search {
-  position: relative;
-  height: 100%;
-}
-.header__search {
-  display: flex;
-  align-items: center;
-  margin-right: 70px;
-  box-shadow: rgb(98 98 98 / 50%) 0px 1px 2px 0px;
-}
+
 .header__search-input {
   width: 627px;
   height: 100%;
@@ -51,15 +42,7 @@
   font-size: 1.3rem;
   line-height: 15px;
 }
-.header__seacrh-block {
-  background-color: var(--button-color);
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 10px 22px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
+
 .header__search-btn {
   display: block;
   text-decoration: none;
@@ -68,10 +51,7 @@
   font-weight: 500;
   padding: 10px 0 10px 8px;
 }
-.header__search-icon {
-  color: var(--white-color);
-  font-size: 1.6rem;
-}
+
 .header__user {
   display: flex;
   align-items: center;
@@ -102,8 +82,8 @@
   width: 159px;
   height: fit-content;
   border-radius: 2.5px;
-  top: 63px;
-  right: 48px;
+  top: 43px;
+  right: 6px;
   z-index: 15;
   box-shadow: rgb(0 0 0 / 18%) 0px 6px 12px 0px;
   border: 1px solid #efefef;
@@ -119,8 +99,8 @@
   display: block;
   position: absolute;
   width: 159px;
-  height: 15px;
-  top: -16px;
+  height: 24px;
+  top: -13px;
   right: 0px;
   z-index: 15;
   background: transparent;
@@ -132,7 +112,7 @@
   border-width: 13px 16px;
   position: absolute;
   top: -26px;
-  right: 17px;
+  right: 6px;
   border-color: transparent transparent #fff transparent;
 }
 
@@ -217,7 +197,7 @@ span.user__name {
 }
 .header__keyword {
   display: flex;
-  margin-left:85px;
+  margin-left:150px;
 }
 .header__keyword-link {
   text-decoration: none;
@@ -238,19 +218,7 @@ span.user__name {
   font-size: 1.2rem;
   cursor: pointer;
 }
-.search__content {
-  position: absolute;
-  background-color: var(--white-color);
-  top: 39px;
-  width: 100%;
-  z-index: 20;
-  border-top: 1px solid rgb(225, 225, 225);
-  box-shadow: rgb(0 0 0 / 28%) 0px 6px 12px 0px;
-  display: none;
-}
-.header__search-input:focus ~ .search__content {
-  display: block;
-}
+
 .search__history-head {
   display: flex;
   align-items: center;
@@ -401,7 +369,8 @@ span.user__name {
   align-items: center;
   white-space: nowrap;
   transition: all 0.5s ease-in-out 0s;
-  padding: 0 12px;
+  padding: 0 0px;
+  margin-left: 100px;
 }
 .list__category-link {
   display: block;
@@ -878,6 +847,8 @@ span.user__name {
   width: 100%;
 }
 .info__name {
+  height: 20px;
+  overflow-y: auto !important;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-color);
@@ -1368,7 +1339,7 @@ th, td {
 }
 
 .ant-card.ant-card-bordered.ant-card-type-text.col.l-2.c-6.m-4 {
-  height: 393px;
+  height: 378px;
 }
 
 .ant-input-affix-wrapper > input.ant-input {

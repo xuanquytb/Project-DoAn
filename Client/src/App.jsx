@@ -6,6 +6,7 @@ import Auth from "./Components/view/Auth";
 import Dashboard from "./Components/layout/Admin/DashBoard";
 import MyInfo from "./Components/layout/Page/MyInfo/MyInfo";
 import MyOrder from "./Components/layout/Page/MyOrder/MyOrder";
+import About from "./Components/layout/Page/About/About";
 import Checkout from "./Components/layout/Page/Checkout/Cart";
 import Payment from "./Components/layout/Page/Checkout/Payment";
 import Success from "./Components/layout/Page/Checkout/orderSuccess";
@@ -21,162 +22,214 @@ import NewsContextProvider from "./Store/Context/NewsContext";
 import CategoryNewsContextProvider from "./Store/Context/CategoryNewsContext";
 import ProtectedRoute from "./Store/Routing/ProtectedRoute";
 import ProtectedRouteUser from "./Store/Routing/ProtectedRouteUser";
-import Category_User from "./Components/layout/Page/Category_User";
+import CategoryProduct from "./Components/layout/Page/Product/CategoryProduct";
+import PageShowResultSearch from "./Components/layout/Page/Search/ViewResultSearch/index";
 import News from "./Components/layout/Page/news/News";
 import "../public/assets/styles/main.css";
 
 function App() {
-  return (
-    <OrderContextProvider>
-      <PaymentContextProvider>
-        <CardContextProvider>
-          <CategoryNewsContextProvider>
-            <NewsContextProvider>
-              <AuthContextProvider>
-                <UserContextProvider>
-                  <CategoryContextProvider>
-                    <BrandContextProvider>
-                      <ProductContextProvider>
-                        <Router>
-                          <Switch>
-                            <Route exact path="/" component={Landing} />
-                            <Route
-                              exact
-                              path="/login"
-                              render={(props) => (
-                                <Auth {...props} authRoute="login" />
-                              )}
-                            />
-                            <Route
-                              exact
-                              path="/register"
-                              render={(props) => (
-                                <Auth {...props} authRoute="register" />
-                              )}
-                            />
-                            <Route
-                              exact
-                              path="/admin/login"
-                              render={(props) => (
-                                <Auth {...props} authRoute="loginAdmin" />
-                              )}
-                            />
+    return (
+        <OrderContextProvider>
+            <PaymentContextProvider>
+                <CardContextProvider>
+                    <CategoryNewsContextProvider>
+                        <NewsContextProvider>
+                            <AuthContextProvider>
+                                <UserContextProvider>
+                                    <CategoryContextProvider>
+                                        <BrandContextProvider>
+                                            <ProductContextProvider>
+                                                <Router>
+                                                    <Switch>
+                                                        <Route
+                                                            exact
+                                                            path='/'
+                                                            component={Landing}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/login'
+                                                            render={(props) => (
+                                                                <Auth
+                                                                    {...props}
+                                                                    authRoute='login'
+                                                                />
+                                                            )}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/register'
+                                                            render={(props) => (
+                                                                <Auth
+                                                                    {...props}
+                                                                    authRoute='register'
+                                                                />
+                                                            )}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/admin/login'
+                                                            render={(props) => (
+                                                                <Auth
+                                                                    {...props}
+                                                                    authRoute='loginAdmin'
+                                                                />
+                                                            )}
+                                                        />
 
-                            <ProtectedRouteUser
-                              exact
-                              path="/checkout"
-                              component={Checkout}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/payment"
-                              component={Payment}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/success"
-                              component={Success}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/dashboard"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/user"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/admin"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/employee"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/category"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/product"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/brand"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/new"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/comment"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/order"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/news"
-                              component={Dashboard}
-                            />
-                            <ProtectedRoute
-                              exact
-                              path="/dashboardAdmin"
-                              component={Dashboard}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/info"
-                              component={MyInfo}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/info/order"
-                              component={MyInfo}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/myorder"
-                              component={MyOrder}
-                            />
-                            <ProtectedRouteUser
-                              exact
-                              path="/pagenew"
-                              component={News}
-                            />
-                            <Route
-                              exact
-                              path="/category-user"
-                              component={Category_User}
-                            />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/checkout'
+                                                            component={Checkout}
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/payment'
+                                                            component={Payment}
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/success'
+                                                            component={Success}
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/dashboard'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/user'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/admin'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/employee'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/category'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/product'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/brand'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/new'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/comment'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/order'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/news'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRoute
+                                                            exact
+                                                            path='/dashboardAdmin'
+                                                            component={
+                                                                Dashboard
+                                                            }
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/info'
+                                                            component={MyInfo}
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/info/order'
+                                                            component={MyInfo}
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/myorder'
+                                                            component={MyOrder}
+                                                        />
+                                                        <ProtectedRouteUser
+                                                            exact
+                                                            path='/pagenew'
+                                                            component={News}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/categoryProduct'
+                                                            component={
+                                                                CategoryProduct
+                                                            }
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/searchresult'
+                                                            component={
+                                                                PageShowResultSearch
+                                                            }
+                                                        />
 
-                            <Route path="/notfound" />
-                          </Switch>
-                        </Router>
-                      </ProductContextProvider>
-                    </BrandContextProvider>
-                  </CategoryContextProvider>
-                </UserContextProvider>
-              </AuthContextProvider>
-            </NewsContextProvider>
-          </CategoryNewsContextProvider>
-        </CardContextProvider>
-      </PaymentContextProvider>
-    </OrderContextProvider>
-  );
+                                                        <Route
+                                                            exact
+                                                            path='/about'
+                                                            component={About}
+                                                        />
+                                                        <Route path='/notfound' />
+                                                    </Switch>
+                                                </Router>
+                                            </ProductContextProvider>
+                                        </BrandContextProvider>
+                                    </CategoryContextProvider>
+                                </UserContextProvider>
+                            </AuthContextProvider>
+                        </NewsContextProvider>
+                    </CategoryNewsContextProvider>
+                </CardContextProvider>
+            </PaymentContextProvider>
+        </OrderContextProvider>
+    );
 }
 
 export default App;

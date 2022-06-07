@@ -74,7 +74,7 @@ Router.delete("/:id", verifyToken, async (req, res) => {
     }
 });
 
-Router.get("/allCategory", verifyToken, async (req, res) => {
+Router.get("/allCategory", async (req, res) => {
     const result = await find_Emp_by_name_row("id", req.userId);
     if (result) {
         try {

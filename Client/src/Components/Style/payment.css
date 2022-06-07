@@ -65,6 +65,8 @@
     margin: 0;
     font-size: 13px;
     word-wrap: break-word;
+    max-height: 40px;
+    overflow-y: auto;
 }
 
 .infomation-left{
