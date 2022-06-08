@@ -232,7 +232,7 @@ const ProductContent = () => {
             warranty: product.warranty,
             quantity: product.quantity,
             promotional: product.promotional,
-            price: product.price,
+            price: (product.price).format(),
             status: product.status,
             image: product.image,
             idCategory: product.idCategory,

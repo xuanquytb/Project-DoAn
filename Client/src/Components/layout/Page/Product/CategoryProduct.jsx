@@ -42,7 +42,12 @@ const CategoryProduct = () => {
         getProductCategory(item.id);
     };
 
-    console.log(products);
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
+
+    // console.log(products);
     return (
         <>
             <Header />
@@ -134,7 +139,7 @@ const CategoryProduct = () => {
                                                 </div>
                                                 <div className='slider__content-price'>
                                                     <span className='item__price'>
-                                                        {item.price} đ
+                                                        {(item.price).format() } đ
                                                     </span>
                                                     <span className='item__discount'>
                                                         -35%

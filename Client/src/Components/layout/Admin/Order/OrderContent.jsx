@@ -246,7 +246,7 @@ const OrderContent = () => {
             address: order.address,
             phone: order.phone,
             state: order.state,
-            sumPayment: order.sumPayment,
+            sumPayment: (order.sumPayment).format(),
             createAt: order.createAt.split("T")[0],
             key: order.id,
         };

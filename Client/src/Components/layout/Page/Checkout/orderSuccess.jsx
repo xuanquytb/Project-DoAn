@@ -8,6 +8,10 @@ import { useLocation } from "react-router-dom";
 const orderSuccess = (props) => {
     const location = useLocation();
 
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
     return (
         <>
             <Header />
@@ -46,7 +50,7 @@ const orderSuccess = (props) => {
                                 style={{ color: "green" }}
                             >
                                 Bạn vui lòng hãy chuẩn bị số tiền{" "}
-                                {location.state.info.sumPayment} đ để thanh toán
+                                {(location.state.info.sumPayment).format()} đ để thanh toán
                                 đơn hàng
                             </p>
                         </div>

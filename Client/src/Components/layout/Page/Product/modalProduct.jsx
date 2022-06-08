@@ -66,6 +66,12 @@ const ModalProduct = ({ visible, onClose, product }) => {
             });
         }
     };
+
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
+
     return (
         <>
             <Modal
@@ -110,17 +116,17 @@ const ModalProduct = ({ visible, onClose, product }) => {
                                 <div className='origin-price'>
                                     ₫{" "}
                                     {products !== undefined
-                                        ? products.price
+                                        ? (products.price).format()
                                         : ""}
                                 </div>
                                 <div className='price-buy'>
                                     ₫
                                     {products !== undefined
                                         ? `${
-                                              products.price -
+                                              (products.price -
                                               (products.price *
                                                   products.promotional) /
-                                                  100
+                                                  100).format()
                                           }`
                                         : ""}
                                 </div>

@@ -53,6 +53,11 @@ const Payment = () => {
         history.push({ pathname: "/success", state: { info: infoPayment } });
     };
 
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
+
     return (
         <>
             <Header />
@@ -204,7 +209,7 @@ const Payment = () => {
                                     className='price-delivery'
                                     style={{ color: "red" }}
                                 >
-                                    35000 đ
+                                    35.000 đ
                                 </div>
                             </div>
                         </div>
@@ -278,8 +283,8 @@ const Payment = () => {
                                             >
                                                 <h3>
                                                     {" "}
-                                                    {item.quantity *
-                                                        item.price}{" "}
+                                                    {(item.quantity *
+                                                        item.price).format()}{" "}
                                                     đ
                                                 </h3>
                                             </div>
@@ -305,7 +310,7 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    {sumMoney !== null ? sumMoney : "0"} đ
+                                    {sumMoney !== null ? (sumMoney.format()) : "0"} đ
                                 </span>
                             </h2>
                             <h2 style={{ margin: 0, position: "relative" }}>
@@ -318,7 +323,7 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    35000 đ
+                                    35.000 đ
                                 </span>
                             </h2>
 
@@ -332,7 +337,7 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    {35000 + sumMoney} đ
+                                    {(35000 + sumMoney).format()} đ
                                 </span>
                             </h2>
                         </div>

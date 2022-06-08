@@ -13,6 +13,11 @@ const ListCategory = ({ data }) => {
         setVisible(true);
     };
 
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
+
     return (
         <div className='row no-gutters content__active'>
             {data !== undefined ? (
@@ -49,7 +54,7 @@ const ListCategory = ({ data }) => {
                                     </div>
                                     <div className='slider__content-price'>
                                         <span className='item__price'>
-                                            {item.price} đ
+                                            {(item.price.format())} đ
                                         </span>
                                         <span className='item__discount'>
                                             -35%

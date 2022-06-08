@@ -19,6 +19,11 @@ const ModalShow = ({ input, visible, onClose }) => {
     const cancelOrder = (input) => {
         console.log(input);
     };
+    
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
     return (
         <Modal
             title='Chi tiết đơn hàng'
@@ -76,10 +81,10 @@ const ModalShow = ({ input, visible, onClose }) => {
                                         </p>
                                         <p className='text-info price-Product-detail-order'>
                                             Thành tiền:{" "}
-                                            {item.quantity * item.price} đ
+                                            {(item.quantity * item.price).format()} đ
                                         </p>
                                         <p className='text-info warehouseCount-Product'>
-                                            {item.price} đ{" "}
+                                            {(item.price).format()} đ{" "}
                                             <span
                                                 style={{
                                                     color: "gray",

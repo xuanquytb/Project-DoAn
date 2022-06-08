@@ -42,6 +42,11 @@ const Cart = () => {
         await getSumMoneyCard();
     };
 
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
+
     return (
         <>
             <Header />
@@ -71,12 +76,12 @@ const Cart = () => {
                                                     >
                                                         Giá bán
                                                     </strong>
-                                                    : {item.dongia} đ
+                                                    : {(item.dongia).format()} đ
                                                 </p>
                                                 <p className='text-info warehouseCount-Product'>
                                                     Đơn giá:{" "}
-                                                    {item.quantity *
-                                                        item.dongia}
+                                                    {(item.quantity *
+                                                        item.dongia).format()}
                                                 </p>
                                             </div>
                                             <div className='btn-action'>
@@ -152,7 +157,7 @@ const Cart = () => {
                         <h2>
                             <strong>Tạm tính : </strong>
                             <span style={{ color: "red" }}>
-                                {sumMoney !== null ? sumMoney : "0"}đ
+                                {sumMoney !== null ? (sumMoney).format() : "0"}đ
                             </span>
                         </h2>
                     </div>
