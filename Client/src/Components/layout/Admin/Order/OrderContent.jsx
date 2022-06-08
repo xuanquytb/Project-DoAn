@@ -12,6 +12,10 @@ import Highlighter from "react-highlight-words";
 import "./css/OrderStyle.css";
 
 const OrderContent = () => {
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
     const {
         orderState: { orders },
         getOrder,

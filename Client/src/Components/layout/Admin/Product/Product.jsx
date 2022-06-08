@@ -12,6 +12,10 @@ import Highlighter from "react-highlight-words";
 import "./css/ProductStyle.css";
 
 const ProductContent = () => {
+    Number.prototype.format = function(n, x) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+        return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&.');
+    };
     const {
         productState: { products },
         getProduct,
